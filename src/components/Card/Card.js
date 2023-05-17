@@ -40,7 +40,7 @@ function MiniCard({ mostrarQueTabla, el, oldEquipos }) {
             </div>
           </div>
           <h2 className="ColorNameEquipo">{el.Equipo}</h2>
-          {/* <h6 className="ColorNameEquipo">Cantidad: {el.cant} unid.</h6> */}
+          <h6 className="ColorNameEquipo">Cantidad: {el.cant} unid.</h6>
           <div>
             <button
               onClick={() => setMostrar("caracteristicas")}
