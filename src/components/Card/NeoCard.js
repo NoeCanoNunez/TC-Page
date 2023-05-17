@@ -23,8 +23,8 @@ function MiniCard({ mostrarQueTabla, el, img }) {
   function cambiarEspacios(cadena) {
     return cadena.replace(/ /g, "%20");
   }
-  const imagenEquipo = "https://elbuencaldo.com/cl4r0/" + cambiarEspacios(el.Equipo) +".webp"
-
+  const imagenEquipo = "https://raw.githubusercontent.com/NoeCanoNunez/TC-Page/master/src/img/claro/" + cambiarEspacios(el.Equipo) +".webp"
+  
   console.log("NeoCard")
   return (
     <>    

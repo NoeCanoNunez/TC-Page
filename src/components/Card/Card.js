@@ -17,12 +17,8 @@ function MiniCard({ mostrarQueTabla, el, oldEquipos }) {
   function cambiarEspacios(cadena) {
     return cadena.replace(/ /g, "%20");
   }
-  const imagenEquipo = "https://elbuencaldo.com/cl4r0/" + cambiarEspacios(el.Equipo) +".webp"
+  const imagenEquipo = "https://raw.githubusercontent.com/NoeCanoNunez/TC-Page/master/src/img/claro/" + cambiarEspacios(el.Equipo) +".webp"
   
-  
-    // const displayPromo = oldEquipos[el.Equipo].total < 0 ? "block"
-    //   : "none"
-    
     const displayPromo = oldEquipos.filter(elem => el.Equipo === elem.Equipo)[0] ? (oldEquipos.filter(elem => el.Equipo === elem.Equipo)[0].total < 0 ? "block" : "none") : "none"
     
   return (
