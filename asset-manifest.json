@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "/TC-Page/static/css/main.6abaa243.css",
+    "main.js": "/TC-Page/static/js/main.4c979e8b.js",
+    "static/media/OppoReno7.mp4": "/TC-Page/static/media/OppoReno7.ce0eb1264338420467bc.mp4",
+    "static/media/triangles-1430105.svg": "/TC-Page/static/media/triangles-1430105.7b4e7b6eaf909e064bfc.svg",
+    "static/media/Yape.jpg": "/TC-Page/static/media/Yape.41cda2f99f2ca9df03ba.jpg",
+    "static/media/promo.png": "/TC-Page/static/media/promo.f79497a1ce035e078197.png",
+    "static/media/google-logo.svg": "/TC-Page/static/media/google-logo.dcbc94051c15aba5972efc068e2cec23.svg",
+    "static/media/logo.svg": "/TC-Page/static/media/logo.6074ffbaa74e8bad189bc02a5e3483aa.svg",
+    "static/media/android.svg": "/TC-Page/static/media/android.0cfd7fe2594587d29723d6aa0cae8dc9.svg",
+    "static/media/cellphone.svg": "/TC-Page/static/media/cellphone.7f72ca966b856f9dea40d427cc0ba122.svg",
+    "static/media/ram.svg": "/TC-Page/static/media/ram.6b47545257ea2a57bf316a7437a296d5.svg",
+    "index.html": "/TC-Page/index.html",
+    "static/media/procesador.svg": "/TC-Page/static/media/procesador.ec08038d69b7840f7c550435f44804f4.svg",
+    "static/media/memoriaInterna.svg": "/TC-Page/static/media/memoriaInterna.c6ee0117db92b4f226d05cc9f57b7675.svg",
+    "static/media/memoriaExpandible.svg": "/TC-Page/static/media/memoriaExpandible.69b42441449692169205c815950ec31d.svg",
+    "static/media/file-return.svg": "/TC-Page/static/media/file-return.2c5197dd65e6a5a5d144beac7a4c5923.svg",
+    "static/media/x-circle.svg": "/TC-Page/static/media/x-circle.3bcfd9adc381b7775fc345c02801fe04.svg",
+    "static/media/size.svg": "/TC-Page/static/media/size.420ca7954706d0319d9b5ae3aa4d6b00.svg",
+    "static/media/camara.svg": "/TC-Page/static/media/camara.46c52ec984dff95a2479ec561b84231e.svg",
+    "static/media/file-plus.svg": "/TC-Page/static/media/file-plus.d69f74b5fc67a0579ef0474558e02ac2.svg",
+    "static/media/bateria.svg": "/TC-Page/static/media/bateria.257841ddd532689e5cdd935895c8e85b.svg",
+    "static/media/peso.svg": "/TC-Page/static/media/peso.dfbe9e0f72f7f2c0e0e470696e831107.svg",
+    "main.6abaa243.css.map": "/TC-Page/static/css/main.6abaa243.css.map",
+    "main.4c979e8b.js.map": "/TC-Page/static/js/main.4c979e8b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6abaa243.css",
+    "static/js/main.4c979e8b.js"
+  ]
+}
