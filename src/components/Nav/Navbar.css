@@ -1,0 +1,52 @@
+.App-logo {
+    height: 5vmin;
+    pointer-events: none;
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+      height: 8vmin;
+      animation: App-logo-spin infinite 15s linear;
+    }
+  }
+
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .navbar{
+    background: linear-gradient(90deg, rgba(35, 97, 254, 1) 10%, rgba(236, 4, 31,.5) 30%, rgba(236, 4, 31, .3) 50%,rgb(236, 89, 4) 100%);
+    /* border: 2px solid rgba(255, 255, 255, 0.8); */
+    box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.523);
+  }
+
+  li{
+    font-size: 16px;
+  }
+
+  li:hover{
+    background-color: #ffc1079a;
+    border-radius: 15px;
+  }
+
+  .botonBuscar{
+    vertical-align: middle;
+    padding: 0;
+    height: 38px;
+    margin: auto;
+  }
+
+  .collapsed {
+    height: 38px;
+
+  }
+
+  .navbar-toggler{
+    height: 38px;
+
+  }

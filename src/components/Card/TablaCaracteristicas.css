@@ -1,0 +1,14 @@
+div {
+    font-size: 10px;
+    color: white;
+    align-items: center;
+}
+
+table {
+    --bs-table-color: #000000;
+    --bs-table-bg: #ffffff3d
+}
+
+table td{
+    font-size: 11px !important;
+}

@@ -1,0 +1,17 @@
+div {
+    font-size: 10px;
+    color: white;
+    align-items: center;
+}
+
+table {
+    text-align: center;
+    max-height: 300px;
+    overflow-y: scroll;
+    margin: auto;
+}
+
+td{
+    font-size: 11px !important;
+}
+
