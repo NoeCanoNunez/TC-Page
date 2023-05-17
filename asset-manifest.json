@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/TC-Page/static/css/main.6abaa243.css",
-    "main.js": "/TC-Page/static/js/main.8408fdbd.js",
+    "main.js": "/TC-Page/static/js/main.31a3fdf5.js",
     "static/media/OppoReno7.mp4": "/TC-Page/static/media/OppoReno7.ce0eb1264338420467bc.mp4",
     "static/media/triangles-1430105.svg": "/TC-Page/static/media/triangles-1430105.7b4e7b6eaf909e064bfc.svg",
     "static/media/Yape.jpg": "/TC-Page/static/media/Yape.41cda2f99f2ca9df03ba.jpg",
@@ -23,10 +23,10 @@
     "static/media/bateria.svg": "/TC-Page/static/media/bateria.257841ddd532689e5cdd935895c8e85b.svg",
     "static/media/peso.svg": "/TC-Page/static/media/peso.dfbe9e0f72f7f2c0e0e470696e831107.svg",
     "main.6abaa243.css.map": "/TC-Page/static/css/main.6abaa243.css.map",
-    "main.8408fdbd.js.map": "/TC-Page/static/js/main.8408fdbd.js.map"
+    "main.31a3fdf5.js.map": "/TC-Page/static/js/main.31a3fdf5.js.map"
   },
   "entrypoints": [
     "static/css/main.6abaa243.css",
-    "static/js/main.8408fdbd.js"
+    "static/js/main.31a3fdf5.js"
   ]
 }
