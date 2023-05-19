@@ -159,6 +159,16 @@ function Navbar({ filtrandoDesdeNav, queTablaMostrar, mostrarCero, buscador, sel
                   </li>
                 </ul>
               </li>
+              <li className="nav-item">
+                <a
+                  onClick={submitSelectorNavbar}
+                  style={liStyle}
+                  className="nav-link"
+                  href="/"
+                >
+                  HFC/FTTH
+                </a>
+              </li>
               {/* <li className="nav-item">
                 <a style={liStyle} className="nav-link disabled" href="/">
                   EnPromocion

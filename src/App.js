@@ -4,8 +4,11 @@ import "./App.css";
 import Navbar from "./components/Nav/Navbar";
 import Card from "./components/Card/Card";
 import NeoCard from "./components/Card/NeoCard";
-import Auth from "./components/Auth/Auth";
-import RenewSubscription from "./components/RenewSubscription/RenewSubscription";
+import PriceList from "./components/PricesList/PriceList";
+import PlayCard from "./components/PlaysCards/PlayCard";
+import Footer from "./components/Footer/Footer";
+//import Auth from "./components/Auth/Auth";
+//import RenewSubscription from "./components/RenewSubscription/RenewSubscription";
 
 import allData from "./allData/miArchivo.json";
 import oldData from "./allData/oldMiArchivo.json";
@@ -13,16 +16,17 @@ import oldData from "./allData/oldMiArchivo.json";
 //importando formulas Helper
 import { filterByEquipo } from "./helper/funcionOrdenYFiltroArrayObjetos";
 
-import PriceList from "./components/PricesList/PriceList";
-import Footer from "./components/Footer/Footer";
+
+
 
 //imagen de yape
-import imgYape from "./img/Yape.jpg";
+//import imgYape from "./img/Yape.jpg";
 
 //import Auth
-import { auth } from "./authentication/firebase";
-import { onAuthStateChanged } from "firebase/auth";
-import VideoPlayer from "./components/VideosPromocionales/VideoPlayer";
+//import { auth } from "./authentication/firebase";
+//import { onAuthStateChanged } from "firebase/auth";
+//import VideoPlayer from "./components/VideosPromocionales/VideoPlayer";
+
 
 export default function App() {
   // Array de Precios
@@ -355,79 +359,79 @@ export default function App() {
   const enPromocion = compararJson(allData.data, oldData.data, arrayPrecios);
 
   //controlador de Autenticacion
-  const [userAuth, setUserAuth] = useState(false);
-  const [endSuscrip, setEndSuscrip] = useState(null);
-  const [nameUser, setNameUser] = useState(null);
-  const [correoUser, setCorreoUser] = useState(null);
+  // const [userAuth, setUserAuth] = useState(false);
+  // const [endSuscrip, setEndSuscrip] = useState(null);
+  // const [nameUser, setNameUser] = useState(null);
+  // const [correoUser, setCorreoUser] = useState(null);
 
-  useEffect(() => {
-    onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        setNameUser(user.displayName);
-        setCorreoUser(user.email);
+  // useEffect(() => {
+  //   onAuthStateChanged(auth, async (user) => {
+  //     if (user) {
+  //       setNameUser(user.displayName);
+  //       setCorreoUser(user.email);
 
-        const response = await fetch(
-          "https://tenloclaro-clientes.herokuapp.com/customers"
-        );
-        const data = await response.json();
-        const match = data.find((obj) => obj.uid === user.uid);
+  //       const response = await fetch(
+  //         "https://tenloclaro-clientes.herokuapp.com/customers"
+  //       );
+  //       const data = await response.json();
+  //       const match = data.find((obj) => obj.uid === user.uid);
 
-        const now = new Date();
-        const twelveHoursLater = now.getTime() + 24 * 60 * 60 * 1000; // agregar 2npm 4 horas (en milisegundos)
-        const endSuscription = new Date(twelveHoursLater).toISOString();
+  //       const now = new Date();
+  //       const twelveHoursLater = now.getTime() + 24 * 60 * 60 * 1000; // agregar 2npm 4 horas (en milisegundos)
+  //       const endSuscription = new Date(twelveHoursLater).toISOString();
 
-        if (match) {
-          console.log("Match found");
+  //       if (match) {
+  //         console.log("Match found");
 
-          const userReDetails = {
-            uid: user.uid,
-            lastSignIn: user.metadata.lastSignInTime,
-          };
-          await fetch("https://tenloclaro-clientes.herokuapp.com/frequencies", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(userReDetails),
-          });
-          console.log("New visit added");
-          setEndSuscrip(new Date(match.endSuscription))
-        } else {
-          const userDetails = {
-            uid: user.uid,
-            displayName: user.displayName,
-            email: user.email,
-            phoneNumber: user.phoneNumber,
-            photoURL: user.photoURL,
-            endSuscription: endSuscription,
-          };
-          await fetch("https://tenloclaro-clientes.herokuapp.com/customers", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(userDetails),
-          });
-          setTimeout(function () {
-            window.location.reload();
-          }, 1000);
-          console.log("New user added");
-        }
+  //         const userReDetails = {
+  //           uid: user.uid,
+  //           lastSignIn: user.metadata.lastSignInTime,
+  //         };
+  //         await fetch("https://tenloclaro-clientes.herokuapp.com/frequencies", {
+  //           method: "POST",
+  //           headers: {
+  //             "Content-Type": "application/json",
+  //           },
+  //           body: JSON.stringify(userReDetails),
+  //         });
+  //         console.log("New visit added");
+  //         setEndSuscrip(new Date(match.endSuscription))
+  //       } else {
+  //         const userDetails = {
+  //           uid: user.uid,
+  //           displayName: user.displayName,
+  //           email: user.email,
+  //           phoneNumber: user.phoneNumber,
+  //           photoURL: user.photoURL,
+  //           endSuscription: endSuscription,
+  //         };
+  //         await fetch("https://tenloclaro-clientes.herokuapp.com/customers", {
+  //           method: "POST",
+  //           headers: {
+  //             "Content-Type": "application/json",
+  //           },
+  //           body: JSON.stringify(userDetails),
+  //         });
+  //         setTimeout(function () {
+  //           window.location.reload();
+  //         }, 1000);
+  //         console.log("New user added");
+  //       }
 
-        setUserAuth(true);
-      } else {
-        setUserAuth(false);
-        setEndSuscrip(null);
-      }
-    });
-  }, []);
+  //       setUserAuth(true);
+  //     } else {
+  //       setUserAuth(false);
+  //       setEndSuscrip(null);
+  //     }
+  //   });
+  // }, []);
 
 
-  const [msjApoyo, setMsjApoyo] = useState("flex");
-  const cerrarMsjApoyo = (e) => {
-    e.preventDefault()
-    setMsjApoyo("none")
-  }
+  // const [msjApoyo, setMsjApoyo] = useState("flex");
+  // const cerrarMsjApoyo = (e) => {
+  //   e.preventDefault()
+  //   setMsjApoyo("none")
+  // }
 
   return (
     <div className="App">
@@ -477,6 +481,7 @@ export default function App() {
                   selectorNavBar={queVentanaMostrarDelNavBar}
                   preciosNavBar={queListaDePreciosMostrarDelNavBar}
                 />
+                
                 <div style={{ marginTop: "120px" }}>
                   {ventanaAMostrar === "TodosLosEquipos" ? (
                     <Card
@@ -499,11 +504,15 @@ export default function App() {
                       listaPreciosAMostar={listaPreciosAMostar}
                       enPromocion={enPromocion}
                     />
+                  ) : ventanaAMostrar === "HFC/FTTH" ? (
+                    <div style={{marginTop:"500px"}}>
+                    <PlayCard />
+                    </div>
                   ) : null}
                 </div>
                 <Footer version={allData.version} />
               </div>
-              <VideoPlayer />
+              {/* <VideoPlayer /> */}
             {/* ) : (
               <div>
                 <Auth />

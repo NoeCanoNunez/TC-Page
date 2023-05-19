@@ -500,6 +500,7 @@ function FormaTablaLista({ equipos, listaAMostrar, nombreLista, enPromocion }) {
     </>
   );
 }
+
 /*******************************************************************/
 function PriceList({ todosLosPrecios, listaPreciosAMostar, enPromocion }) {
   const objetoDeArraysListaAMostrar = {
