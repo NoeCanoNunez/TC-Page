@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/TC-Page/static/css/main.9b807703.css",
-    "main.js": "/TC-Page/static/js/main.6a6b60fb.js",
+    "main.js": "/TC-Page/static/js/main.e2c730af.js",
     "static/media/triangles-1430105.svg": "/TC-Page/static/media/triangles-1430105.7b4e7b6eaf909e064bfc.svg",
     "static/media/velocidad.jpg": "/TC-Page/static/media/velocidad.e54ef51ea4387e86964d.jpg",
     "static/media/promo.png": "/TC-Page/static/media/promo.f79497a1ce035e078197.png",
-    "static/media/netflix.svg": "/TC-Page/static/media/netflix.018254f9edc85dbf7a9e5b8b8b3cf3cc.svg",
+    "static/media/netflix.svg": "/TC-Page/static/media/netflix.761423e16dd39b29c816916ff0417b67.svg",
     "static/media/logo.svg": "/TC-Page/static/media/logo.6074ffbaa74e8bad189bc02a5e3483aa.svg",
     "static/media/android.svg": "/TC-Page/static/media/android.0cfd7fe2594587d29723d6aa0cae8dc9.svg",
     "index.html": "/TC-Page/index.html",
@@ -22,10 +22,10 @@
     "static/media/bateria.svg": "/TC-Page/static/media/bateria.257841ddd532689e5cdd935895c8e85b.svg",
     "static/media/peso.svg": "/TC-Page/static/media/peso.dfbe9e0f72f7f2c0e0e470696e831107.svg",
     "main.9b807703.css.map": "/TC-Page/static/css/main.9b807703.css.map",
-    "main.6a6b60fb.js.map": "/TC-Page/static/js/main.6a6b60fb.js.map"
+    "main.e2c730af.js.map": "/TC-Page/static/js/main.e2c730af.js.map"
   },
   "entrypoints": [
     "static/css/main.9b807703.css",
-    "static/js/main.6a6b60fb.js"
+    "static/js/main.e2c730af.js"
   ]
 }
