@@ -269,7 +269,6 @@ const PlayCard = () => {
                 </div>
 
                 {/* Fin del Input TV del tipo Select */}
-               
               </th>
               <th>
                 {/* Input Router del tipo Select con Efecto*/}
@@ -469,19 +468,24 @@ const PlayCard = () => {
                 <div id="box">
                   <p id="flashlight">
                     <span id="light">
-                  {`${
-                    inputB && inputC && inputD
-                      ? ("3 ")
-                      : (inputB && inputC) ||
-                        (inputB && inputD) ||
-                        (inputC && inputD)
-                      ? "2 "
-                      : inputB || inputC
-                      ? "1 "
-                      : ""
-                  }`}
-                  </span>
-                    <span id="flash"> PLAY</span>
+                      {`${
+                        inputB && inputC && inputD
+                          ? "3 "
+                          : (inputB && inputC) ||
+                            (inputB && inputD) ||
+                            (inputC && inputD)
+                          ? "2 "
+                          : inputB || inputC
+                          ? "1 "
+                          : ""
+                      }`}
+                    </span>
+                    <span id="flash"> PLAY </span>
+                    <span id="lightNetflix">
+                      {`${
+                        inputA? " NETFLIX" : ""
+                      }`}
+                    </span>
                   </p>
                 </div>
                 {/* <p>
@@ -506,15 +510,15 @@ const PlayCard = () => {
                 </p>
                 <p>{`MB: ${inputC && selectC !== "0" ? selectCValue : ""}`}</p> */}
                 <p>
-                <span class="text">
-                  {`${
-                    inputD
-                      ? inputA && !inputB
-                        ? "80 minutos"
-                        : "100 minutos"
-                      : ""
-                  }`}
-                </span>
+                  <span class="text">
+                    {`${
+                      inputD
+                        ? inputA && !inputB
+                          ? "Con 80 minutos MultiDestino"
+                          : "Con 100 minutos MultiDestino"
+                        : ""
+                    }`}
+                  </span>
                 </p>
                 <p className="coraje">
                   {`${
@@ -534,20 +538,24 @@ const PlayCard = () => {
                       ? selectB !== "0" && selectC !== "0"
                         ? selectB === "1"
                           ? selectB2 === "2"
-                            ? "S/" + (85 +
-                              preciosInternet[selectC] +
-                              preciosTelefono.TPlayMD[selectC])
-                            : "S/" + (75 +
-                              preciosInternet[selectC] +
-                              preciosTelefono.TPlayMD[selectC])
+                            ? "S/" +
+                              (85 +
+                                preciosInternet[selectC] +
+                                preciosTelefono.TPlayMD[selectC])
+                            : "S/" +
+                              (75 +
+                                preciosInternet[selectC] +
+                                preciosTelefono.TPlayMD[selectC])
                           : selectB2 === "2"
-                          ? "S/" + (135 +
-                            preciosInternet[selectC] +
-                            preciosTelefono.TPlayMD[selectC])
-                          : "S/" + (125 +
-                            preciosInternet[selectC] +
-                            preciosTelefono.TPlayMD[selectC])
-                        : "Esperando eleccion ..."
+                          ? "S/" +
+                            (135 +
+                              preciosInternet[selectC] +
+                              preciosTelefono.TPlayMD[selectC])
+                          : "S/" +
+                            (125 +
+                              preciosInternet[selectC] +
+                              preciosTelefono.TPlayMD[selectC])
+                        : "..."
                       : resultado === "2PLAY-TV-INT"
                       ? selectB !== "0" && selectC !== "0"
                         ? selectB === "1"
@@ -557,7 +565,7 @@ const PlayCard = () => {
                           : selectB2 === "2"
                           ? "S/" + (135 + preciosInternet[selectC])
                           : "S/" + (125 + preciosInternet[selectC])
-                        : "Esperando eleccion ..."
+                        : "..."
                       : resultado === "2PLAY-TV-TLF"
                       ? selectB !== "0"
                         ? selectB === "1"
@@ -567,11 +575,12 @@ const PlayCard = () => {
                           : selectB2 === "2"
                           ? "S/" + 190
                           : "S/" + 180
-                        : "Esperando eleccion ..."
+                        : "..."
                       : resultado === "2PLAY-INT-TLF"
                       ? selectC !== "0"
-                        ? "S/" + (preciosInternet[selectC] + preciosTelefono.DPlay)
-                        : "Esperando eleccion ..."
+                        ? "S/" +
+                          (preciosInternet[selectC] + preciosTelefono.DPlay)
+                        : "..."
                       : resultado === "1PLAY-TV"
                       ? selectB !== "0"
                         ? selectB === "1"
@@ -581,17 +590,23 @@ const PlayCard = () => {
                           : selectB2 === "2"
                           ? "S/" + 180
                           : "S/" + 170
-                        : "Esperando eleccion ..."
+                        : "..."
                       : resultado === "1PLAY-INT"
                       ? selectC !== "0"
-                        ?  "S/" + preciosInternet[selectC]
-                        : "Esperando eleccion ..."
+                        ? "S/" + preciosInternet[selectC]
+                        : "..."
                       : "Algo no funciona bien, Llamen a la NASA"
                   }`}
                 </p>
               </th>
               <th colSpan={2}>
-                av
+                <div className="imgPlays-container">
+                  <img
+                    className="imgPlays"
+                    src={`https://raw.githubusercontent.com/NoeCanoNunez/TC-Page/master/src/img/Plays/${resultado}.webp`}
+                    alt=""
+                  />
+                </div>
               </th>
             </tr>
           </tbody>
