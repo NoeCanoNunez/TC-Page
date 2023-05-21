@@ -107,6 +107,7 @@ const PlayCard = () => {
       console.log("Nada que mostrar");
     }
   }, [inputA, inputB, inputC, inputD]);
+
   const handleSelectChange = (event) => {
     const { name, value } = event.target;
     if (name === "selectB") {
@@ -194,8 +195,7 @@ const PlayCard = () => {
           <tbody>
             <tr>
               <th>
-                {/* sadasd */}
-
+                {/* Input Netflix del tipo Select con Efecto*/}
                 <div id="macario" class="checkbox-wrapper-12">
                   <div class="cbx">
                     <input
@@ -229,17 +229,10 @@ const PlayCard = () => {
                     </defs>
                   </svg>
                 </div>
-
-                {/* asdasd */}
-                {/* <input
-                  type="checkbox"
-                  name="inputA"
-                  checked={inputA}
-                  onChange={handleInputChange}
-                /> */}
+                {/* Fin del Input Netflix del tipo Select */}
               </th>
               <th>
-                {/* sadasd */}
+                {/* Input TV del tipo Select con Efecto*/}
 
                 <div id="macario" class="checkbox-wrapper-12">
                   <div class="cbx">
@@ -275,16 +268,11 @@ const PlayCard = () => {
                   </svg>
                 </div>
 
-                {/* asdasd */}
-                {/* <input
-                  type="checkbox"
-                  name="inputB"
-                  checked={inputB}
-                  onChange={handleInputChange}
-                /> */}
+                {/* Fin del Input TV del tipo Select */}
+               
               </th>
               <th>
-                {/* sadasd */}
+                {/* Input Router del tipo Select con Efecto*/}
 
                 <div id="macario" class="checkbox-wrapper-12">
                   <div class="cbx">
@@ -321,17 +309,10 @@ const PlayCard = () => {
                   </svg>
                 </div>
 
-                {/* asdasd */}
-                {/* <input
-                  type="checkbox"
-                  name="inputC"
-                  checked={inputC}
-                  onChange={handleInputChange}
-                  disabled={inputA}
-                /> */}
+                {/* Fin del Input Router del tipo Select */}
               </th>
               <th>
-                {/* sadasd */}
+                {/* Input Telefono del tipo Select con Efecto*/}
 
                 <div id="macario" class="checkbox-wrapper-12">
                   <div class="cbx">
@@ -367,22 +348,14 @@ const PlayCard = () => {
                     </defs>
                   </svg>
                 </div>
-
-                {/* asdasd */}
-                {/* <input
-                  type="checkbox"
-                  name="inputD"
-                  checked={inputD}
-                  onChange={handleInputChange}
-                  disabled={inputA || (!inputA && !inputB && !inputC)}
-                /> */}
+                {/* Fin del Input Telefono del tipo Select */}
               </th>
             </tr>
             <tr className={inputB || inputC ? null : "hidden"}>
               <th></th>
               <th>
                 <select
-                  className="form-select"
+                  className={inputB ? "form-select" : "hidden"}
                   name="selectB"
                   value={selectB}
                   onChange={handleSelectChange}
@@ -410,7 +383,7 @@ const PlayCard = () => {
               </th>
               <th>
                 <select
-                  className="form-select"
+                  className={inputC ? "form-select" : "hidden"}
                   name="selectC"
                   id="selectC"
                   value={selectC}
@@ -492,7 +465,7 @@ const PlayCard = () => {
               <th></th>
             </tr>
             <tr className={inputA || inputB || inputC ? null : "hidden"}>
-              <th colSpan={12} className="">
+              <th colSpan={2} className="">
                 <div id="box">
                   <p id="flashlight">
                     <span id="light">
@@ -597,7 +570,7 @@ const PlayCard = () => {
                         : "Esperando eleccion ..."
                       : resultado === "2PLAY-INT-TLF"
                       ? selectC !== "0"
-                        ? preciosInternet[selectC] + preciosTelefono.DPlay
+                        ? "S/" + (preciosInternet[selectC] + preciosTelefono.DPlay)
                         : "Esperando eleccion ..."
                       : resultado === "1PLAY-TV"
                       ? selectB !== "0"
@@ -616,6 +589,9 @@ const PlayCard = () => {
                       : "Algo no funciona bien, Llamen a la NASA"
                   }`}
                 </p>
+              </th>
+              <th colSpan={2}>
+                av
               </th>
             </tr>
           </tbody>
