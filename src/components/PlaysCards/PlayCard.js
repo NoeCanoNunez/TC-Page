@@ -15,7 +15,7 @@ const PlayCard = () => {
   const [resultado, setResultado] = useState("");
   const [selectCValue, setSelectCValue] = useState("");
 
-  const [coberturaElegida, setCoberturaElegida] = useState("");
+  const [coberturaElegida, setCoberturaElegida] = useState("ELTAMBO");
 
   const handleInputChange = (event) => {
     const { name, checked } = event.target;
@@ -704,7 +704,7 @@ const PlayCard = () => {
               </tr>
             </tbody>
             <tfoot >
-              <p className="medium font-weight-700 text-center"><a href="https://google.com.pe" target="_blank" rel="noreferrer" >Lista de todos los canales aqui</a></p></tfoot>
+              <p className="medium font-weight-700 text-center"><a href="https://selectra.com.pe/empresas/claro/claro-tv/canales#que-canales-tiene-claro-tv" target="_blank" rel="noreferrer" >Lista de todos los canales aqui</a></p></tfoot>
           </table>
         </div>
     </div>
