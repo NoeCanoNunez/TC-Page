@@ -20,7 +20,7 @@
   }
 
   .navbar{
-    background: linear-gradient(90deg, rgba(35, 97, 254, 1) 10%, rgba(236, 4, 31,.5) 30%, rgba(236, 4, 31, .3) 50%,rgb(236, 89, 4) 100%);
+    background: linear-gradient(90deg, rgba(35, 97, 254, 1) 10%, rgba(236, 4, 31, 0.796) 30%, rgba(236, 4, 31, 0.705) 50%,rgb(236, 89, 4) 100%);
     /* border: 2px solid rgba(255, 255, 255, 0.8); */
     box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.523);
   }

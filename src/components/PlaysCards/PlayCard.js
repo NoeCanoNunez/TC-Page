@@ -13,8 +13,9 @@ const PlayCard = () => {
   const [selectC, setSelectC] = useState("0");
   const [selectB2, setSelectB2] = useState("0");
   const [resultado, setResultado] = useState("");
-
   const [selectCValue, setSelectCValue] = useState("");
+
+  const [coberturaElegida, setCoberturaElegida] = useState("");
 
   const handleInputChange = (event) => {
     const { name, checked } = event.target;
@@ -76,6 +77,72 @@ const PlayCard = () => {
       }
     }
   };
+
+  const coberturas = [
+    {
+      ELTAMBO:
+        "https://www.google.com/maps/d/u/0/viewer?mid=130fNfdmfbarzuQbGbDqkFjC47ysx4Mdh&ll=-12.04713740930061%2C-75.2233792911217&z=17",
+    },
+    {
+      HUANCAYO:
+        "https://www.google.com/maps/d/u/0/viewer?mid=130fNfdmfbarzuQbGbDqkFjC47ysx4Mdh&ll=-12.052540448320704%2C-75.1972146226255&z=18",
+    },
+    {
+      CHILCA:
+        "https://www.google.com/maps/d/u/0/viewer?mid=130fNfdmfbarzuQbGbDqkFjC47ysx4Mdh&ll=-12.080957177588832%2C-75.21062554361937&z=16",
+    },
+    {
+      PILCOMAYO:
+        "https://www.google.com/maps/d/u/0/viewer?mid=130fNfdmfbarzuQbGbDqkFjC47ysx4Mdh&ll=-12.053087006020784%2C-75.25627669873282&z=17",
+    },
+    {
+      LAMERCED:
+        "https://www.google.com/maps/d/u/0/viewer?mid=130fNfdmfbarzuQbGbDqkFjC47ysx4Mdh&ll=-11.059138380904654%2C-75.33052908572608&z=16",
+    },
+    {
+      OXAPAMPA:
+        "https://www.google.com/maps/d/u/0/viewer?mid=130fNfdmfbarzuQbGbDqkFjC47ysx4Mdh&ll=-10.577881282728624%2C-75.40059539271573&z=16",
+    },
+    {
+      HUANCAVELICA:
+        "https://www.google.com/maps/d/u/0/viewer?mid=130fNfdmfbarzuQbGbDqkFjC47ysx4Mdh&ll=-12.785356050630144%2C-74.97181909257003&z=17",
+    },
+    {
+      SATIPO:
+        "https://www.google.com/maps/d/u/0/viewer?mid=130fNfdmfbarzuQbGbDqkFjC47ysx4Mdh&ll=-11.256453083145507%2C-74.63879021471062&z=17",
+    },
+    {
+      TARMA:
+        "https://www.google.com/maps/d/u/0/viewer?mid=130fNfdmfbarzuQbGbDqkFjC47ysx4Mdh&ll=-11.417274232816933%2C-75.6874252647613&z=16",
+    },
+    {
+      JAUJA:
+        "https://www.google.com/maps/d/u/0/viewer?mid=130fNfdmfbarzuQbGbDqkFjC47ysx4Mdh&ll=-11.773281800225691%2C-75.49842640081538&z=17",
+    },
+    {
+      PAMPAS:
+        "https://www.google.com/maps/d/u/0/viewer?mid=130fNfdmfbarzuQbGbDqkFjC47ysx4Mdh&ll=-12.399090840322616%2C-74.8680640085629&z=18",
+    },
+    {
+      SANRAMON:
+        "https://www.google.com/maps/d/u/0/viewer?mid=130fNfdmfbarzuQbGbDqkFjC47ysx4Mdh&ll=-11.121700402726555%2C-75.35608796929995&z=17",
+    },
+    {
+      PICHANAKI:
+        "https://www.google.com/maps/d/u/0/viewer?mid=130fNfdmfbarzuQbGbDqkFjC47ysx4Mdh&ll=-10.926305175438278%2C-74.87338190458718&z=16",
+    },
+  ];
+
+  const arrayCoberturas = coberturas.map(objeto => Object.keys(objeto)[0]);
+  const elegirCobertura = (e) => {
+    setCoberturaElegida(e.target.value)
+  }
+  const buscarCobertura = (e) => {
+    e.preventDefault();
+    const valorClave = coberturas.find(objeto => coberturaElegida in objeto)[coberturaElegida];
+    window.open(valorClave, '_blank');
+  }
+
 
   useEffect(() => {
     if (inputA && inputB && inputC && inputD) {
@@ -155,22 +222,12 @@ const PlayCard = () => {
     },
   };
   return (
-    <div>
-      <div className="imgContainer">
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      {/* <div className="imgContainer">
         <img src={imgVelocidad} alt="velocidad"></img>
-      </div>
+      </div> */}
       <div className="tableContainer">
-        <table
-          className="table table-striped mytable"
-          style={{
-            position: "absolute",
-            minWidth: "550px",
-            maxWidth: "700px",
-            zIndex: "1",
-            left: "3vw",
-            top: "12vh",
-          }}
-        >
+        <table className="table table-striped mytable">
           <thead>
             <tr className="theadContainer">
               <th scope="col" className="selectContainer">
@@ -463,155 +520,193 @@ const PlayCard = () => {
               <th></th>
               <th></th>
             </tr>
-            <tr className={inputA || inputB || inputC ? null : "hidden"}>
-              <th colSpan={2} className="">
-                <div id="box">
-                  <p id="flashlight">
-                    <span id="light">
-                      {`${
-                        inputB && inputC && inputD
-                          ? "3 "
-                          : (inputB && inputC) ||
-                            (inputB && inputD) ||
-                            (inputC && inputD)
-                          ? "2 "
-                          : inputB || inputC
-                          ? "1 "
-                          : ""
-                      }`}
-                    </span>
-                    <span id="flash"> PLAY </span>
-                    <span id="lightNetflix">
-                      {`${
-                        inputA? " NETFLIX" : ""
-                      }`}
-                    </span>
-                  </p>
-                </div>
-                {/* <p>
-                  {`El plan TV: ${
-                    inputB && selectB === "1"
-                      ? "AVANZADO"
-                      : selectB === "2"
-                      ? "SUPERIOR"
-                      : ""
-                  }`}
-                </p>
-                <p>
-                  {`Con Decos: ${
-                    inputB && selectB2 === "0"
-                      ? "1 Decodificador"
-                      : selectB2 === "1"
-                      ? "2 Decodificadores"
-                      : selectB2 === "2"
-                      ? "3 Decodificadores"
-                      : ""
-                  }`}
-                </p>
-                <p>{`MB: ${inputC && selectC !== "0" ? selectCValue : ""}`}</p> */}
-                <p>
-                  <span class="text">
-                    {`${
-                      inputD
-                        ? inputA && !inputB
-                          ? "Con 80 minutos MultiDestino"
-                          : "Con 100 minutos MultiDestino"
-                        : ""
-                    }`}
-                  </span>
-                </p>
-                <p className="coraje">
-                  {`${
-                    resultado === "2PLAY-Netflix"
-                      ? selectC === "9"
-                        ? "S/" + 110
-                        : "S/" + 130
-                      : resultado === "3PLAY-Netflix"
-                      ? selectC === "10"
-                        ? selectB2 === "2"
-                          ? "S/" + 225
-                          : "S/" + 215
-                        : selectB2 === "2"
-                        ? "S/" + 265
-                        : "S/" + 255
-                      : resultado === "3PLAY"
-                      ? selectB !== "0" && selectC !== "0"
-                        ? selectB === "1"
-                          ? selectB2 === "2"
-                            ? "S/" +
-                              (85 +
-                                preciosInternet[selectC] +
-                                preciosTelefono.TPlayMD[selectC])
-                            : "S/" +
-                              (75 +
-                                preciosInternet[selectC] +
-                                preciosTelefono.TPlayMD[selectC])
-                          : selectB2 === "2"
-                          ? "S/" +
-                            (135 +
-                              preciosInternet[selectC] +
-                              preciosTelefono.TPlayMD[selectC])
-                          : "S/" +
-                            (125 +
-                              preciosInternet[selectC] +
-                              preciosTelefono.TPlayMD[selectC])
-                        : "..."
-                      : resultado === "2PLAY-TV-INT"
-                      ? selectB !== "0" && selectC !== "0"
-                        ? selectB === "1"
-                          ? selectB2 === "2"
-                            ? "S/" + (85 + preciosInternet[selectC])
-                            : "S/" + (75 + preciosInternet[selectC])
-                          : selectB2 === "2"
-                          ? "S/" + (135 + preciosInternet[selectC])
-                          : "S/" + (125 + preciosInternet[selectC])
-                        : "..."
-                      : resultado === "2PLAY-TV-TLF"
-                      ? selectB !== "0"
-                        ? selectB === "1"
-                          ? selectB2 === "2"
-                            ? "S/" + 140
-                            : "S/" + 130
-                          : selectB2 === "2"
-                          ? "S/" + 190
-                          : "S/" + 180
-                        : "..."
-                      : resultado === "2PLAY-INT-TLF"
-                      ? selectC !== "0"
-                        ? "S/" +
-                          (preciosInternet[selectC] + preciosTelefono.DPlay)
-                        : "..."
-                      : resultado === "1PLAY-TV"
-                      ? selectB !== "0"
-                        ? selectB === "1"
-                          ? selectB2 === "2"
-                            ? "S/" + 130
-                            : "S/" + 120
-                          : selectB2 === "2"
-                          ? "S/" + 180
-                          : "S/" + 170
-                        : "..."
-                      : resultado === "1PLAY-INT"
-                      ? selectC !== "0"
-                        ? "S/" + preciosInternet[selectC]
-                        : "..."
-                      : "Algo no funciona bien, Llamen a la NASA"
-                  }`}
-                </p>
-              </th>
-              <th colSpan={2}>
-                <div className="imgPlays-container">
-                  <img
-                    className="imgPlays"
-                    src={`https://raw.githubusercontent.com/NoeCanoNunez/TC-Page/master/src/img/Plays/${resultado}.webp`}
-                    alt=""
-                  />
-                </div>
-              </th>
-            </tr>
           </tbody>
         </table>
       </div>
+      <div
+        className={inputA || inputB || inputC ? "resultContainer" : "hidden"}
+      >
+        <div className="promocionPlays">
+          <div id="box">
+            <p id="flashlight">
+              <span id="light">
+                {`${
+                  inputB && inputC && inputD
+                    ? "3 "
+                    : (inputB && inputC) ||
+                      (inputB && inputD) ||
+                      (inputC && inputD)
+                    ? "2 "
+                    : inputB || inputC
+                    ? "1 "
+                    : ""
+                }`}
+              </span>
+              <span id="flash"> PLAY </span>
+            </p>
+          </div>
+          <p>
+            <span className={!inputD ? "hidden" : "text"}>
+              {`${
+                inputD
+                  ? inputA && !inputB
+                    ? "Con 80 minutos MultiDestino"
+                    : "Con 100 minutos MultiDestino"
+                  : ""
+              }`}
+            </span>
+          </p>
+          <p
+            className={`${
+              resultado === "3PLAY" ||
+              resultado === "2PLAY-TV-INT" ||
+              resultado === "2PLAY-INT-TLF" ||
+              resultado === "1PLAY-INT"
+                ? ""
+                : "hidden"
+            }`}
+          >
+            <span id="lightDscto2">50</span>
+            <span id="lightDscto3">% DSCTO X : </span>
+            <span id="lightDscto2">{`${
+              resultado === "3PLAY" || resultado === "2PLAY-TV-INT"
+                ? " 3"
+                : resultado === "2PLAY-INT-TLF" || resultado === "1PLAY-INT"
+                ? " 1"
+                : ""
+            }`}</span>
+            <span id="lightDscto3">{`${
+              resultado === "3PLAY" || resultado === "2PLAY-TV-INT"
+                ? " MESES"
+                : resultado === "2PLAY-INT-TLF" || resultado === "1PLAY-INT"
+                ? " MES"
+                : ""
+            }`}</span>
+          </p>
+          <p className="coraje">
+            {`${
+              resultado === "2PLAY-Netflix"
+                ? selectC === "9"
+                  ? "S/" + 110
+                  : "S/" + 130
+                : resultado === "3PLAY-Netflix"
+                ? selectC === "10"
+                  ? selectB2 === "2"
+                    ? "S/" + 225
+                    : "S/" + 215
+                  : selectB2 === "2"
+                  ? "S/" + 265
+                  : "S/" + 255
+                : resultado === "3PLAY"
+                ? selectB !== "0" && selectC !== "0"
+                  ? selectB === "1"
+                    ? selectB2 === "2"
+                      ? "S/" +
+                        (85 +
+                          preciosInternet[selectC] +
+                          preciosTelefono.TPlayMD[selectC])
+                      : "S/" +
+                        (75 +
+                          preciosInternet[selectC] +
+                          preciosTelefono.TPlayMD[selectC])
+                    : selectB2 === "2"
+                    ? "S/" +
+                      (135 +
+                        preciosInternet[selectC] +
+                        preciosTelefono.TPlayMD[selectC])
+                    : "S/" +
+                      (125 +
+                        preciosInternet[selectC] +
+                        preciosTelefono.TPlayMD[selectC])
+                  : "..."
+                : resultado === "2PLAY-TV-INT"
+                ? selectB !== "0" && selectC !== "0"
+                  ? selectB === "1"
+                    ? selectB2 === "2"
+                      ? "S/" + (85 + preciosInternet[selectC])
+                      : "S/" + (75 + preciosInternet[selectC])
+                    : selectB2 === "2"
+                    ? "S/" + (135 + preciosInternet[selectC])
+                    : "S/" + (125 + preciosInternet[selectC])
+                  : "..."
+                : resultado === "2PLAY-TV-TLF"
+                ? selectB !== "0"
+                  ? selectB === "1"
+                    ? selectB2 === "2"
+                      ? "S/" + 140
+                      : "S/" + 130
+                    : selectB2 === "2"
+                    ? "S/" + 190
+                    : "S/" + 180
+                  : "..."
+                : resultado === "2PLAY-INT-TLF"
+                ? selectC !== "0"
+                  ? "S/" + (preciosInternet[selectC] + preciosTelefono.DPlay)
+                  : "..."
+                : resultado === "1PLAY-TV"
+                ? selectB !== "0"
+                  ? selectB === "1"
+                    ? selectB2 === "2"
+                      ? "S/" + 130
+                      : "S/" + 120
+                    : selectB2 === "2"
+                    ? "S/" + 180
+                    : "S/" + 170
+                  : "..."
+                : resultado === "1PLAY-INT"
+                ? selectC !== "0"
+                  ? "S/" + preciosInternet[selectC]
+                  : "..."
+                : "Algo no funciona bien, Llamen a la NASA"
+            }`}
+          </p>
+        </div>
+
+        <div className="imgPlays-container">
+          <img
+            className="imgPlays"
+            src={`https://raw.githubusercontent.com/NoeCanoNunez/TC-Page/master/src/img/Plays/${resultado}.webp`}
+            alt=""
+          />
+        </div>
+        
+      </div>
+      <div className="imgPlays-container">
+          <table className="table table-striped mytable">
+            <thead>
+              <tr className="theadContainer">
+                <th scope="col" className="selectContainer">
+                  Elige la Cobertura:
+                </th>
+                <th scope="col" className="selectContainer"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>
+                  <label>
+                    <select
+                    onChange={elegirCobertura}
+                    className="form-select">
+                      {coberturas
+                      ? arrayCoberturas.map(cob => <option >{cob}</option>) : null}
+                    </select>
+                  </label>
+                </th>
+                <th>
+                  <input
+                    onClick={buscarCobertura}
+                    className="btn btn-success"
+                    type="button"
+                    value="Buscar"
+                  />
+                </th>
+              </tr>
+            </tbody>
+            <tfoot >
+              <p className="medium font-weight-700 text-center"><a href="https://google.com.pe" target="_blank" rel="noreferrer" >Lista de todos los canales aqui</a></p></tfoot>
+          </table>
+        </div>
     </div>
   );
 };
