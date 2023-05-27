@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: space-around;
   margin-top: 100px;
-  background-color: rgba(0, 216, 250, 0.505);
+  background-color: rgba(129, 155, 159, 0.737);
   height: 80vh;
   min-width: 300px;
 }
@@ -34,7 +34,7 @@
 }
 
 .Bienvenido {
-  font-size: 6vw;
+  font-size: 6rem;
 }
 .Iniciar {
   font-size: 4vw;

@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: url(./img/triangles-1430105.svg) top center / cover
+  background: url(./img/newFondo.webp) top center / cover
     /* position / size */ no-repeat /* repeat */ fixed /* attachment */
     padding-box /* origin */ content-box; /* clip */
 }

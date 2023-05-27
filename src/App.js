@@ -4,11 +4,8 @@ import "./App.css";
 import Navbar from "./components/Nav/Navbar";
 import Card from "./components/Card/Card";
 import NeoCard from "./components/Card/NeoCard";
-import PriceList from "./components/PricesList/PriceList";
+import Auth from "./components/Auth/Auth";
 import PlayCard from "./components/PlaysCards/PlayCard";
-import Footer from "./components/Footer/Footer";
-//import Auth from "./components/Auth/Auth";
-//import RenewSubscription from "./components/RenewSubscription/RenewSubscription";
 
 import allData from "./allData/miArchivo.json";
 import oldData from "./allData/oldMiArchivo.json";
@@ -16,17 +13,15 @@ import oldData from "./allData/oldMiArchivo.json";
 //importando formulas Helper
 import { filterByEquipo } from "./helper/funcionOrdenYFiltroArrayObjetos";
 
-
-
+import PriceList from "./components/PricesList/PriceList";
+import Footer from "./components/Footer/Footer";
 
 //imagen de yape
 //import imgYape from "./img/Yape.jpg";
 
 //import Auth
-//import { auth } from "./authentication/firebase";
-//import { onAuthStateChanged } from "firebase/auth";
-//import VideoPlayer from "./components/VideosPromocionales/VideoPlayer";
-
+import { auth } from "./authentication/firebase";
+import { onAuthStateChanged } from "firebase/auth";
 
 export default function App() {
   // Array de Precios
@@ -335,6 +330,11 @@ export default function App() {
     setVentanaAMostrar("ListasDePrecios");
   };
 
+  const funcionSetterAuth = (e) => {
+    console.log(e);
+    setUserAuth("maybe");
+  };
+
   function compararJson(jsonA, jsonB, arrayComparar) {
     let resultado = [];
     jsonA.forEach((elA) => {
@@ -359,170 +359,104 @@ export default function App() {
   const enPromocion = compararJson(allData.data, oldData.data, arrayPrecios);
 
   //controlador de Autenticacion
-  // const [userAuth, setUserAuth] = useState(false);
-  // const [endSuscrip, setEndSuscrip] = useState(null);
-  // const [nameUser, setNameUser] = useState(null);
-  // const [correoUser, setCorreoUser] = useState(null);
+  const [userAuth, setUserAuth] = useState(false);
+  const [nameUser, setNameUser] = useState(null);
+  const [correoUser, setCorreoUser] = useState(null);
 
-  // useEffect(() => {
-  //   onAuthStateChanged(auth, async (user) => {
-  //     if (user) {
-  //       setNameUser(user.displayName);
-  //       setCorreoUser(user.email);
+  useEffect(() => {
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        setNameUser(user.displayName);
+        setCorreoUser(user.email);
+        setUserAuth(true);
+        console.log(nameUser, " ", correoUser);
+      } else {
+        setUserAuth(false);
+        console.log("error");
+      }
+    });
+  }, []);
 
-  //       const response = await fetch(
-  //         "https://tenloclaro-clientes.herokuapp.com/customers"
-  //       );
-  //       const data = await response.json();
-  //       const match = data.find((obj) => obj.uid === user.uid);
-
-  //       const now = new Date();
-  //       const twelveHoursLater = now.getTime() + 24 * 60 * 60 * 1000; // agregar 2npm 4 horas (en milisegundos)
-  //       const endSuscription = new Date(twelveHoursLater).toISOString();
-
-  //       if (match) {
-  //         console.log("Match found");
-
-  //         const userReDetails = {
-  //           uid: user.uid,
-  //           lastSignIn: user.metadata.lastSignInTime,
-  //         };
-  //         await fetch("https://tenloclaro-clientes.herokuapp.com/frequencies", {
-  //           method: "POST",
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //           },
-  //           body: JSON.stringify(userReDetails),
-  //         });
-  //         console.log("New visit added");
-  //         setEndSuscrip(new Date(match.endSuscription))
-  //       } else {
-  //         const userDetails = {
-  //           uid: user.uid,
-  //           displayName: user.displayName,
-  //           email: user.email,
-  //           phoneNumber: user.phoneNumber,
-  //           photoURL: user.photoURL,
-  //           endSuscription: endSuscription,
-  //         };
-  //         await fetch("https://tenloclaro-clientes.herokuapp.com/customers", {
-  //           method: "POST",
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //           },
-  //           body: JSON.stringify(userDetails),
-  //         });
-  //         setTimeout(function () {
-  //           window.location.reload();
-  //         }, 1000);
-  //         console.log("New user added");
-  //       }
-
-  //       setUserAuth(true);
-  //     } else {
-  //       setUserAuth(false);
-  //       setEndSuscrip(null);
-  //     }
-  //   });
-  // }, []);
-
-
-  // const [msjApoyo, setMsjApoyo] = useState("flex");
-  // const cerrarMsjApoyo = (e) => {
-  //   e.preventDefault()
-  //   setMsjApoyo("none")
-  // }
+  const [msjApoyo, setMsjApoyo] = useState("flex");
+  const cerrarMsjApoyo = (e) => {
+    e.preventDefault();
+    setMsjApoyo("none");
+  };
+  const mensajeErrorAuth = (
+    <div style={{ display: msjApoyo }} className="overlay">
+      <div className="popup">
+        <p className="ayuda">
+          <span id="nombreUser3">TU USUARIO HA SIDO SUSPENDIDO</span>
+        </p>
+        <p className="ayuda">
+          <span id="nombreUser2">SENTIMOS LOS PROBLEMAS </span> ocasionados.
+        </p>
+        <p className="ayuda">
+          Probablemente tu SUSCRIPCION vencio hace algún tiempo.
+        </p>
+        <p className="ayuda">
+          Si crees que esto es un error comunicate con nuestra area técnica.
+        </p>
+        <p className="ayuda">
+          Al whatsapp <span id="nombreUser2">+51 999815458</span> y{" "}
+          pronto solucionaremos esta{" "}
+          <span id="nombreUser2">SUSPENCION</span>.
+        </p>
+        <a href="/" onClick={cerrarMsjApoyo} className="close" type="submit">
+          x
+        </a>
+      </div>
+    </div>
+  );
 
   return (
     <div className="App">
-      {/* {endSuscrip ? (
-       endSuscrip.getTime() - new Date().getTime() <= 0 ? (
-          <RenewSubscription />
-        ) : (
-          <>
-            {userAuth === true ? ( */}
-              <div>
-                {/* {endSuscrip.getTime() - new Date().getTime() >
-          48 * 60 * 60 * 1000 ? null : (<div style={{ display: msjApoyo }} className="overlay">
-          <div className="popup">
-            <p className="ayuda"><span id="nombreUser3">TU SUSCRIPCION ESTA POR VENCER</span></p>
-            <p className="ayuda">
-            Hola, <span id="nombreUser2">{nameUser}</span>, espero que estes teniendo un maravilloso día de ventas
-            </p>
-            <p className="ayuda">
-            Te informamos que tu suscripción a nuestra página vencerá el {endSuscrip.toLocaleString()}hrs
-            </p>
-            <p className="ayuda">
-            Para renovarla escríbenos a nuestro WhatsApp que esta abajo a la derecha.
-            </p>
-            <p className="ayuda">
-            O Yapeanos al <span id="nombreUser2">999815458 (Noe Cano)</span> el monto de <span id="nombreUser2">S/8</span> x 1 mes de SUSCRIPCION, añadiendo al mensaje tu correo GMAIL: <span id="nombreUser2">{correoUser}</span>.
-            </p>
-            <img
-              style={{ maxHeight: "320px" }}
-              src={imgYape}
-              alt="imgYape"
-            />
-            <a
-              href="/"
-              onClick={cerrarMsjApoyo}
-              className="close"
-              type="submit"
-            >
-              x
-            </a>
+      {userAuth === true ? (
+        <div>
+          <Navbar
+            filtrandoDesdeNav={filtrandoDesdeNav}
+            queTablaMostrar={queTablaMostrar}
+            mostrarCero={mostrarEquiposConInvetarioCero}
+            buscador={queEquiposMostrarDeTodos}
+            selectorNavBar={queVentanaMostrarDelNavBar}
+            preciosNavBar={queListaDePreciosMostrarDelNavBar}
+          />
+          <div style={{ marginTop: "120px" }}>
+            {ventanaAMostrar === "TodosLosEquipos" ? (
+              <Card
+                filtrarPreciosNav={filtrarPreciosNav}
+                inventarioMostrarCero={inventarioMostrarCero}
+                mostrarQueTabla={mostrarQueTabla}
+                dataEquipos={equiposEnBuscadorNav}
+                oldEquipos={enPromocion}
+              />
+            ) : ventanaAMostrar === "CompararEquipos" ? (
+              <NeoCard
+                inventarioMostrarCero={inventarioMostrarCero}
+                mostrarQueTabla={mostrarQueTabla}
+                dataEquipos={allData.data}
+                oldEquipos={oldData.data}
+              />
+            ) : ventanaAMostrar === "ListasDePrecios" ? (
+              <PriceList
+                todosLosPrecios={allData.data}
+                listaPreciosAMostar={listaPreciosAMostar}
+                enPromocion={enPromocion}
+              />
+            ) : ventanaAMostrar === "HFC/FTTH" ? (
+              <div style={{ marginTop: "500px" }}>
+                <PlayCard />
+              </div>
+            ) : null}
           </div>
-        </div>)} */}
-                <Navbar
-                  filtrandoDesdeNav={filtrandoDesdeNav}
-                  queTablaMostrar={queTablaMostrar}
-                  mostrarCero={mostrarEquiposConInvetarioCero}
-                  buscador={queEquiposMostrarDeTodos}
-                  selectorNavBar={queVentanaMostrarDelNavBar}
-                  preciosNavBar={queListaDePreciosMostrarDelNavBar}
-                />
-                
-                <div style={{ marginTop: "120px" }}>
-                  {ventanaAMostrar === "TodosLosEquipos" ? (
-                    <Card
-                      filtrarPreciosNav={filtrarPreciosNav}
-                      inventarioMostrarCero={inventarioMostrarCero}
-                      mostrarQueTabla={mostrarQueTabla}
-                      dataEquipos={equiposEnBuscadorNav}
-                      oldEquipos={enPromocion}
-                    />
-                  ) : ventanaAMostrar === "CompararEquipos" ? (
-                    <NeoCard
-                      inventarioMostrarCero={inventarioMostrarCero}
-                      mostrarQueTabla={mostrarQueTabla}
-                      dataEquipos={allData.data}
-                      oldEquipos={oldData.data}
-                    />
-                  ) : ventanaAMostrar === "ListasDePrecios" ? (
-                    <PriceList
-                      todosLosPrecios={allData.data}
-                      listaPreciosAMostar={listaPreciosAMostar}
-                      enPromocion={enPromocion}
-                    />
-                  ) : ventanaAMostrar === "HFC/FTTH" ? (
-                    <div style={{marginTop:"500px"}}>
-                    <PlayCard />
-                    </div>
-                  ) : null}
-                </div>
-                <Footer version={allData.version} />
-              </div>
-              {/* <VideoPlayer /> */}
-            {/* ) : (
-              <div>
-                <Auth />
-              </div>
-            )}
-          </>
-        )
+          <Footer version={allData.version} user={nameUser} />
+        </div>
       ) : (
-        <Auth />
-      )} */}
+        <div>
+          <Auth funcionSetterAuth={funcionSetterAuth} />
+          {userAuth === "maybe" ? mensajeErrorAuth : null}
+        </div>
+      )}
     </div>
   );
 }

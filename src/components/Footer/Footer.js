@@ -4,7 +4,7 @@ import "./Footer.css";
 
 import { auth } from "../../authentication/firebase"
 
-function Footer({ version }) {
+function Footer({ version, user }) {
 
   const handleSignOut = () => {
     auth.signOut().then(() => {
@@ -16,7 +16,7 @@ function Footer({ version }) {
 
   return (
     <footer className="footer">
-      <div className="center"><button onClick={handleSignOut} className="btn btn-danger LogOut">
+      <div><button onClick={handleSignOut} className="btn btn-danger LogOut">
         <p>Cerrar sesión</p>
     </button></div>
       

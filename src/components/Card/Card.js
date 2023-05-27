@@ -98,11 +98,11 @@ function Card({
 
   return (
     <>
-      <motion.div
+      {/* <motion.div
         initial={{ x: -30 }}
         animate={{ x: "block" ? 0 : 30 }}
         transition={{ duration: 1 }}
-      >
+      > */}
         <div>
           <div className="container__background-triangle">
             <div className="triangle triangle1"></div>
@@ -117,7 +117,7 @@ function Card({
               : "Cargando..."}
           </div>
         </div>
-      </motion.div>
+      {/* </motion.div> */}
     </>
   );
 }

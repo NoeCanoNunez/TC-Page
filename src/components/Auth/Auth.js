@@ -8,13 +8,14 @@ import { auth } from "../../authentication/firebase"
 //Img
 import logoGoogle from "../../img/google-logo.svg"
 
-const Auth = () => {
+const Auth = ( { funcionSetterAuth }) => {
 
     const handleSignIn = () => {
         const provider = new GoogleAuthProvider();
         signInWithPopup(auth, provider).then((result) => {
           console.log(result)
         }).catch((error) => {
+          funcionSetterAuth(error)
           console.log(error)
         });
       };
