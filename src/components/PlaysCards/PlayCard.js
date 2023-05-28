@@ -264,7 +264,7 @@ const PlayCard = () => {
                         checked={inputA}
                         onChange={handleInputChange}
                       />
-                      <label for="cbx-12"></label>
+                      <label htmlFor="cbx-12"></label>
                       <svg
                         width="15"
                         height="14"
@@ -307,7 +307,7 @@ const PlayCard = () => {
                         checked={inputB}
                         onChange={handleInputChange}
                       />
-                      <label for="cbx-12"></label>
+                      <label htmlFor="cbx-12"></label>
                       <svg
                         width="15"
                         height="14"
@@ -352,7 +352,7 @@ const PlayCard = () => {
                         onChange={handleInputChange}
                         disabled={inputA}
                       />
-                      <label for="cbx-12"></label>
+                      <label htmlFor="cbx-12"></label>
                       <svg
                         width="15"
                         height="14"
@@ -397,7 +397,7 @@ const PlayCard = () => {
                         onChange={handleInputChange}
                         disabled={inputA || (!inputA && !inputB && !inputC)}
                       />
-                      <label for="cbx-12"></label>
+                      <label htmlFor="cbx-12"></label>
                       <svg
                         width="15"
                         height="14"

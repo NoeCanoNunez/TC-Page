@@ -6,3 +6,20 @@
 .marginTop10 {
     margin-top: 20px;
 }
+
+.presult {
+    color: rgb(164, 243, 227);
+    text-shadow: 1px 1px 20px #00000084, -1px -1px 20px #0000007b;
+    background-color: rgba(240, 255, 255, 0.345);
+    padding: 2px 0;
+    border-radius: 50px;
+    
+}
+
+.presulta{
+    color: rgb(255, 251, 0);
+    text-shadow: 1px 1px 20px #00000084, -1px -1px 20px #0000007b;
+    background-color: rgba(0, 0, 0, 0.345);
+    padding: 2px 0;
+    border-radius: 50px;
+}

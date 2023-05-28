@@ -368,7 +368,6 @@ export default function App() {
         setNameUser(user.displayName);
         setCorreoUser(user.email);
         setUserAuth(true);
-        console.log(user," ",nameUser, " ", correoUser);
       } else {
         setUserAuth(false);
         console.log("no user");
