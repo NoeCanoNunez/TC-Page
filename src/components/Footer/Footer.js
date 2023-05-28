@@ -2,23 +2,23 @@
 import React from "react";
 import "./Footer.css";
 
-//import { auth } from "../../authentication/firebase"
+import { auth } from "../../authentication/firebase"
 
 function Footer({ version }) {
 
-  // const handleSignOut = () => {
-  //   auth.signOut().then(() => {
-  //     console.log('Signed Out');
-  //   }).catch((error) => {
-  //     console.log(error);
-  //   });
-  // };
+  const handleSignOut = () => {
+    auth.signOut().then(() => {
+      console.log('Signed Out');
+    }).catch((error) => {
+      console.log(error);
+    });
+  };
 
   return (
     <footer className="footer">
-      {/* <div><button onClick={handleSignOut} className="btn btn-danger LogOut">
+      <div><button onClick={handleSignOut} className="btn btn-danger LogOut">
         <p>Cerrar sesión</p>
-    </button></div> */}
+    </button></div>
       
       <div className="left">Actualizado a la version {version}</div>
       <div className="right">

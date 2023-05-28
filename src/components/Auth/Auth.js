@@ -13,10 +13,10 @@ const Auth = ( { funcionSetterAuth }) => {
     const handleSignIn = () => {
         const provider = new GoogleAuthProvider();
         signInWithPopup(auth, provider).then((result) => {
-          console.log(result)
+          console.log("el resultado es", result)
         }).catch((error) => {
           funcionSetterAuth(error)
-          console.log(error)
+          console.log("ocurrio un error de acceso:", error)
         });
       };
 

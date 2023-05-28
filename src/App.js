@@ -4,7 +4,7 @@ import "./App.css";
 import Navbar from "./components/Nav/Navbar";
 import Card from "./components/Card/Card";
 import NeoCard from "./components/Card/NeoCard";
-//import Auth from "./components/Auth/Auth";
+import Auth from "./components/Auth/Auth";
 import PlayCard from "./components/PlaysCards/PlayCard";
 
 import allData from "./allData/miArchivo.json";
@@ -20,8 +20,8 @@ import Footer from "./components/Footer/Footer";
 //import imgYape from "./img/Yape.jpg";
 
 //import Auth
-//import { auth } from "./authentication/firebase";
-//import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./authentication/firebase";
+import { onAuthStateChanged } from "firebase/auth";
 
 export default function App() {
   // Array de Precios
@@ -330,8 +330,6 @@ export default function App() {
     setVentanaAMostrar("ListasDePrecios");
   };
 
-
-
   function compararJson(jsonA, jsonB, arrayComparar) {
     let resultado = [];
     jsonA.forEach((elA) => {
@@ -354,65 +352,66 @@ export default function App() {
   }
 
   const enPromocion = compararJson(allData.data, oldData.data, arrayPrecios);
-  
-  // const funcionSetterAuth = (e) => {
-  //   console.log(e);
-  //   setUserAuth("maybe");
-  // };
+
+  const funcionSetterAuth = (e) => {
+    console.log(e);
+    setUserAuth("maybe");
+  };
+
   //controlador de Autenticacion
-  // const [userAuth, setUserAuth] = useState(false);
-  // const [nameUser, setNameUser] = useState(null);
-  // const [correoUser, setCorreoUser] = useState(null);
-  // useEffect(() => {
-  //   onAuthStateChanged(auth, async (user) => {
-  //     if (user) {
-  //       setNameUser(user.displayName);
-  //       setCorreoUser(user.email);
-  //       setUserAuth(true);
-  //       console.log(nameUser, " ", correoUser);
-  //     } else {
-  //       setUserAuth(false);
-  //       console.log("error");
-  //     }
-  //   });
-  // }, []);
-  // const [msjApoyo, setMsjApoyo] = useState("flex");
-  // const cerrarMsjApoyo = (e) => {
-  //   e.preventDefault();
-  //   setMsjApoyo("none");
-  // };
-  // const mensajeErrorAuth = (
-  //   <div style={{ display: msjApoyo }} className="overlay">
-  //     <div className="popup">
-  //       <p className="ayuda">
-  //         <span id="nombreUser3">TU USUARIO HA SIDO SUSPENDIDO</span>
-  //       </p>
-  //       <p className="ayuda">
-  //         <span id="nombreUser2">SENTIMOS LOS PROBLEMAS </span> ocasionados.
-  //       </p>
-  //       <p className="ayuda">
-  //         Probablemente tu SUSCRIPCION vencio hace algún tiempo.
-  //       </p>
-  //       <p className="ayuda">
-  //         Si crees que esto es un error comunicate con nuestra area técnica.
-  //       </p>
-  //       <p className="ayuda">
-  //         Al whatsapp <span id="nombreUser2">+51 999815458</span> y{" "}
-  //         pronto solucionaremos esta{" "}
-  //         <span id="nombreUser2">SUSPENCION</span>.
-  //       </p>
-  //       <a href="/" onClick={cerrarMsjApoyo} className="close" type="submit">
-  //         x
-  //       </a>
-  //     </div>
-  //   </div>
-  // );
+  const [userAuth, setUserAuth] = useState(false);
+  const [nameUser, setNameUser] = useState(null);
+  const [correoUser, setCorreoUser] = useState(null);
+  useEffect(() => {
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        setNameUser(user.displayName);
+        setCorreoUser(user.email);
+        setUserAuth(true);
+        console.log(user," ",nameUser, " ", correoUser);
+      } else {
+        setUserAuth(false);
+        console.log("no user");
+      }
+    });
+  }, [onAuthStateChanged]);
+  const [msjApoyo, setMsjApoyo] = useState("flex");
+  const cerrarMsjApoyo = (e) => {
+    e.preventDefault();
+    setMsjApoyo("none");
+  };
+  const mensajeErrorAuth = (
+    <div style={{ display: msjApoyo }} className="overlay">
+      <div className="popup">
+        <p className="ayuda">
+          <span id="nombreUser3">TU USUARIO HA SIDO SUSPENDIDO</span>
+        </p>
+        <p className="ayuda">
+          <span id="nombreUser2">SENTIMOS LOS PROBLEMAS </span> ocasionados.
+        </p>
+        <p className="ayuda">
+          Probablemente tu SUSCRIPCION vencio hace algún tiempo.
+        </p>
+        <p className="ayuda">
+          Si crees que esto es un error comunicate con nuestra area técnica.
+        </p>
+        <p className="ayuda">
+          Al whatsapp <span id="nombreUser2">+51 999815458</span> y pronto
+          solucionaremos esta <span id="nombreUser2">SUSPENCION</span>.
+        </p>
+        <a href="/" onClick={cerrarMsjApoyo} className="close" type="submit">
+          x
+        </a>
+      </div>
+    </div>
+  );
 
   return (
     <div className="App">
-      {/* {userAuth === true ? ( */}
+      {userAuth === true ? (
         <div>
           <Navbar
+            nameUser={nameUser}
             filtrandoDesdeNav={filtrandoDesdeNav}
             queTablaMostrar={queTablaMostrar}
             mostrarCero={mostrarEquiposConInvetarioCero}
@@ -450,12 +449,12 @@ export default function App() {
           </div>
           <Footer version={allData.version} />
         </div>
-      {/* ) : (
+      ) : (
         <div>
           <Auth funcionSetterAuth={funcionSetterAuth} />
           {userAuth === "maybe" ? mensajeErrorAuth : null}
         </div>
-      )} */}
+      )}
     </div>
   );
 }

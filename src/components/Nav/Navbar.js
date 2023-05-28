@@ -4,7 +4,15 @@ import BotonExpandible from "./BotonExpandible.js";
 
 import "./Navbar.css";
 
-function Navbar({ filtrandoDesdeNav, queTablaMostrar, mostrarCero, buscador, selectorNavBar,preciosNavBar }) {
+function Navbar({
+  nameUser,
+  filtrandoDesdeNav,
+  queTablaMostrar,
+  mostrarCero,
+  buscador,
+  selectorNavBar,
+  preciosNavBar,
+}) {
   const liStyle = { color: "white" };
 
   const submitBuscar = (e) => {
@@ -17,21 +25,28 @@ function Navbar({ filtrandoDesdeNav, queTablaMostrar, mostrarCero, buscador, sel
     e.preventDefault();
     selectorNavBar(e.target.innerText);
     if (e.target.innerText === "TodosLosEquipos") {
-    document.getElementById("navInputBusqueda").value =""
-    document.getElementById("tori").click()
+      document.getElementById("navInputBusqueda").value = "";
+      document.getElementById("tori").click();
     }
   };
 
-  const submitListaPreciosAMostrar = (e)=>{
+  const submitListaPreciosAMostrar = (e) => {
     e.preventDefault();
-    preciosNavBar(e)
-  }
+    preciosNavBar(e);
+  };
+
+  const bienvenido = (<div className="nameContainer">
+  <p className="text-center">Hola: <br /> {nameUser}</p>
+</div>)
 
   return (
     <div className="fixed-top">
+      
       <nav className="navbar navbar-expand-lg">
+        
         <div className="container-fluid">
           <img src={logo} className="App-logo" alt="logo" />
+          {bienvenido}
           <button
             className="navbar-toggler"
             type="button"
@@ -78,8 +93,13 @@ function Navbar({ filtrandoDesdeNav, queTablaMostrar, mostrarCero, buscador, sel
                   ListasDePrecios
                 </a>
                 <ul className="dropdown-menu">
-                <li>
-                    <a onClick={submitListaPreciosAMostrar} refer="AltaPortaYRenoPrepago" className="dropdown-item" href="/">
+                  <li>
+                    <a
+                      onClick={submitListaPreciosAMostrar}
+                      refer="AltaPortaYRenoPrepago"
+                      className="dropdown-item"
+                      href="/"
+                    >
                       Alta Porta y Reno Pre
                     </a>
                   </li>
@@ -87,32 +107,62 @@ function Navbar({ filtrandoDesdeNav, queTablaMostrar, mostrarCero, buscador, sel
                     <hr className="dropdown-divider" />
                   </li>
                   <li>
-                    <a onClick={submitListaPreciosAMostrar} refer="AltaRegularPostpago" className="dropdown-item" href="/">
+                    <a
+                      onClick={submitListaPreciosAMostrar}
+                      refer="AltaRegularPostpago"
+                      className="dropdown-item"
+                      href="/"
+                    >
                       Alta Regular Postpago
                     </a>
                   </li>
                   <li>
-                    <a onClick={submitListaPreciosAMostrar} refer="AtaqueCompetencia" className="dropdown-item" href="/">
+                    <a
+                      onClick={submitListaPreciosAMostrar}
+                      refer="AtaqueCompetencia"
+                      className="dropdown-item"
+                      href="/"
+                    >
                       Ataque Competencia
                     </a>
                   </li>
                   <li>
-                    <a onClick={submitListaPreciosAMostrar} refer="FullClaro" className="dropdown-item" href="/">
+                    <a
+                      onClick={submitListaPreciosAMostrar}
+                      refer="FullClaro"
+                      className="dropdown-item"
+                      href="/"
+                    >
                       FullClaro
                     </a>
                   </li>
                   <li>
-                    <a onClick={submitListaPreciosAMostrar} refer="LineaAdicional" className="dropdown-item" href="/">
+                    <a
+                      onClick={submitListaPreciosAMostrar}
+                      refer="LineaAdicional"
+                      className="dropdown-item"
+                      href="/"
+                    >
                       Linea Adicional
                     </a>
                   </li>
                   <li>
-                    <a onClick={submitListaPreciosAMostrar} refer="PortabilidadExclusiva" className="dropdown-item" href="/">
+                    <a
+                      onClick={submitListaPreciosAMostrar}
+                      refer="PortabilidadExclusiva"
+                      className="dropdown-item"
+                      href="/"
+                    >
                       Portabilidad Exclusiva
                     </a>
                   </li>
                   <li>
-                    <a onClick={submitListaPreciosAMostrar} refer="RenovacionExclusiva" className="dropdown-item" href="/">
+                    <a
+                      onClick={submitListaPreciosAMostrar}
+                      refer="RenovacionExclusiva"
+                      className="dropdown-item"
+                      href="/"
+                    >
                       Renovacion Exclusiva
                     </a>
                   </li>
@@ -120,17 +170,32 @@ function Navbar({ filtrandoDesdeNav, queTablaMostrar, mostrarCero, buscador, sel
                     <hr className="dropdown-divider" />
                   </li>
                   <li>
-                    <a onClick={submitListaPreciosAMostrar} refer="AltaCuotas6M" className="dropdown-item" href="/">
+                    <a
+                      onClick={submitListaPreciosAMostrar}
+                      refer="AltaCuotas6M"
+                      className="dropdown-item"
+                      href="/"
+                    >
                       Alta Cuotas 6M
                     </a>
                   </li>
                   <li>
-                    <a onClick={submitListaPreciosAMostrar} refer="Ataque6M" className="dropdown-item" href="/">
+                    <a
+                      onClick={submitListaPreciosAMostrar}
+                      refer="Ataque6M"
+                      className="dropdown-item"
+                      href="/"
+                    >
                       Ataque 6M
                     </a>
                   </li>
                   <li>
-                    <a onClick={submitListaPreciosAMostrar} refer="ListaLite6M" className="dropdown-item" href="/">
+                    <a
+                      onClick={submitListaPreciosAMostrar}
+                      refer="ListaLite6M"
+                      className="dropdown-item"
+                      href="/"
+                    >
                       Lista Lite 6M
                     </a>
                   </li>
@@ -138,22 +203,42 @@ function Navbar({ filtrandoDesdeNav, queTablaMostrar, mostrarCero, buscador, sel
                     <hr className="dropdown-divider" />
                   </li>
                   <li>
-                    <a onClick={submitListaPreciosAMostrar} refer="AltaCuotas12M" className="dropdown-item" href="/">
+                    <a
+                      onClick={submitListaPreciosAMostrar}
+                      refer="AltaCuotas12M"
+                      className="dropdown-item"
+                      href="/"
+                    >
                       Alta Cuotas 12M
                     </a>
                   </li>
                   <li>
-                    <a onClick={submitListaPreciosAMostrar} refer="Ataque12M" className="dropdown-item" href="/">
+                    <a
+                      onClick={submitListaPreciosAMostrar}
+                      refer="Ataque12M"
+                      className="dropdown-item"
+                      href="/"
+                    >
                       Ataque 12M
                     </a>
                   </li>
                   <li>
-                    <a onClick={submitListaPreciosAMostrar} refer="ListaPORTA12M" className="dropdown-item" href="/">
+                    <a
+                      onClick={submitListaPreciosAMostrar}
+                      refer="ListaPORTA12M"
+                      className="dropdown-item"
+                      href="/"
+                    >
                       Lista PORTA 12M
                     </a>
                   </li>
                   <li>
-                    <a onClick={submitListaPreciosAMostrar} refer="ListaRENO12M" className="dropdown-item" href="/">
+                    <a
+                      onClick={submitListaPreciosAMostrar}
+                      refer="ListaRENO12M"
+                      className="dropdown-item"
+                      href="/"
+                    >
                       Lista RENO 12M
                     </a>
                   </li>
@@ -175,6 +260,8 @@ function Navbar({ filtrandoDesdeNav, queTablaMostrar, mostrarCero, buscador, sel
                 </a>
               </li> */}
             </ul>
+            
+
             <form onSubmit={submitBuscar} className="d-flex" role="search">
               <input
                 className="form-control me-2"
@@ -183,7 +270,11 @@ function Navbar({ filtrandoDesdeNav, queTablaMostrar, mostrarCero, buscador, sel
                 aria-label="Search"
                 id="navInputBusqueda"
               />
-              <button id="tori" className="btn btn-warning botonBuscar" type="submit">
+              <button
+                id="tori"
+                className="btn btn-warning botonBuscar"
+                type="submit"
+              >
                 Buscar
               </button>
             </form>
@@ -191,13 +282,12 @@ function Navbar({ filtrandoDesdeNav, queTablaMostrar, mostrarCero, buscador, sel
         </div>
       </nav>
       <BotonExpandible
-      filtrandoDesdeNav={filtrandoDesdeNav}
+        filtrandoDesdeNav={filtrandoDesdeNav}
         queTablaMostrar={queTablaMostrar}
         mostrarCero={mostrarCero}
       />
     </div>
   );
 }
-
 
 export default Navbar;

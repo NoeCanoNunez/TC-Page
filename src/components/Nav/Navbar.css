@@ -1,52 +1,87 @@
 .App-logo {
-    height: 5vmin;
-    pointer-events: none;
-  }
-  
-  @media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-      height: 8vmin;
-      animation: App-logo-spin infinite 15s linear;
-    }
-  }
+  height: 5vmin;
+  pointer-events: none;
+}
 
-  @keyframes App-logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    height: 8vmin;
+    animation: App-logo-spin infinite 15s linear;
   }
+}
 
-  .navbar{
-    background: linear-gradient(90deg, rgba(35, 97, 254, 1) 10%, rgba(236, 4, 31, 0.796) 30%, rgba(236, 4, 31, 0.705) 50%,rgb(236, 89, 4) 100%);
-    /* border: 2px solid rgba(255, 255, 255, 0.8); */
-    box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.523);
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
   }
-
-  li{
-    font-size: 16px;
+  to {
+    transform: rotate(360deg);
   }
+}
 
-  li:hover{
-    background-color: #ffc1079a;
-    border-radius: 15px;
+.navbar {
+  background: linear-gradient(
+    90deg,
+    rgba(35, 97, 254, 1) 10%,
+    rgba(236, 4, 31, 0.796) 30%,
+    rgba(236, 4, 31, 0.705) 50%,
+    rgb(236, 89, 4) 100%
+  );
+  /* border: 2px solid rgba(255, 255, 255, 0.8); */
+  box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.523);
+}
+
+li {
+  font-size: 16px;
+}
+
+li:hover {
+  background-color: #ffc1079a;
+  border-radius: 15px;
+}
+
+.botonBuscar {
+  vertical-align: middle;
+  padding: 0;
+  height: 38px;
+  margin: auto;
+}
+
+.collapsed {
+  height: 38px;
+}
+
+.navbar-toggler {
+  height: 38px;
+}
+
+.nameContainer {
+  display: flex;
+  justify-content: center;
+  width: 10%;
+  max-width: 150px;
+  min-width: 100px;
+  margin-right: 100px;
+  margin-left: 50px;
+border-radius: 20px;
+
+  background: #e6d6da80;
+  box-shadow:  2px 2px 3px #0069d9b0, -2px -2px 3px #ff3204b0;  
+}
+.nameContainer p{
+  margin: 5px auto;
+  font-size: 1rem;
+  text-shadow:  1px 1px 2px #0069d9b0, -1px -1px 2px #ff3204b0;  
+  color:azure;
+}
+
+@media (max-width: 991px) {
+  .nameContainer {
+    margin:0; 
   }
-
-  .botonBuscar{
-    vertical-align: middle;
-    padding: 0;
-    height: 38px;
-    margin: auto;
+  .nameContainer p{
+    margin: 0;
+    font-size: .7rem;
   }
+}
 
-  .collapsed {
-    height: 38px;
-
-  }
-
-  .navbar-toggler{
-    height: 38px;
-
-  }

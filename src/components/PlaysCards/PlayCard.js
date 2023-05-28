@@ -3,6 +3,7 @@ import "./PlayCard.css";
 
 import imgVelocidad from "../../img/velocidad.jpg";
 import netflix from "../../img/netflix.svg";
+import CoorUbi from "./CoorUbi";
 
 const PlayCard = () => {
   const [inputA, setInputA] = useState(false);
@@ -133,16 +134,17 @@ const PlayCard = () => {
     },
   ];
 
-  const arrayCoberturas = coberturas.map(objeto => Object.keys(objeto)[0]);
+  const arrayCoberturas = coberturas.map((objeto) => Object.keys(objeto)[0]);
   const elegirCobertura = (e) => {
-    setCoberturaElegida(e.target.value)
-  }
+    setCoberturaElegida(e.target.value);
+  };
   const buscarCobertura = (e) => {
     e.preventDefault();
-    const valorClave = coberturas.find(objeto => coberturaElegida in objeto)[coberturaElegida];
-    window.open(valorClave, '_blank');
-  }
-
+    const valorClave = coberturas.find((objeto) => coberturaElegida in objeto)[
+      coberturaElegida
+    ];
+    window.open(valorClave, "_blank");
+  };
 
   useEffect(() => {
     if (inputA && inputB && inputC && inputD) {
@@ -222,456 +224,476 @@ const PlayCard = () => {
     },
   };
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
-      {/* <div className="imgContainer">
+    <>
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        {/* <div className="imgContainer">
         <img src={imgVelocidad} alt="velocidad"></img>
       </div> */}
-      <div className="tableContainer">
-        <table className="table table-striped mytable">
-          <thead>
-            <tr className="theadContainer">
-              <th scope="col" className="selectContainer">
-                <img
-                  className="thead-img"
-                  style={{ width: "100px" }}
-                  src={netflix}
-                  alt="Netflix"
-                />
-              </th>
-              <th scope="col" className="selectContainer">
-                <i className="thead-img bi bi-tv"></i>
-              </th>
-              <th scope="col" className="selectContainer">
-                <i className="thead-img bi bi-router"></i>
-              </th>
-              <th scope="col" className="selectContainer">
-                <i className="thead-img bi bi-telephone-plus"></i>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th>
-                {/* Input Netflix del tipo Select con Efecto*/}
-                <div id="macario" class="checkbox-wrapper-12">
-                  <div class="cbx">
-                    <input
-                      type="checkbox"
-                      name="inputA"
-                      checked={inputA}
-                      onChange={handleInputChange}
-                    />
-                    <label for="cbx-12"></label>
-                    <svg width="15" height="14" viewBox="0 0 15 14" fill="none">
-                      <path d="M2 8.36364L6.23077 12L13 2"></path>
+        <div className="tableContainer">
+          <table className="table table-striped mytable">
+            <thead>
+              <tr className="theadContainer">
+                <th scope="col" className="selectContainer">
+                  <img
+                    className="thead-img"
+                    style={{ width: "100px" }}
+                    src={netflix}
+                    alt="Netflix"
+                  />
+                </th>
+                <th scope="col" className="selectContainer">
+                  <i className="thead-img bi bi-tv"></i>
+                </th>
+                <th scope="col" className="selectContainer">
+                  <i className="thead-img bi bi-router"></i>
+                </th>
+                <th scope="col" className="selectContainer">
+                  <i className="thead-img bi bi-telephone-plus"></i>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>
+                  {/* Input Netflix del tipo Select con Efecto*/}
+                  <div id="macario" className="checkbox-wrapper-12">
+                    <div className="cbx">
+                      <input
+                        type="checkbox"
+                        name="inputA"
+                        checked={inputA}
+                        onChange={handleInputChange}
+                      />
+                      <label for="cbx-12"></label>
+                      <svg
+                        width="15"
+                        height="14"
+                        viewBox="0 0 15 14"
+                        fill="none"
+                      >
+                        <path d="M2 8.36364L6.23077 12L13 2"></path>
+                      </svg>
+                    </div>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                      <defs>
+                        <filter id="goo-12">
+                          <feGaussianBlur
+                            in="SourceGraphic"
+                            stdDeviation="4"
+                            result="blur"
+                          ></feGaussianBlur>
+                          <feColorMatrix
+                            in="blur"
+                            mode="matrix"
+                            values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7"
+                            result="goo-12"
+                          ></feColorMatrix>
+                          <feBlend in="SourceGraphic" in2="goo-12"></feBlend>
+                        </filter>
+                      </defs>
+                    </svg>
+                  </div>
+                  {/* Fin del Input Netflix del tipo Select */}
+                </th>
+                <th>
+                  {/* Input TV del tipo Select con Efecto*/}
+
+                  <div id="macario" className="checkbox-wrapper-12">
+                    <div className="cbx">
+                      <input
+                        type="checkbox"
+                        name="inputB"
+                        checked={inputB}
+                        onChange={handleInputChange}
+                      />
+                      <label for="cbx-12"></label>
+                      <svg
+                        width="15"
+                        height="14"
+                        viewBox="0 0 15 14"
+                        fill="none"
+                      >
+                        <path d="M2 8.36364L6.23077 12L13 2"></path>
+                      </svg>
+                    </div>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                      <defs>
+                        <filter id="goo-12">
+                          <feGaussianBlur
+                            in="SourceGraphic"
+                            stdDeviation="4"
+                            result="blur"
+                          ></feGaussianBlur>
+                          <feColorMatrix
+                            in="blur"
+                            mode="matrix"
+                            values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7"
+                            result="goo-12"
+                          ></feColorMatrix>
+                          <feBlend in="SourceGraphic" in2="goo-12"></feBlend>
+                        </filter>
+                      </defs>
                     </svg>
                   </div>
 
-                  <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-                    <defs>
-                      <filter id="goo-12">
-                        <feGaussianBlur
-                          in="SourceGraphic"
-                          stdDeviation="4"
-                          result="blur"
-                        ></feGaussianBlur>
-                        <feColorMatrix
-                          in="blur"
-                          mode="matrix"
-                          values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7"
-                          result="goo-12"
-                        ></feColorMatrix>
-                        <feBlend in="SourceGraphic" in2="goo-12"></feBlend>
-                      </filter>
-                    </defs>
-                  </svg>
-                </div>
-                {/* Fin del Input Netflix del tipo Select */}
-              </th>
-              <th>
-                {/* Input TV del tipo Select con Efecto*/}
+                  {/* Fin del Input TV del tipo Select */}
+                </th>
+                <th>
+                  {/* Input Router del tipo Select con Efecto*/}
 
-                <div id="macario" class="checkbox-wrapper-12">
-                  <div class="cbx">
-                    <input
-                      type="checkbox"
-                      name="inputB"
-                      checked={inputB}
-                      onChange={handleInputChange}
-                    />
-                    <label for="cbx-12"></label>
-                    <svg width="15" height="14" viewBox="0 0 15 14" fill="none">
-                      <path d="M2 8.36364L6.23077 12L13 2"></path>
+                  <div id="macario" className="checkbox-wrapper-12">
+                    <div className="cbx">
+                      <input
+                        type="checkbox"
+                        name="inputC"
+                        checked={inputC}
+                        onChange={handleInputChange}
+                        disabled={inputA}
+                      />
+                      <label for="cbx-12"></label>
+                      <svg
+                        width="15"
+                        height="14"
+                        viewBox="0 0 15 14"
+                        fill="none"
+                      >
+                        <path d="M2 8.36364L6.23077 12L13 2"></path>
+                      </svg>
+                    </div>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                      <defs>
+                        <filter id="goo-12">
+                          <feGaussianBlur
+                            in="SourceGraphic"
+                            stdDeviation="4"
+                            result="blur"
+                          ></feGaussianBlur>
+                          <feColorMatrix
+                            in="blur"
+                            mode="matrix"
+                            values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7"
+                            result="goo-12"
+                          ></feColorMatrix>
+                          <feBlend in="SourceGraphic" in2="goo-12"></feBlend>
+                        </filter>
+                      </defs>
                     </svg>
                   </div>
 
-                  <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-                    <defs>
-                      <filter id="goo-12">
-                        <feGaussianBlur
-                          in="SourceGraphic"
-                          stdDeviation="4"
-                          result="blur"
-                        ></feGaussianBlur>
-                        <feColorMatrix
-                          in="blur"
-                          mode="matrix"
-                          values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7"
-                          result="goo-12"
-                        ></feColorMatrix>
-                        <feBlend in="SourceGraphic" in2="goo-12"></feBlend>
-                      </filter>
-                    </defs>
-                  </svg>
-                </div>
+                  {/* Fin del Input Router del tipo Select */}
+                </th>
+                <th>
+                  {/* Input Telefono del tipo Select con Efecto*/}
 
-                {/* Fin del Input TV del tipo Select */}
-              </th>
-              <th>
-                {/* Input Router del tipo Select con Efecto*/}
+                  <div id="macario" className="checkbox-wrapper-12">
+                    <div className="cbx">
+                      <input
+                        type="checkbox"
+                        name="inputD"
+                        checked={inputD}
+                        onChange={handleInputChange}
+                        disabled={inputA || (!inputA && !inputB && !inputC)}
+                      />
+                      <label for="cbx-12"></label>
+                      <svg
+                        width="15"
+                        height="14"
+                        viewBox="0 0 15 14"
+                        fill="none"
+                      >
+                        <path d="M2 8.36364L6.23077 12L13 2"></path>
+                      </svg>
+                    </div>
 
-                <div id="macario" class="checkbox-wrapper-12">
-                  <div class="cbx">
-                    <input
-                      type="checkbox"
-                      name="inputC"
-                      checked={inputC}
-                      onChange={handleInputChange}
-                      disabled={inputA}
-                    />
-                    <label for="cbx-12"></label>
-                    <svg width="15" height="14" viewBox="0 0 15 14" fill="none">
-                      <path d="M2 8.36364L6.23077 12L13 2"></path>
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                      <defs>
+                        <filter id="goo-12">
+                          <feGaussianBlur
+                            in="SourceGraphic"
+                            stdDeviation="4"
+                            result="blur"
+                          ></feGaussianBlur>
+                          <feColorMatrix
+                            in="blur"
+                            mode="matrix"
+                            values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7"
+                            result="goo-12"
+                          ></feColorMatrix>
+                          <feBlend in="SourceGraphic" in2="goo-12"></feBlend>
+                        </filter>
+                      </defs>
                     </svg>
                   </div>
-
-                  <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-                    <defs>
-                      <filter id="goo-12">
-                        <feGaussianBlur
-                          in="SourceGraphic"
-                          stdDeviation="4"
-                          result="blur"
-                        ></feGaussianBlur>
-                        <feColorMatrix
-                          in="blur"
-                          mode="matrix"
-                          values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7"
-                          result="goo-12"
-                        ></feColorMatrix>
-                        <feBlend in="SourceGraphic" in2="goo-12"></feBlend>
-                      </filter>
-                    </defs>
-                  </svg>
-                </div>
-
-                {/* Fin del Input Router del tipo Select */}
-              </th>
-              <th>
-                {/* Input Telefono del tipo Select con Efecto*/}
-
-                <div id="macario" class="checkbox-wrapper-12">
-                  <div class="cbx">
-                    <input
-                      type="checkbox"
-                      name="inputD"
-                      checked={inputD}
-                      onChange={handleInputChange}
-                      disabled={inputA || (!inputA && !inputB && !inputC)}
-                    />
-                    <label for="cbx-12"></label>
-                    <svg width="15" height="14" viewBox="0 0 15 14" fill="none">
-                      <path d="M2 8.36364L6.23077 12L13 2"></path>
-                    </svg>
-                  </div>
-
-                  <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-                    <defs>
-                      <filter id="goo-12">
-                        <feGaussianBlur
-                          in="SourceGraphic"
-                          stdDeviation="4"
-                          result="blur"
-                        ></feGaussianBlur>
-                        <feColorMatrix
-                          in="blur"
-                          mode="matrix"
-                          values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7"
-                          result="goo-12"
-                        ></feColorMatrix>
-                        <feBlend in="SourceGraphic" in2="goo-12"></feBlend>
-                      </filter>
-                    </defs>
-                  </svg>
-                </div>
-                {/* Fin del Input Telefono del tipo Select */}
-              </th>
-            </tr>
-            <tr className={inputB || inputC ? null : "hidden"}>
-              <th></th>
-              <th>
-                <select
-                  className={inputB ? "form-select" : "hidden"}
-                  name="selectB"
-                  value={selectB}
-                  onChange={handleSelectChange}
-                  disabled={!inputB}
-                >
-                  <option
-                    value="0"
-                    className={!inputA && inputB ? null : "hidden"}
+                  {/* Fin del Input Telefono del tipo Select */}
+                </th>
+              </tr>
+              <tr className={inputB || inputC ? null : "hidden"}>
+                <th></th>
+                <th>
+                  <select
+                    className={inputB ? "form-select" : "hidden"}
+                    name="selectB"
+                    value={selectB}
+                    onChange={handleSelectChange}
+                    disabled={!inputB}
                   >
-                    --Elija--
-                  </option>
-                  <option
-                    value="1"
-                    className={!inputA && inputB ? null : "hidden"}
+                    <option
+                      value="0"
+                      className={!inputA && inputB ? null : "hidden"}
+                    >
+                      --Elija--
+                    </option>
+                    <option
+                      value="1"
+                      className={!inputA && inputB ? null : "hidden"}
+                    >
+                      Avanzado
+                    </option>
+                    <option
+                      value="2"
+                      className={!inputA && inputB ? null : "hidden"}
+                    >
+                      Superior
+                    </option>
+                  </select>
+                </th>
+                <th>
+                  <select
+                    className={inputC ? "form-select" : "hidden"}
+                    name="selectC"
+                    id="selectC"
+                    value={selectC}
+                    onChange={handleSelectChange}
+                    disabled={!inputC}
                   >
-                    Avanzado
-                  </option>
-                  <option
-                    value="2"
-                    className={!inputA && inputB ? null : "hidden"}
+                    <option value="0" className={!inputA ? null : "hidden"}>
+                      --Elija--
+                    </option>
+                    <option
+                      value="1"
+                      className={
+                        !inputA
+                          ? !inputB && !inputD
+                            ? "hidden"
+                            : null
+                          : "hidden"
+                      }
+                    >
+                      50MB
+                    </option>
+                    <option value="2" className={!inputA ? null : "hidden"}>
+                      100MB
+                    </option>
+                    <option value="3" className={!inputA ? null : "hidden"}>
+                      150MB
+                    </option>
+                    <option value="4" className={!inputA ? null : "hidden"}>
+                      200MB
+                    </option>
+                    <option value="5" className={!inputA ? null : "hidden"}>
+                      250MB
+                    </option>
+                    <option value="6" className={!inputA ? null : "hidden"}>
+                      300MB
+                    </option>
+                    <option value="7" className={!inputA ? null : "hidden"}>
+                      500MB
+                    </option>
+                    <option value="8" className={!inputA ? null : "hidden"}>
+                      1000MB
+                    </option>
+                    <option
+                      value="9"
+                      className={inputA && !inputB ? null : "hidden"}
+                    >
+                      100MB
+                    </option>
+                    <option value="10" className={inputA ? null : "hidden"}>
+                      180MB
+                    </option>
+                    <option
+                      value="11"
+                      className={inputA && inputB ? null : "hidden"}
+                    >
+                      280MB
+                    </option>
+                  </select>
+                </th>
+                <th></th>
+              </tr>
+              <tr className={inputB ? null : "hidden"}>
+                <th></th>
+                <th>
+                  {" "}
+                  <select
+                    className="form-select"
+                    name="selectB2"
+                    // value={selectB2}
+                    onChange={handleSelectChange}
+                    disabled={!inputB}
                   >
-                    Superior
-                  </option>
-                </select>
-              </th>
-              <th>
-                <select
-                  className={inputC ? "form-select" : "hidden"}
-                  name="selectC"
-                  id="selectC"
-                  value={selectC}
-                  onChange={handleSelectChange}
-                  disabled={!inputC}
-                >
-                  <option value="0" className={!inputA ? null : "hidden"}>
-                    --Elija--
-                  </option>
-                  <option
-                    value="1"
-                    className={
-                      !inputA
-                        ? !inputB && !inputD
-                          ? "hidden"
-                          : null
-                        : "hidden"
-                    }
-                  >
-                    50MB
-                  </option>
-                  <option value="2" className={!inputA ? null : "hidden"}>
-                    100MB
-                  </option>
-                  <option value="3" className={!inputA ? null : "hidden"}>
-                    150MB
-                  </option>
-                  <option value="4" className={!inputA ? null : "hidden"}>
-                    200MB
-                  </option>
-                  <option value="5" className={!inputA ? null : "hidden"}>
-                    250MB
-                  </option>
-                  <option value="6" className={!inputA ? null : "hidden"}>
-                    300MB
-                  </option>
-                  <option value="7" className={!inputA ? null : "hidden"}>
-                    500MB
-                  </option>
-                  <option value="8" className={!inputA ? null : "hidden"}>
-                    1000MB
-                  </option>
-                  <option
-                    value="9"
-                    className={inputA && !inputB ? null : "hidden"}
-                  >
-                    100MB
-                  </option>
-                  <option value="10" className={inputA ? null : "hidden"}>
-                    180MB
-                  </option>
-                  <option
-                    value="11"
-                    className={inputA && inputB ? null : "hidden"}
-                  >
-                    280MB
-                  </option>
-                </select>
-              </th>
-              <th></th>
-            </tr>
-            <tr className={inputB ? null : "hidden"}>
-              <th></th>
-              <th>
-                {" "}
-                <select
-                  className="form-select"
-                  name="selectB2"
-                  // value={selectB2}
-                  onChange={handleSelectChange}
-                  disabled={!inputB}
-                >
-                  <option value="0">1 Deco</option>
-                  <option value="1">2 Decos</option>
-                  <option value="2">3 Decos</option>
-                </select>
-              </th>
-              <th></th>
-              <th></th>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div
-        className={inputA || inputB || inputC ? "resultContainer" : "hidden"}
-      >
-        <div className="promocionPlays">
-          <div id="box">
-            <p id="flashlight">
-              <span id="light">
+                    <option value="0">1 Deco</option>
+                    <option value="1">2 Decos</option>
+                    <option value="2">3 Decos</option>
+                  </select>
+                </th>
+                <th></th>
+                <th></th>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div
+          className={inputA || inputB || inputC ? "resultContainer" : "hidden"}
+        >
+          <div className="promocionPlays">
+            <div id="box">
+              <p id="flashlight">
+                <span id="light">
+                  {`${
+                    inputB && inputC && inputD
+                      ? "3 "
+                      : (inputB && inputC) ||
+                        (inputB && inputD) ||
+                        (inputC && inputD)
+                      ? "2 "
+                      : inputB || inputC
+                      ? "1 "
+                      : ""
+                  }`}
+                </span>
+                <span id="flash"> PLAY </span>
+              </p>
+            </div>
+            <p>
+              <span className={!inputD ? "hidden" : "text"}>
                 {`${
-                  inputB && inputC && inputD
-                    ? "3 "
-                    : (inputB && inputC) ||
-                      (inputB && inputD) ||
-                      (inputC && inputD)
-                    ? "2 "
-                    : inputB || inputC
-                    ? "1 "
+                  inputD
+                    ? inputA && !inputB
+                      ? "Con 80 minutos MultiDestino"
+                      : "Con 100 minutos MultiDestino"
                     : ""
                 }`}
               </span>
-              <span id="flash"> PLAY </span>
             </p>
-          </div>
-          <p>
-            <span className={!inputD ? "hidden" : "text"}>
-              {`${
-                inputD
-                  ? inputA && !inputB
-                    ? "Con 80 minutos MultiDestino"
-                    : "Con 100 minutos MultiDestino"
-                  : ""
+            <p
+              className={`${
+                resultado === "3PLAY" ||
+                resultado === "2PLAY-TV-INT" ||
+                resultado === "2PLAY-INT-TLF" ||
+                resultado === "1PLAY-INT"
+                  ? ""
+                  : "hidden"
               }`}
-            </span>
-          </p>
-          <p
-            className={`${
-              resultado === "3PLAY" ||
-              resultado === "2PLAY-TV-INT" ||
-              resultado === "2PLAY-INT-TLF" ||
-              resultado === "1PLAY-INT"
-                ? ""
-                : "hidden"
-            }`}
-          >
-            <span id="lightDscto2">50</span>
-            <span id="lightDscto3">% DSCTO X : </span>
-            <span id="lightDscto2">{`${
-              resultado === "3PLAY" || resultado === "2PLAY-TV-INT"
-                ? " 3"
-                : resultado === "2PLAY-INT-TLF" || resultado === "1PLAY-INT"
-                ? " 1"
-                : ""
-            }`}</span>
-            <span id="lightDscto3">{`${
-              resultado === "3PLAY" || resultado === "2PLAY-TV-INT"
-                ? " MESES"
-                : resultado === "2PLAY-INT-TLF" || resultado === "1PLAY-INT"
-                ? " MES"
-                : ""
-            }`}</span>
-          </p>
-          <p className="coraje">
-            {`${
-              resultado === "2PLAY-Netflix"
-                ? selectC === "9"
-                  ? "S/" + 110
-                  : "S/" + 130
-                : resultado === "3PLAY-Netflix"
-                ? selectC === "10"
-                  ? selectB2 === "2"
-                    ? "S/" + 225
-                    : "S/" + 215
-                  : selectB2 === "2"
-                  ? "S/" + 265
-                  : "S/" + 255
-                : resultado === "3PLAY"
-                ? selectB !== "0" && selectC !== "0"
-                  ? selectB === "1"
+            >
+              <span id="lightDscto2">50</span>
+              <span id="lightDscto3">% DSCTO X : </span>
+              <span id="lightDscto2">{`${
+                resultado === "3PLAY" || resultado === "2PLAY-TV-INT"
+                  ? " 3"
+                  : resultado === "2PLAY-INT-TLF" || resultado === "1PLAY-INT"
+                  ? " 1"
+                  : ""
+              }`}</span>
+              <span id="lightDscto3">{`${
+                resultado === "3PLAY" || resultado === "2PLAY-TV-INT"
+                  ? " MESES"
+                  : resultado === "2PLAY-INT-TLF" || resultado === "1PLAY-INT"
+                  ? " MES"
+                  : ""
+              }`}</span>
+            </p>
+            <p className="coraje">
+              {`${
+                resultado === "2PLAY-Netflix"
+                  ? selectC === "9"
+                    ? "S/" + 110
+                    : "S/" + 130
+                  : resultado === "3PLAY-Netflix"
+                  ? selectC === "10"
                     ? selectB2 === "2"
+                      ? "S/" + 225
+                      : "S/" + 215
+                    : selectB2 === "2"
+                    ? "S/" + 265
+                    : "S/" + 255
+                  : resultado === "3PLAY"
+                  ? selectB !== "0" && selectC !== "0"
+                    ? selectB === "1"
+                      ? selectB2 === "2"
+                        ? "S/" +
+                          (85 +
+                            preciosInternet[selectC] +
+                            preciosTelefono.TPlayMD[selectC])
+                        : "S/" +
+                          (75 +
+                            preciosInternet[selectC] +
+                            preciosTelefono.TPlayMD[selectC])
+                      : selectB2 === "2"
                       ? "S/" +
-                        (85 +
+                        (135 +
                           preciosInternet[selectC] +
                           preciosTelefono.TPlayMD[selectC])
                       : "S/" +
-                        (75 +
+                        (125 +
                           preciosInternet[selectC] +
                           preciosTelefono.TPlayMD[selectC])
-                    : selectB2 === "2"
-                    ? "S/" +
-                      (135 +
-                        preciosInternet[selectC] +
-                        preciosTelefono.TPlayMD[selectC])
-                    : "S/" +
-                      (125 +
-                        preciosInternet[selectC] +
-                        preciosTelefono.TPlayMD[selectC])
-                  : "..."
-                : resultado === "2PLAY-TV-INT"
-                ? selectB !== "0" && selectC !== "0"
-                  ? selectB === "1"
-                    ? selectB2 === "2"
-                      ? "S/" + (85 + preciosInternet[selectC])
-                      : "S/" + (75 + preciosInternet[selectC])
-                    : selectB2 === "2"
-                    ? "S/" + (135 + preciosInternet[selectC])
-                    : "S/" + (125 + preciosInternet[selectC])
-                  : "..."
-                : resultado === "2PLAY-TV-TLF"
-                ? selectB !== "0"
-                  ? selectB === "1"
-                    ? selectB2 === "2"
-                      ? "S/" + 140
-                      : "S/" + 130
-                    : selectB2 === "2"
-                    ? "S/" + 190
-                    : "S/" + 180
-                  : "..."
-                : resultado === "2PLAY-INT-TLF"
-                ? selectC !== "0"
-                  ? "S/" + (preciosInternet[selectC] + preciosTelefono.DPlay)
-                  : "..."
-                : resultado === "1PLAY-TV"
-                ? selectB !== "0"
-                  ? selectB === "1"
-                    ? selectB2 === "2"
-                      ? "S/" + 130
-                      : "S/" + 120
-                    : selectB2 === "2"
-                    ? "S/" + 180
-                    : "S/" + 170
-                  : "..."
-                : resultado === "1PLAY-INT"
-                ? selectC !== "0"
-                  ? "S/" + preciosInternet[selectC]
-                  : "..."
-                : "Algo no funciona bien, Llamen a la NASA"
-            }`}
-          </p>
-        </div>
+                    : "..."
+                  : resultado === "2PLAY-TV-INT"
+                  ? selectB !== "0" && selectC !== "0"
+                    ? selectB === "1"
+                      ? selectB2 === "2"
+                        ? "S/" + (85 + preciosInternet[selectC])
+                        : "S/" + (75 + preciosInternet[selectC])
+                      : selectB2 === "2"
+                      ? "S/" + (135 + preciosInternet[selectC])
+                      : "S/" + (125 + preciosInternet[selectC])
+                    : "..."
+                  : resultado === "2PLAY-TV-TLF"
+                  ? selectB !== "0"
+                    ? selectB === "1"
+                      ? selectB2 === "2"
+                        ? "S/" + 140
+                        : "S/" + 130
+                      : selectB2 === "2"
+                      ? "S/" + 190
+                      : "S/" + 180
+                    : "..."
+                  : resultado === "2PLAY-INT-TLF"
+                  ? selectC !== "0"
+                    ? "S/" + (preciosInternet[selectC] + preciosTelefono.DPlay)
+                    : "..."
+                  : resultado === "1PLAY-TV"
+                  ? selectB !== "0"
+                    ? selectB === "1"
+                      ? selectB2 === "2"
+                        ? "S/" + 130
+                        : "S/" + 120
+                      : selectB2 === "2"
+                      ? "S/" + 180
+                      : "S/" + 170
+                    : "..."
+                  : resultado === "1PLAY-INT"
+                  ? selectC !== "0"
+                    ? "S/" + preciosInternet[selectC]
+                    : "..."
+                  : "Algo no funciona bien, Llamen a la NASA"
+              }`}
+            </p>
+          </div>
 
-        <div className="imgPlays-container">
-          <img
-            className="imgPlays"
-            src={`https://raw.githubusercontent.com/NoeCanoNunez/TC-Page/master/src/img/Plays/${resultado}.webp`}
-            alt=""
-          />
+          <div className="imgPlays-container">
+            <img
+              className="imgPlays"
+              src={`https://raw.githubusercontent.com/NoeCanoNunez/TC-Page/master/src/img/Plays/${resultado}.webp`}
+              alt=""
+            />
+          </div>
         </div>
-        
-      </div>
-      <div className="imgPlays-container">
+        <div className="imgPlays-container">
           <table className="table table-striped mytable">
             <thead>
               <tr className="theadContainer">
@@ -685,11 +707,10 @@ const PlayCard = () => {
               <tr>
                 <th>
                   <label>
-                    <select
-                    onChange={elegirCobertura}
-                    className="form-select">
+                    <select onChange={elegirCobertura} className="form-select">
                       {coberturas
-                      ? arrayCoberturas.map(cob => <option >{cob}</option>) : null}
+                        ? arrayCoberturas.map((cob) => <option>{cob}</option>)
+                        : null}
                     </select>
                   </label>
                 </th>
@@ -703,12 +724,29 @@ const PlayCard = () => {
                 </th>
               </tr>
             </tbody>
-            <tfoot >
-              <p className="medium font-weight-700 text-center"><a href="https://selectra.com.pe/empresas/claro/claro-tv/canales#que-canales-tiene-claro-tv" target="_blank" rel="noreferrer" >Lista de todos los canales aqui</a></p></tfoot>
+            <tfoot>
+              <p className="medium font-weight-700 text-center">
+                <a
+                  href="https://selectra.com.pe/empresas/claro/claro-tv/canales#que-canales-tiene-claro-tv"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Lista de todos los canales aqui
+                </a>
+              </p>
+            </tfoot>
           </table>
         </div>
-    </div>
+        <div className="imgPlays-container" style={{marginBottom:"50px"}}>
+        <CoorUbi />
+        </div>
+      </div>
+
+      
+      
+    </>
   );
 };
 
 export default PlayCard;
+
