@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/TC-Page/static/css/main.9ad2e72a.css",
-    "main.js": "/TC-Page/static/js/main.bbb11846.js",
+    "main.css": "/TC-Page/static/css/main.1ccf138c.css",
+    "main.js": "/TC-Page/static/js/main.95b6e271.js",
     "static/media/velocidad.jpg": "/TC-Page/static/media/velocidad.e54ef51ea4387e86964d.jpg",
     "static/media/promo.png": "/TC-Page/static/media/promo.f79497a1ce035e078197.png",
     "static/media/google-logo.svg": "/TC-Page/static/media/google-logo.dcbc94051c15aba5972efc068e2cec23.svg",
@@ -22,11 +22,11 @@
     "static/media/file-plus.svg": "/TC-Page/static/media/file-plus.d69f74b5fc67a0579ef0474558e02ac2.svg",
     "static/media/bateria.svg": "/TC-Page/static/media/bateria.257841ddd532689e5cdd935895c8e85b.svg",
     "static/media/peso.svg": "/TC-Page/static/media/peso.dfbe9e0f72f7f2c0e0e470696e831107.svg",
-    "main.9ad2e72a.css.map": "/TC-Page/static/css/main.9ad2e72a.css.map",
-    "main.bbb11846.js.map": "/TC-Page/static/js/main.bbb11846.js.map"
+    "main.1ccf138c.css.map": "/TC-Page/static/css/main.1ccf138c.css.map",
+    "main.95b6e271.js.map": "/TC-Page/static/js/main.95b6e271.js.map"
   },
   "entrypoints": [
-    "static/css/main.9ad2e72a.css",
-    "static/js/main.bbb11846.js"
+    "static/css/main.1ccf138c.css",
+    "static/js/main.95b6e271.js"
   ]
 }
