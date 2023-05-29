@@ -304,10 +304,19 @@ h2{
     font-weight: 500;
 }
 
-@media screen and (max-width:1200px) {
+@media (max-width:1200px) {
     .container__cards{
         position: relative;
         margin: 20px auto;
         transform: none;
     }
 }
+
+@media (max-width: 445px) {
+    .container__cards{
+        margin: 10px 0;
+        padding: 0;
+        min-width: 200px;
+        height: auto;
+    }
+ }

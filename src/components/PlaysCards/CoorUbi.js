@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import copy from "clipboard-copy";
 import "./CoorUbi.css";
 
 function CoorUbi() {
@@ -84,6 +85,7 @@ function CoorUbi() {
         `https://apis.geodir.co/geocoding/v1/json?address=${sendAddress}&segments=locality_id:${localityId}&key=051f80b9-caa0-4af5-83d8-fae4eef59952`
       );
       const datac = await responsec.json();
+      console.log(datac);
       setYourCoord(datac);
       if (datac.status === "OK") {
         setLatLon({
@@ -95,10 +97,10 @@ function CoorUbi() {
       console.log("Error fetching data:", error);
     }
   };
-  //Al hacer Click se usan las coordenadas obtenidas para verificar cobertura
-  const verificarCobertura = (e) => {
+  //Al hacer Click se usan las coordenadas para ir al mapa
+  const busquedaManual = (e) => {
     e.preventDefault();
-    let valorClave = `https://www.google.com/maps/d/u/0/viewer?mid=130fNfdmfbarzuQbGbDqkFjC47ysx4Mdh&ll=${latLon.lat}%2C${latLon.lon}&z=22`;
+    let valorClave = `https://www.google.com/maps/d/u/0/viewer?mid=130fNfdmfbarzuQbGbDqkFjC47ysx4Mdh&ll=${latLon.lat}%2C${latLon.lon}&z=15`;
     window.open(valorClave, "_blank");
   };
   //Al hacer Click Verificara si la zona tiene cobertura y dara como respuesta el NODO
@@ -109,21 +111,59 @@ function CoorUbi() {
         `https://apis.geodir.co/geofencing/geofencing/area?latlon=${latLon.lat},${latLon.lon}&layer_area_id=eloggbda2669&key=051f80b9-caa0-4af5-83d8-fae4eef59952`
       );
       const datac = await responsec.json();
-      if (datac.status === "OK") {
-        setYourNODO({
-          area_name: datac.area_name,
-          area_status: datac.area_status,
-          capacity: datac.capacity,
-          map: datac.map,
-          region: datac.region,
-          services: datac.services,
-          team: datac.team,
-          tecnology: datac.tecnology,
-        });
-      }
+      console.log(datac);
+      setYourNODO({
+        area_name: datac.area_name,
+        area_status: datac.area_status,
+        capacity: datac.capacity,
+        map: datac.map,
+        region: datac.region,
+        services: datac.services,
+        team: datac.team,
+        tecnology: datac.tecnology,
+      });
     } catch (error) {
       console.log("Error fetching data:", error);
     }
+  };
+  //Modificar Latitud y Longitus desde sus inputs
+  const modificarLatLon = (e) => {
+    const { name, value } = e.target;
+    setLatLon({ ...latLon, [name]: value });
+  };
+  //Funcion que copia el valor de la longitud y latitud al portapapeles
+  const [mostrarMensaje, setMostrarMensaje] = useState(false);
+
+  useEffect(() => {
+    if (mostrarMensaje) {
+      const timeout = setTimeout(() => {
+        setMostrarMensaje(false);
+      }, 1500);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [mostrarMensaje]);
+  
+  const copiar = (e) => {
+    const clipboardValue = `${latLon.lat}, ${latLon.lon}`;
+    copy(clipboardValue);
+    setMostrarMensaje(true)
+  };
+  //Reiniciar Todo
+  const reiniciar = (e) => {
+    e.preventDefault();
+    setInputCities("");
+    setAddressValue("");
+    setNumberAddress("");
+    setYourCoord("");
+    setResponseDataCity([]);
+    setResponseDataAddress([]);
+    setDisplayNoneDist(false);
+    setDisplayNoneAddr(false);
+    setLatLon({ lat: "", lon: "" });
+    setYourNODO({
+      area_status: "",
+    });
   };
   //Obtener todas las ciudades
   useEffect(() => {
@@ -236,54 +276,98 @@ function CoorUbi() {
           value={numberAddress}
           autoComplete="off"
         ></input>
-        <button
-          className="btn btn-dark botonCoordenadas align-center"
-          onClick={buscarCoordenadas}
-        >
-          Enviar
-        </button>
+        <div style={{ display: "flex", justifyContent: "space-around" }}>
+          <button
+            className="btn btn-dark botonCoordenadas align-center"
+            onClick={buscarCoordenadas}
+          >
+            Enviar
+          </button>
+          <button
+            className="btn btn-danger botonCoordenadas align-center"
+            onClick={reiniciar}
+          >
+            Reiniciar
+          </button>
+        </div>
       </form>
-      {yourCoord ? (
-        yourCoord.status === "OK" ? (
-          <>
-            <p className="h6">Las coordenadas son:</p>
-            <h2
-              style={{ backgroundColor: "rgba(0,0,0,.5)", padding: "10px 5px" }}
-              className="text-center"
+
+      <>
+        <p className="h6">Las coordenadas son:</p>
+        <div className="form-group input-group">
+          <input
+            className="form-control"
+            type="text"
+            name="lat"
+            value={latLon.lat}
+            onChange={modificarLatLon}
+          ></input>
+          <input
+            className="form-control"
+            type="text"
+            name="lon"
+            value={latLon.lon}
+            onChange={modificarLatLon}
+          ></input>
+          <input
+            className="btn btn-warning"
+            type="button"
+            onClick={copiar}
+            value="copiar"
+          >
+          </input>
+          {mostrarMensaje && <div className="fade-out">Coordenadas Copiadas...</div>}
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <button
+            style={{ marginTop: "30px", paddingBottom: "30px" }}
+            onClick={buscarNODO}
+            className="btn btn-success"
+          >
+            Verificar Cobertura
+          </button>
+        </div>
+        {yourNODO.area_status === "" ? null : yourNODO.area_status ===
+          "SIN COBERTURA" ? (
+          <div className="text-center">
+            <p className="h5 presulta">{yourNODO.area_status}</p>
+            <button
+              style={{ paddingBottom: "30px" }}
+              onClick={busquedaManual}
+              className="btn btn-light"
             >
-              {" "}
-              {latLon.lat}, {latLon.lon}
-            </h2>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <button
-                style={{ paddingBottom: "30px" }}
-                onClick={buscarNODO}
-                className="btn btn-success"
-              >
-                Verificar Cobertura
-              </button>
-            </div>
-            {yourNODO.area_name === "" ? null : (
-              <div className="text-center">
-                <p className="h5 presulta">{yourNODO.area_status}</p>
-                <span>NODO:<p className="h5 presult">{yourNODO.area_name}</p></span>
-                <span>VELOCIDAD MAXIMA:<p className="h5 presult">{yourNODO.capacity}</p></span>
-                <span>REGION:<p className="h5 presult">{yourNODO.region}</p></span>
-                <span>SERVICIOS:<p className="h5 presult">{yourNODO.services}</p></span>
-                <span>Tecnologia:<p className="h5 presult">{yourNODO.team}</p></span>
-              </div>
-            )}
-          </>
+              Busqueda Manual
+            </button>
+          </div>
         ) : (
-          <h2>No exiten coordenadas para tu dirección</h2>
-        )
-      ) : null}
+          <div className="text-center">
+            <p className="h5 presulta">{yourNODO.area_status}</p>
+            <span>
+              NODO:<p className="h5 presult">{yourNODO.area_name}</p>
+            </span>
+            <span>
+              VELOCIDAD MAXIMA:<p className="h5 presult">{yourNODO.capacity}</p>
+            </span>
+            <span>
+              REGION:<p className="h5 presult">{yourNODO.region}</p>
+            </span>
+            <span>
+              SERVICIOS:<p className="h5 presult">{yourNODO.services}</p>
+            </span>
+            <span>
+              Tecnologia:<p className="h5 presult">{yourNODO.team}</p>
+            </span>
+          </div>
+        )}
+      </>
+
       <div>
         {/* Aquí puedes mostrar o utilizar los datos del XML almacenados en xmlData */}
         {/* <pre>{JSON.stringify(xmlData, null, 2)}</pre> */}

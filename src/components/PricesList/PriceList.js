@@ -7,14 +7,14 @@ function BodyTablaLista({ equiposFiltrados, listaAMostrar, enPromocion }) {
   return (
     <>
       {equiposFiltrados.map((equipo) => {
-       let color = "skyblue"
-       enPromocion.map((el) => {
+        let color = "skyblue";
+        enPromocion.map((el) => {
           if (el.Equipo === equipo.Equipo) {
-            el.total < 0 
-            ? color = "yellow"
-            : el.total === 0
-              ? color = "white"
-              : color = "orange"
+            el.total < 0
+              ? (color = "yellow")
+              : el.total === 0
+              ? (color = "white")
+              : (color = "orange");
           }
         });
 
@@ -36,8 +36,9 @@ function BodyTablaLista({ equiposFiltrados, listaAMostrar, enPromocion }) {
               <td
                 style={{ backgroundColor: color }}
                 key={Math.random()}
-                className={index === 0 ? "trStock": index === 1 ? "trRed" : undefined}
-                
+                className={
+                  index === 0 ? "trStock" : index === 1 ? "trRed" : undefined
+                }
               >
                 {equipo[el]}
               </td>
@@ -112,26 +113,30 @@ function FormaTablaLista({ equipos, listaAMostrar, nombreLista, enPromocion }) {
       : setOrdenacion(["ASCENDENTE"]);
   }, [equiposAFiltrar]);
 
-  const TrRedStock = (<><th className="trStock" scope="col">
-  Stock{" "}
-  <SliceButton
-    listaAMostrar={listaAMostrar[2]}
-    setOrdenacion={setOrdenacion}
-    setEquiposFiltrados={setEquiposFiltrados}
-    setEquiposAFiltrar={setEquiposAFiltrar}
-    nameId="Stock"
-  />
-</th>
-<th className="trRed" scope="col">
-  RED{" "}
-  <SliceButton
-    listaAMostrar={listaAMostrar[2]}
-    setOrdenacion={setOrdenacion}
-    setEquiposFiltrados={setEquiposFiltrados}
-    setEquiposAFiltrar={setEquiposAFiltrar}
-    nameId="Red"
-  />
-</th></>)
+  const TrRedStock = (
+    <>
+      <th className="trStock" scope="col">
+        Stock{" "}
+        <SliceButton
+          listaAMostrar={listaAMostrar[2]}
+          setOrdenacion={setOrdenacion}
+          setEquiposFiltrados={setEquiposFiltrados}
+          setEquiposAFiltrar={setEquiposAFiltrar}
+          nameId="Stock"
+        />
+      </th>
+      <th className="trRed" scope="col">
+        RED{" "}
+        <SliceButton
+          listaAMostrar={listaAMostrar[2]}
+          setOrdenacion={setOrdenacion}
+          setEquiposFiltrados={setEquiposFiltrados}
+          setEquiposAFiltrar={setEquiposAFiltrar}
+          nameId="Red"
+        />
+      </th>
+    </>
+  );
 
   //Head según tipo de Lista de Precios
   const trHeadCODE = (
@@ -152,7 +157,7 @@ function FormaTablaLista({ equipos, listaAMostrar, nombreLista, enPromocion }) {
         }}
         scope="col"
       >
-        Equipo{" "}
+        Equipo
         <SliceButton
           listaAMostrar={listaAMostrar[2]}
           setOrdenacion={setOrdenacion}
@@ -467,20 +472,16 @@ function FormaTablaLista({ equipos, listaAMostrar, nombreLista, enPromocion }) {
 
   return (
     <>
+      <div className="title-container">
+        <p className="text-center">{nombreLista}</p>
+      </div>
       <div
-        style={{ overflowY: "scroll", height: "80vh", borderRadius: "10px" }}
+        style={{ overflowY: "scroll", height: "80vh", borderRadius: "10px", marginTop:"-20px" }}
       >
         <table
           style={{ backgroundColor: "rgba(255,255,255,.9)" }}
           className="table table-striped"
         >
-          <thead>
-            <tr>
-              <th id="tHeadLista" colSpan={listaAMostrar.length + 1}>
-                {nombreLista}
-              </th>
-            </tr>
-          </thead>
           <thead>
             {listaAMostrar.length <= 4
               ? trHeadPRE
@@ -504,9 +505,11 @@ function FormaTablaLista({ equipos, listaAMostrar, nombreLista, enPromocion }) {
 /*******************************************************************/
 function PriceList({ todosLosPrecios, listaPreciosAMostar, enPromocion }) {
   const objetoDeArraysListaAMostrar = {
-    AltaPortaYRenoPrepago: ["cant","red","Prepago", "PortRenPre"],
+    AltaPortaYRenoPrepago: ["cant", "red", "Prepago", "PortRenPre"],
     AltaRegularPostpago: [
-      "cant","red","PAR_29",
+      "cant",
+      "red",
+      "PAR_29",
       "PAR_39",
       "PAR_49",
       "PAR_55",
@@ -519,7 +522,9 @@ function PriceList({ todosLosPrecios, listaPreciosAMostar, enPromocion }) {
       "PAR_289",
     ],
     Ataque12M: [
-      "cant","red","AC12MC_39",
+      "cant",
+      "red",
+      "AC12MC_39",
       "AC12MT_39",
       "AC12MC_49",
       "AC12MT_49",
@@ -541,7 +546,9 @@ function PriceList({ todosLosPrecios, listaPreciosAMostar, enPromocion }) {
       "AC12MT_289",
     ],
     Ataque6M: [
-      "cant","red","AC6MC_39",
+      "cant",
+      "red",
+      "AC6MC_39",
       "AC6MT_39",
       "AC6MC_49",
       "AC6MT_49",
@@ -563,7 +570,9 @@ function PriceList({ todosLosPrecios, listaPreciosAMostar, enPromocion }) {
       "AC6MT_289",
     ],
     AtaqueCompetencia: [
-      "cant","red","ACOMP_29",
+      "cant",
+      "red",
+      "ACOMP_29",
       "ACOMP_39",
       "ACOMP_49",
       "ACOMP_55",
@@ -576,7 +585,9 @@ function PriceList({ todosLosPrecios, listaPreciosAMostar, enPromocion }) {
       "ACOMP_289",
     ],
     AltaCuotas12M: [
-      "cant","red","LAA12MC_39",
+      "cant",
+      "red",
+      "LAA12MC_39",
       "LAA12MT_39",
       "LAA12MC_49",
       "LAA12MT_49",
@@ -598,7 +609,9 @@ function PriceList({ todosLosPrecios, listaPreciosAMostar, enPromocion }) {
       "LAA12MT_289",
     ],
     AltaCuotas6M: [
-      "cant","red","LAA6MC_39",
+      "cant",
+      "red",
+      "LAA6MC_39",
       "LAA6MT_39",
       "LAA6MC_49",
       "LAA6MT_49",
@@ -620,7 +633,9 @@ function PriceList({ todosLosPrecios, listaPreciosAMostar, enPromocion }) {
       "LAA6MT_289",
     ],
     FullClaro: [
-      "cant","red","FULLC_29",
+      "cant",
+      "red",
+      "FULLC_29",
       "FULLC_39",
       "FULLC_49",
       "FULLC_55",
@@ -633,7 +648,9 @@ function PriceList({ todosLosPrecios, listaPreciosAMostar, enPromocion }) {
       "FULLC_289",
     ],
     ListaLite6M: [
-      "cant","red","LC6MC_39",
+      "cant",
+      "red",
+      "LC6MC_39",
       "LC6MT_39",
       "LC6MC_49",
       "LC6MT_49",
@@ -655,7 +672,9 @@ function PriceList({ todosLosPrecios, listaPreciosAMostar, enPromocion }) {
       "LC6MT_289",
     ],
     LineaAdicional: [
-      "cant","red","LINA_29",
+      "cant",
+      "red",
+      "LINA_29",
       "LINA_39",
       "LINA_49",
       "LINA_55",
@@ -668,7 +687,9 @@ function PriceList({ todosLosPrecios, listaPreciosAMostar, enPromocion }) {
       "LINA_289",
     ],
     ListaPORTA12M: [
-      "cant","red","LP12MC_39",
+      "cant",
+      "red",
+      "LP12MC_39",
       "LP12MT_39",
       "LP12MC_49",
       "LP12MT_49",
@@ -690,7 +711,9 @@ function PriceList({ todosLosPrecios, listaPreciosAMostar, enPromocion }) {
       "LP12MT_289",
     ],
     ListaRENO12M: [
-      "cant","red","LR12MC_39",
+      "cant",
+      "red",
+      "LR12MC_39",
       "LR12MT_39",
       "LR12MC_49",
       "LR12MT_49",
@@ -712,7 +735,9 @@ function PriceList({ todosLosPrecios, listaPreciosAMostar, enPromocion }) {
       "LR12MT_289",
     ],
     PortabilidadExclusiva: [
-      "cant","red","PEXC_29",
+      "cant",
+      "red",
+      "PEXC_29",
       "PEXC_39",
       "PEXC_49",
       "PEXC_55",
@@ -725,7 +750,9 @@ function PriceList({ todosLosPrecios, listaPreciosAMostar, enPromocion }) {
       "PEXC_289",
     ],
     RenovacionExclusiva: [
-      "cant","red","REXC_29",
+      "cant",
+      "red",
+      "REXC_29",
       "REXC_39",
       "REXC_49",
       "REXC_55",

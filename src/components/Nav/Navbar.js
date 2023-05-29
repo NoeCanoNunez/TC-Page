@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../../logo.svg";
 import BotonExpandible from "./BotonExpandible.js";
 
@@ -23,6 +23,7 @@ function Navbar({
 
   const submitSelectorNavbar = (e) => {
     e.preventDefault();
+    hasHechoClick();
     selectorNavBar(e.target.innerText);
     if (e.target.innerText === "TodosLosEquipos") {
       document.getElementById("navInputBusqueda").value = "";
@@ -32,8 +33,14 @@ function Navbar({
 
   const submitListaPreciosAMostrar = (e) => {
     e.preventDefault();
+    hasHechoClick();
     preciosNavBar(e);
   };
+
+  const [mostrarNavbar, setMostrarNavbar] = useState(false);
+  const hasHechoClick = e => {
+    setMostrarNavbar(!mostrarNavbar)
+  }
 
   const bienvenido = (<div className="nameContainer">
   <p className="text-center">Hola: <br /> {nameUser}</p>
@@ -50,15 +57,15 @@ function Navbar({
           <button
             className="navbar-toggler"
             type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
+
             aria-controls="navbarSupportedContent"
             aria-expanded="false"
             aria-label="Toggle navigation"
+            onClick={hasHechoClick}
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <div className={mostrarNavbar ? "collapse navbar-collapse show" : "collapse navbar-collapse"} id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <a
