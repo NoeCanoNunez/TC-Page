@@ -1,32 +1,9 @@
 import React, { useEffect, useState } from "react";
 import copy from "clipboard-copy";
 import "./CoorUbi.css";
+import logoGoogle from "../../img/google-logo.svg"
 
 function CoorUbi() {
-  //Funciones a Usar
-  //Crea un texto de 10 digitos
-  function generarTexto() {
-    const letras = "abcdefghijklmnopqrstuvwxyz";
-    const numeros = "123456789";
-    let texto = "";
-
-    for (let i = 0; i < 8; i++) {
-      const letraAleatoria = letras.charAt(
-        Math.floor(Math.random() * letras.length)
-      );
-      texto += letraAleatoria;
-    }
-
-    for (let i = 0; i < 4; i++) {
-      const numeroAleatorio = numeros.charAt(
-        Math.floor(Math.random() * numeros.length)
-      );
-      texto += numeroAleatorio;
-    }
-
-    return texto;
-  }
-
   const [responseDataCity, setResponseDataCity] = useState([]);
   const [responseDataAddress, setResponseDataAddress] = useState([]);
   const [inputCities, setInputCities] = useState("");
@@ -48,6 +25,24 @@ function CoorUbi() {
     team: "",
     tecnology: "",
   });
+  const [coordUnida, setCoordUnida] = useState(`${latLon.lat}, ${latLon.lon}`);
+
+  //Funciones
+    //funcion promedio de coordenadas
+    function calcularPromedios(coordinates) {
+      let sumaValoresA = 0;
+      let sumaValoresB = 0;
+    
+      coordinates.forEach(array => {
+        sumaValoresA += array[0];
+        sumaValoresB += array[1];
+      });
+    
+      const valorAPromedio = sumaValoresA / coordinates.length;
+      const valorBPromedio = sumaValoresB / coordinates.length;
+    
+      return [valorAPromedio, valorBPromedio];
+    }
 
   //Cada cambio en el Input de City ejecuta lo de abajo
   const handleInputCity = (e) => {
@@ -85,55 +80,72 @@ function CoorUbi() {
         `https://apis.geodir.co/geocoding/v1/json?address=${sendAddress}&segments=locality_id:${localityId}&key=051f80b9-caa0-4af5-83d8-fae4eef59952`
       );
       const datac = await responsec.json();
-      console.log(datac);
       setYourCoord(datac);
       if (datac.status === "OK") {
         setLatLon({
           lat: datac.results[0].geometry.coordinates.lat,
           lon: datac.results[0].geometry.coordinates.lon,
         });
+        setCoordUnida(`${datac.results[0].geometry.coordinates.lat}, ${datac.results[0].geometry.coordinates.lon}`)
       }
     } catch (error) {
-      console.log("Error fetching data:", error);
+      console.log("Error al Obtener las Coordenadas:", error);
     }
+    
   };
   //Al hacer Click se usan las coordenadas para ir al mapa
-  const busquedaManual = (e) => {
-    e.preventDefault();
-    let valorClave = `https://www.google.com/maps/d/u/0/viewer?mid=130fNfdmfbarzuQbGbDqkFjC47ysx4Mdh&ll=${latLon.lat}%2C${latLon.lon}&z=15`;
-    window.open(valorClave, "_blank");
-  };
+  // const busquedaManual = (e) => {
+  //   e.preventDefault();
+  //   let valorClave = `https://www.google.com/maps/d/u/0/viewer?mid=130fNfdmfbarzuQbGbDqkFjC47ysx4Mdh&ll=${latLon.lat}%2C${latLon.lon}&z=15`;
+  //   window.open(valorClave, "_blank");
+  // };
+    //Al hacer Click se usan las coordenadas para ir al mapa
+    const busquedaGMaps = (e) => {
+      e.preventDefault();
+      let valorClave = `https://www.google.com/maps/search/?api=1&query=${coordUnida}&z=15`;
+      window.open(valorClave, "_blank");
+    };
   //Al hacer Click Verificara si la zona tiene cobertura y dara como respuesta el NODO
   const buscarNODO = async (e) => {
     e.preventDefault();
-    try {
-      const responsec = await fetch(
-        `https://apis.geodir.co/geofencing/geofencing/area?latlon=${latLon.lat},${latLon.lon}&layer_area_id=eloggbda2669&key=051f80b9-caa0-4af5-83d8-fae4eef59952`
-      );
-      const datac = await responsec.json();
-      console.log(datac);
-      setYourNODO({
-        area_name: datac.area_name,
-        area_status: datac.area_status,
-        capacity: datac.capacity,
-        map: datac.map,
-        region: datac.region,
-        services: datac.services,
-        team: datac.team,
-        tecnology: datac.tecnology,
-      });
-    } catch (error) {
-      console.log("Error fetching data:", error);
+    function validarCoordenadas(texto) {
+      var formatoCoordenadas = /^-?\d+(\.\d+)?,\s-?\d+(\.\d+)?$/;
+      return formatoCoordenadas.test(texto);
+    }
+    
+    let coordenadasEnviar = `https://apis.geodir.co/geofencing/geofencing/area?latlon=${coordUnida}&layer_area_id=eloggbda2669&key=051f80b9-caa0-4af5-83d8-fae4eef59952`
+
+    if (validarCoordenadas(coordUnida)) {
+      try {
+        const responsec = await fetch(coordenadasEnviar);
+        console.log(responsec)
+        const datac = await responsec.json();
+        console.log(datac)
+        setYourNODO({
+          area_name: datac.area_name,
+          area_status: datac.area_status,
+          capacity: datac.capacity,
+          map: datac.map,
+          region: datac.region,
+          services: datac.services,
+          team: datac.team,
+          tecnology: datac.tecnology,
+        });
+      } catch (error) {
+        console.log("Error al obtner Informacion del NODO y Cobertura:", error);
+      }
+    } else {
+      setMostrarError(true)
     }
   };
   //Modificar Latitud y Longitus desde sus inputs
   const modificarLatLon = (e) => {
-    const { name, value } = e.target;
-    setLatLon({ ...latLon, [name]: value });
+    const { value } = e.target;
+    setCoordUnida(value);
   };
   //Funcion que copia el valor de la longitud y latitud al portapapeles
   const [mostrarMensaje, setMostrarMensaje] = useState(false);
-
+  const [mostrarError, setMostrarError] = useState(false);
   useEffect(() => {
     if (mostrarMensaje) {
       const timeout = setTimeout(() => {
@@ -143,9 +155,19 @@ function CoorUbi() {
       return () => clearTimeout(timeout);
     }
   }, [mostrarMensaje]);
+
+  useEffect(() => {
+    if (mostrarError) {
+      const timeout = setTimeout(() => {
+        setMostrarError(false)
+      }, 1500);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [mostrarError]);
   
   const copiar = (e) => {
-    const clipboardValue = `${latLon.lat}, ${latLon.lon}`;
+    const clipboardValue = `${coordUnida}`;
     copy(clipboardValue);
     setMostrarMensaje(true)
   };
@@ -174,14 +196,18 @@ function CoorUbi() {
             `https://apis.geodir.co/geocoding/layers/adminlevel3?search=${inputCities}&key=051f80b9-caa0-4af5-83d8-fae4eef59952`
           );
           const dataa = await responsea.json();
+          const promedios = calcularPromedios(JSON.parse(dataa[0].bbox).coordinates[0])
+          setLatLon({lat:promedios[1],lon:promedios[0]})
+          setCoordUnida(`${promedios[1]}, ${promedios[0]}`)
           setResponseDataCity(dataa);
         } catch (error) {
-          console.log("Error fetching data:", error);
+          console.log("Error Al obtener los nombres de las Ciudades:", error);
         }
       }
     };
     fetchData();
   }, [inputCities]);
+
   //Obtener las Calles
   useEffect(() => {
     const fetchData = async () => {
@@ -193,7 +219,7 @@ function CoorUbi() {
           const datab = await responseb.json();
           setResponseDataAddress(datab);
         } catch (error) {
-          console.log("Error fetching data:", error);
+          console.log("Error al Obtener los nombres de las calles:", error);
         }
       }
     };
@@ -229,8 +255,7 @@ function CoorUbi() {
                     localityid={el.locality_id}
                     onClick={selectInputCity}
                   >
-                    {" "}
-                    {el.name}{" "}
+                    {el.name}
                   </p>
                 ) : null
               )}
@@ -258,8 +283,7 @@ function CoorUbi() {
                     addresssendvalue={el.name_complete}
                     onClick={selectAddress}
                   >
-                    {" "}
-                    {el.name_complete}{" "}
+                    {el.name_complete}
                   </p>
                 ) : null
               )}
@@ -299,14 +323,7 @@ function CoorUbi() {
             className="form-control"
             type="text"
             name="lat"
-            value={latLon.lat}
-            onChange={modificarLatLon}
-          ></input>
-          <input
-            className="form-control"
-            type="text"
-            name="lon"
-            value={latLon.lon}
+            value={coordUnida}
             onChange={modificarLatLon}
           ></input>
           <input
@@ -331,20 +348,28 @@ function CoorUbi() {
             onClick={buscarNODO}
             className="btn btn-success"
           >
-            Verificar Cobertura
+            Verifica Cobertura
+          </button>
+          {mostrarError && <div className="fade-out2">Coordenadas Invalidas ...</div>}
+          <button
+            style={{ marginTop: "30px", paddingBottom: "30px" }}
+            onClick={busquedaGMaps}
+            className="btn btn-light"
+          >
+            <img src={logoGoogle} alt="logoGoogle" width="20px" /> Maps
           </button>
         </div>
         {yourNODO.area_status === "" ? null : yourNODO.area_status ===
           "SIN COBERTURA" ? (
           <div className="text-center">
             <p className="h5 presulta">{yourNODO.area_status}</p>
-            <button
+            {/* <button
               style={{ paddingBottom: "30px" }}
               onClick={busquedaManual}
               className="btn btn-light"
             >
               Busqueda Manual
-            </button>
+            </button> */}
           </div>
         ) : (
           <div className="text-center">
