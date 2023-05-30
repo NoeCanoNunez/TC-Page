@@ -32,17 +32,31 @@ function CoorUbi() {
     function calcularPromedios(coordinates) {
       let sumaValoresA = 0;
       let sumaValoresB = 0;
-    
+
       coordinates.forEach(array => {
         sumaValoresA += array[0];
         sumaValoresB += array[1];
       });
-    
+
       const valorAPromedio = sumaValoresA / coordinates.length;
       const valorBPromedio = sumaValoresB / coordinates.length;
-    
+
       return [valorAPromedio, valorBPromedio];
     }
+
+    // Sirve para saber si es pantalla movil o no
+    function chooseConstant() {
+      const constantA = "Valor para pantalla de PC";
+      const constantB = "Valor para pantalla móvil";
+
+      const isMobile = /iPhone|iPad|iPod|Android|webOS|BlackBerry|Windows Phone/i.test(
+        navigator.userAgent
+      );
+
+      return isMobile ? constantB : constantA;
+    }
+
+
 
   //Cada cambio en el Input de City ejecuta lo de abajo
   const handleInputCity = (e) => {
@@ -91,7 +105,7 @@ function CoorUbi() {
     } catch (error) {
       console.log("Error al Obtener las Coordenadas:", error);
     }
-    
+
   };
   //Al hacer Click se usan las coordenadas para ir al mapa
   // const busquedaManual = (e) => {
@@ -99,12 +113,22 @@ function CoorUbi() {
   //   let valorClave = `https://www.google.com/maps/d/u/0/viewer?mid=130fNfdmfbarzuQbGbDqkFjC47ysx4Mdh&ll=${latLon.lat}%2C${latLon.lon}&z=15`;
   //   window.open(valorClave, "_blank");
   // };
-    //Al hacer Click se usan las coordenadas para ir al mapa
-    const busquedaGMaps = (e) => {
-      e.preventDefault();
-      let valorClave = `https://www.google.com/maps/search/?api=1&query=${coordUnida}&z=15`;
-      window.open(valorClave, "_blank");
-    };
+  //Al hacer Click se usan las coordenadas para ir al mapa
+  const busquedaGMaps = (e) => {
+    e.preventDefault();
+    function chooseConstant() {
+      const GMaps = `https://www.google.com/maps/search/?api=1&query=${coordUnida}&z=15`;
+      const MyMaps = `https://www.google.com/maps/d/u/0/viewer?mid=130fNfdmfbarzuQbGbDqkFjC47ysx4Mdh&ll=${latLon.lat}%2C${latLon.lon}&z=15`;
+
+      const isMobile = /iPhone|iPad|iPod|Android|webOS|BlackBerry|Windows Phone/i.test(
+        navigator.userAgent
+      );
+
+      return isMobile ? MyMaps : GMaps;
+    }
+    let valorClave = chooseConstant();
+    window.open(valorClave, "_blank");
+  };
   //Al hacer Click Verificara si la zona tiene cobertura y dara como respuesta el NODO
   const buscarNODO = async (e) => {
     e.preventDefault();
@@ -112,7 +136,7 @@ function CoorUbi() {
       var formatoCoordenadas = /^-?\d+(\.\d+)?,\s-?\d+(\.\d+)?$/;
       return formatoCoordenadas.test(texto);
     }
-    
+
     let coordenadasEnviar = `https://apis.geodir.co/geofencing/geofencing/area?latlon=${coordUnida}&layer_area_id=eloggbda2669&key=051f80b9-caa0-4af5-83d8-fae4eef59952`
 
     if (validarCoordenadas(coordUnida)) {
@@ -165,7 +189,7 @@ function CoorUbi() {
       return () => clearTimeout(timeout);
     }
   }, [mostrarError]);
-  
+
   const copiar = (e) => {
     const clipboardValue = `${coordUnida}`;
     copy(clipboardValue);
@@ -182,6 +206,7 @@ function CoorUbi() {
     setResponseDataAddress([]);
     setDisplayNoneDist(false);
     setDisplayNoneAddr(false);
+    setCoordUnida("")
     setLatLon({ lat: "", lon: "" });
     setYourNODO({
       area_status: "",
@@ -197,7 +222,7 @@ function CoorUbi() {
           );
           const dataa = await responsea.json();
           const promedios = calcularPromedios(JSON.parse(dataa[0].bbox).coordinates[0])
-          setLatLon({lat:promedios[1],lon:promedios[0]})
+          setLatLon({ lat: promedios[1], lon: promedios[0] })
           setCoordUnida(`${promedios[1]}, ${promedios[0]}`)
           setResponseDataCity(dataa);
         } catch (error) {
@@ -228,6 +253,7 @@ function CoorUbi() {
 
   return (
     <div>
+      <div>{chooseConstant()}</div>;
       <h1 className="text-center" style={{ color: "RGB(250,250,250)" }}>
         Busca tus coordenadas
       </h1>
@@ -248,17 +274,17 @@ function CoorUbi() {
           {responseDataCity.length === 0
             ? null
             : responseDataCity.map((el, i) =>
-                i < 10 ? (
-                  <p
-                    className="optionSelector"
-                    key={el.locality_id}
-                    localityid={el.locality_id}
-                    onClick={selectInputCity}
-                  >
-                    {el.name}
-                  </p>
-                ) : null
-              )}
+              i < 10 ? (
+                <p
+                  className="optionSelector"
+                  key={el.locality_id}
+                  localityid={el.locality_id}
+                  onClick={selectInputCity}
+                >
+                  {el.name}
+                </p>
+              ) : null
+            )}
         </div>
         <label className="marginTop10 h6" htmlFor="addressValue">
           Ingrese la Direccion
@@ -276,17 +302,17 @@ function CoorUbi() {
           {responseDataAddress.length === 0
             ? null
             : responseDataAddress.map((el, i) =>
-                i < 10 ? (
-                  <p
-                    className="optionSelector"
-                    key={el.locality_id}
-                    addresssendvalue={el.name_complete}
-                    onClick={selectAddress}
-                  >
-                    {el.name_complete}
-                  </p>
-                ) : null
-              )}
+              i < 10 ? (
+                <p
+                  className="optionSelector"
+                  key={el.locality_id}
+                  addresssendvalue={el.name_complete}
+                  onClick={selectAddress}
+                >
+                  {el.name_complete}
+                </p>
+              ) : null
+            )}
         </div>
         <label className="marginTop10 h6" htmlFor="number">
           Ingrese el N°#, si no tiene ponga "0"

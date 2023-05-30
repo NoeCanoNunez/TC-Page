@@ -24,6 +24,9 @@ import { auth } from "./authentication/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 
 export default function App() {
+  //ZoomOut en dispositivos mobiles
+
+  
   // Array de Precios
   const arrayPrecios = [
     "Prepago",
@@ -404,6 +407,22 @@ export default function App() {
       </div>
     </div>
   );
+
+  useEffect(() => {
+    const isMobile = /iPhone|iPad|iPod|Android|webOS|BlackBerry|Windows Phone/i.test(
+      navigator.userAgent
+    );
+    if(ventanaAMostrar === "TodosLosEquipos" ){
+      if (isMobile) {
+        document.body.style.zoom = "80%"; // Ajusta el valor según el nivel de zoom deseado
+      }
+    } else {
+      if (isMobile) {
+        document.body.style.zoom = "100%"; // Ajusta el valor según el nivel de zoom deseado
+      }
+    }
+  }, [ventanaAMostrar]);
+  
 
   return (
     <div className="App">
