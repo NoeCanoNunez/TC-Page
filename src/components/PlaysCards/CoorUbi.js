@@ -253,7 +253,6 @@ function CoorUbi() {
 
   return (
     <div>
-      <div>{chooseConstant()}</div>;
       <h1 className="text-center" style={{ color: "RGB(250,250,250)" }}>
         Busca tus coordenadas
       </h1>
