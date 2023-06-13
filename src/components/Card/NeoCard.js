@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./NeoCard.css";
 import TablaCaracteristicas from "./TablaCaracteristicas";
 import { motion } from "framer-motion";
@@ -7,7 +7,7 @@ import TablaPreciosCuotas from "./TablaPreciosCuotas";
 import masImg from "../Card/icons/file-plus.svg";
 import returnImg from "../Card/icons/file-return.svg";
 import cerrar from "../Card/icons/x-circle.svg";
-
+import { DataContext } from "../../DataContext"
 /*-------------------------------------------------------------*/
 function MiniCard({ mostrarQueTabla, el, img }) {
   const [mostrar, setMostrar] = useState("caracteristicas");
@@ -173,13 +173,11 @@ function NewMiniCard({ equipos, queEquiposMostrar }) {
 }
 /*-------------------------------------------------------------*/
 function NeoCard({
-  inventarioMostrarCero,
   mostrarQueTabla,
   dataEquipos,
-  oldEquipos,
 }) {
   
-  
+  const { newData } = useContext(DataContext);
   const [equiposCard, setEquiposCard] = useState([]);
 
 
@@ -205,7 +203,7 @@ function NeoCard({
               return <MiniCard key={i} mostrarQueTabla={mostrarQueTabla} el={el} img/>
             })
             } 
-            <NewMiniCard equipos={dataEquipos} queEquiposMostrar={cambiandoEquiposAMostrar} />
+            <NewMiniCard equipos={newData.data} queEquiposMostrar={cambiandoEquiposAMostrar} />
           </div>
         </div>
       </motion.div>

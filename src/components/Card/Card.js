@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./Card.css";
+
 import TablaCaracteristicas from "./TablaCaracteristicas";
-import { motion } from "framer-motion";
 import TablaPreciosCODE from "./TablaPreciosCODE";
 import TablaPreciosCuotas from "./TablaPreciosCuotas";
-import { ordenarPor } from "../../helper/funcionOrdenYFiltroArrayObjetos";
 import promo from "../../img/promo.png";
 
+import { DataContext } from "../../DataContext";
 
 function MiniCard({ mostrarQueTabla, el, oldEquipos }) {
   const [mostrar, setMostrar] = useState("caracteristicas");
@@ -17,16 +17,28 @@ function MiniCard({ mostrarQueTabla, el, oldEquipos }) {
   function cambiarEspacios(cadena) {
     return cadena.replace(/ /g, "%20");
   }
-  const imagenEquipo = "https://raw.githubusercontent.com/NoeCanoNunez/TC-Page/master/src/img/claro/" + cambiarEspacios(el.Equipo) +".webp"
-  
-    const displayPromo = oldEquipos.filter(elem => el.Equipo === elem.Equipo)[0] ? (oldEquipos.filter(elem => el.Equipo === elem.Equipo)[0].total < 0 ? "block" : "none") : "none"
-    
+  const imagenEquipo =
+    "https://raw.githubusercontent.com/NoeCanoNunez/TC-Page/master/src/img/claro/" +
+    cambiarEspacios(el.Equipo) +
+    ".webp";
+
+  const displayPromo = oldEquipos.filter((elem) => el.Equipo === elem.Equipo)[0]
+    ? oldEquipos.filter((elem) => el.Equipo === elem.Equipo)[0].total < 0
+      ? "block"
+      : "none"
+    : "none";
+
   return (
     <>
       <div className="container__cards">
         <div className="card">
           <div className="cover__card">
-          <img style={{display:displayPromo}} id="enPromo" alt="promo" src={promo} />
+            <img
+              style={{ display: displayPromo }}
+              id="enPromo"
+              alt="promo"
+              src={promo}
+            />
             <img src={imagenEquipo} alt="" />
           </div>
           <div className="container text-center">
@@ -64,9 +76,9 @@ function MiniCard({ mostrarQueTabla, el, oldEquipos }) {
           {mostrar === "caracteristicas" ? (
             <TablaCaracteristicas equipo={el} />
           ) : mostrar === "precios18Meses" ? (
-            <TablaPreciosCODE equipo={el} oldPrice={oldEquipos[el.Equipo]}/>
+            <TablaPreciosCODE equipo={el} oldPrice={oldEquipos[el.Equipo]} />
           ) : (
-            <TablaPreciosCuotas equipo={el} oldPrice={oldEquipos[el.Equipo]}/>
+            <TablaPreciosCuotas equipo={el} oldPrice={oldEquipos[el.Equipo]} />
           )}
         </div>
       </div>
@@ -74,50 +86,33 @@ function MiniCard({ mostrarQueTabla, el, oldEquipos }) {
   );
 }
 
-function Card({ 
-  filtrarPreciosNav,
-  inventarioMostrarCero, 
-  mostrarQueTabla, 
-  dataEquipos, 
-  oldEquipos 
+function Card({
+  mostrarQueTabla,
+  oldEquipos,
 }) {
-  
-  const newDataEquipos =dataEquipos;
-  const [mostrarCero, setMostrarCero] = useState(newDataEquipos);
-  
-  useEffect(() => {
-    inventarioMostrarCero === "no"
-      ? setMostrarCero(newDataEquipos.filter((e) => e.cant > 0))
-      : setMostrarCero(dataEquipos);
-  }, [inventarioMostrarCero,dataEquipos]);
-
-  useEffect(() => {
-    setMostrarCero(ordenarPor(dataEquipos,filtrarPreciosNav[0],filtrarPreciosNav[1]))
-  }, [filtrarPreciosNav]);
-
+  const { allData } = useContext(DataContext);
 
   return (
     <>
-      {/* <motion.div
-        initial={{ x: -30 }}
-        animate={{ x: "block" ? 0 : 30 }}
-        transition={{ duration: 1 }}
-      > */}
-        <div>
-          <div className="container__background-triangle">
-            <div className="triangle triangle1"></div>
-            <div className="triangle triangle2"></div>
-            <div className="triangle triangle3"></div>
-          </div>
-          <div className="container_miniCard">
-            {dataEquipos.length !== 0
-              ? mostrarCero.map((el) => (
-                  <MiniCard mostrarQueTabla={mostrarQueTabla} key={el.id} el={el} oldEquipos={oldEquipos}/>
-                ))
-              : "Cargando..."}
-          </div>
+      <div>
+        <div className="container__background-triangle">
+          <div className="triangle triangle1"></div>
+          <div className="triangle triangle2"></div>
+          <div className="triangle triangle3"></div>
         </div>
-      {/* </motion.div> */}
+        <div className="container_miniCard">
+          {allData.length !== 0
+            ? allData.map((el) => (
+                <MiniCard
+                  mostrarQueTabla={mostrarQueTabla}
+                  key={el.id}
+                  el={el}
+                  oldEquipos={oldEquipos}
+                />
+              ))
+            : "Cargando..."}
+        </div>
+      </div>
     </>
   );
 }

@@ -1,9 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./BotonExpandible.css";
+import { DataContext } from '../../DataContext';
 
 const BotonExpandible = ({filtrandoDesdeNav, queTablaMostrar,mostrarCero}) => {
+  //Booleano que expande y contrae los filtros
   const [menuExpandido, setMenuExpandido] = useState(false);
+
+  //Cambia los selectores para definir el orden de los equipos
   const [mostrarPrecios, setMostrarPrecios] = useState("none")
+
+  //DataContext para modificar el allData
+  const { setInventarioCero, setfiltrarAllData } = useContext(DataContext);
+  
 
   const handleClick = () => {
     setMenuExpandido(!menuExpandido);
@@ -13,11 +21,13 @@ const BotonExpandible = ({filtrandoDesdeNav, queTablaMostrar,mostrarCero}) => {
   }
   const handleSubmit = (e) => {
     e.preventDefault()
+    console.log(e.target.listaPrecios.value)
+    console.log(e.target.orden.value)
     e.target.listaPrecios.value==="Equipo"
-    ? filtrandoDesdeNav([["Equipo"],[e.target.orden.value]])
+    ? setfiltrarAllData([["Equipo"],[e.target.orden.value]])
     : e.target.listaPrecios.value==="Prepago" 
-      ? filtrandoDesdeNav([["Prepago"],[e.target.orden.value]])
-      : filtrandoDesdeNav([[e.target.listaPrecios.value+e.target.precios.value],[e.target.orden.value]])
+      ? setfiltrarAllData([["Prepago"],[e.target.orden.value]])
+      : setfiltrarAllData([[e.target.listaPrecios.value+e.target.precios.value],[e.target.orden.value]])
   }
 
   const Mostrar = (
@@ -30,7 +40,7 @@ const BotonExpandible = ({filtrandoDesdeNav, queTablaMostrar,mostrarCero}) => {
           <option value="preciosCuotas">Precios CUOTAS</option>
         </select>
         <h3>MostrarStock0?</h3>
-        <select onChange={(e)=>{mostrarCero(e)}}>
+        <select onChange={(e)=>{setInventarioCero(e.target.value)}}>
           <option value="si">Si</option>
           <option value="no">No</option>
         </select>

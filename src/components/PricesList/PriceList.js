@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./PriceList.css";
 
+import { DataContext } from "../../DataContext"
 import { ordenarPor } from "../../helper/funcionOrdenYFiltroArrayObjetos";
 
 function BodyTablaLista({ equiposFiltrados, listaAMostrar, enPromocion }) {
+  const { allData } = useContext(DataContext);
+
   return (
     <>
       {equiposFiltrados.map((equipo) => {
@@ -102,6 +105,7 @@ function SliceButton({
 }
 /*******************************************************************/
 function FormaTablaLista({ equipos, listaAMostrar, nombreLista, enPromocion }) {
+  const { allData } = useContext(DataContext);
   const [equiposFiltrados, setEquiposFiltrados] = useState(equipos);
   const [equiposAFiltrar, setEquiposAFiltrar] = useState([]);
   const [ordenacion, setOrdenacion] = useState(["ASCENDENTE"]);
@@ -111,7 +115,7 @@ function FormaTablaLista({ equipos, listaAMostrar, nombreLista, enPromocion }) {
     ordenacion[0] === "ASCENDENTE"
       ? setOrdenacion(["DESCENDENTE"])
       : setOrdenacion(["ASCENDENTE"]);
-  }, [equiposAFiltrar]);
+  }, [equiposAFiltrar,allData]);
 
   const TrRedStock = (
     <>
