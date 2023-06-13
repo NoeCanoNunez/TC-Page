@@ -1,10 +1,9 @@
 
-import React from "react";
+import React, { useContext } from "react";
 import "./Footer.css";
-
 import { auth } from "../../authentication/firebase"
-
-function Footer({ version }) {
+import { DataContext } from "../../DataContext"
+function Footer() {
 
   const handleSignOut = () => {
     auth.signOut().then(() => {
@@ -14,13 +13,15 @@ function Footer({ version }) {
     });
   };
 
+  const { newData } = useContext(DataContext);
+
   return (
     <footer className="footer">
       <div><button onClick={handleSignOut} className="btn btn-danger LogOut">
         <p>Cerrar sesión</p>
     </button></div>
       
-      <div className="left">Actualizado a la version {version}</div>
+      <div className="left">Actualizado a la version {newData.version}</div>
       <div className="right">
         <a href="https://wa.me/+51968700858" target="_blank" rel="noopener noreferrer">
           <img

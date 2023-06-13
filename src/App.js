@@ -234,7 +234,7 @@ export default function App() {
               </div>
             ) : null}
           </div>
-          <Footer version={"mañana"} />
+          <Footer/>
         </div>
       ) : (
         <div>
