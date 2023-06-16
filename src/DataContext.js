@@ -2,30 +2,27 @@ import React, { useEffect, createContext, useState } from "react";
 import newData from "./allData/miArchivo.json";
 import previewData from "./allData/oldMiArchivo.json";
 
-import { ordenarPor } from "./helper/funcionOrdenYFiltroArrayObjetos";
+import { ordenarPor, filterByEquipo } from "./helper/funcionOrdenYFiltroArrayObjetos";
 
 export const DataContext = createContext();
 
 export const DataProvider = (props) => {
   const [allData, setAllData] = useState(newData.data);
   const oldData = previewData.data;
-  const [filterData, setFilterData] = useState(newData.data.filter((e) => e.cant > 0));
+  const filterData= newData.data.filter((e) => e.cant > 0);
   const [inventarioCero, setInventarioCero] = useState("si");
   const [filtrarAllData, setfiltrarAllData] = useState([["Id"],["ASCENDENTE"]]);
-
+  const [valorBuscador, setValorBuscador] = useState("");
 
   // Aquí puedes poner cualquier lógica que necesites para actualizar estos datos
   useEffect(() => {
     if (inventarioCero === "si"){
-      setAllData(newData.data) 
-      setAllData(ordenarPor(newData.data,filtrarAllData[0],filtrarAllData[1]))
+      setAllData(filterByEquipo(ordenarPor(newData.data,filtrarAllData[0],filtrarAllData[1]), valorBuscador))
     } else {
-      setAllData(filterData);
-      setAllData(ordenarPor(filterData,filtrarAllData[0],filtrarAllData[1]))
+      setAllData(filterByEquipo(ordenarPor(filterData,filtrarAllData[0],filtrarAllData[1]), valorBuscador))
     }  
-  }, [inventarioCero, filtrarAllData]);
-
-  console.log(allData.length)
+    console.log(valorBuscador)
+  }, [inventarioCero, filtrarAllData, valorBuscador]);
   return (
     <DataContext.Provider
       value={{
@@ -36,6 +33,7 @@ export const DataProvider = (props) => {
         setInventarioCero,
         setfiltrarAllData,
         inventarioCero,
+        setValorBuscador
       }}
     >
       {props.children}

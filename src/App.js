@@ -22,7 +22,7 @@ import { onAuthStateChanged } from "firebase/auth";
 
 export default function App() {
   //Aqui va el Data Provider
-  const { newData, setAllData, allData, oldData, inventarioCero } = useContext(DataContext);
+  const { allData, oldData } = useContext(DataContext);
 
   // Array de Precios
   function generateArray() {
@@ -234,7 +234,7 @@ export default function App() {
               </div>
             ) : null}
           </div>
-          <Footer/>
+          <Footer version={"mañana"} />
         </div>
       ) : (
         <div>

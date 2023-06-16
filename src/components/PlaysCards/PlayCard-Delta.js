@@ -6,7 +6,6 @@ import netflix from "../../img/netflix.svg";
 import CoorUbi from "./CoorUbi";
 
 const PlayCard = () => {
-  const [inputA, setInputA] = useState(false);
   const [inputB, setInputB] = useState(false);
   const [inputC, setInputC] = useState(false);
   const [inputD, setInputD] = useState(false);
@@ -20,46 +19,20 @@ const PlayCard = () => {
 
   const handleInputChange = (event) => {
     const { name, checked } = event.target;
-    if (name === "inputA") {
-      setInputA(checked);
-      if (checked && inputB) {
-        setSelectB("1");
-        setInputC(true);
-        setInputD(true);
-      } else if (checked) {
-        setInputC(true);
-        setInputD(true);
-        setSelectC("9");
-      } else if (!checked && inputB) {
-        setSelectB("0");
-        setSelectC("0");
-        setInputC(false);
-        setInputD(false);
-      } else if (!checked) {
-        setSelectC("0");
-        setInputC(false);
-        setInputD(false);
-      } else {
-      }
-      if (checked && inputB) {
-        setSelectC("10");
-      } else if (!checked) {
-        setSelectC("0");
-      }
-    } else if (name === "inputB") {
+    if (name === "inputB") {
       setInputB(checked);
-      if (inputA && checked) {
+      if ( checked) {
         setSelectB("1");
       } else if (!checked) {
         setSelectB("0");
         setSelectB2("0");
       } else {
       }
-      if (checked && inputA) {
+      if (checked ) {
         setSelectC("10");
-      } else if (checked && !inputA) {
+      } else if (checked ) {
         setSelectC("0");
-      } else if (!checked && inputA) {
+      } else if (!checked) {
         setSelectC("9");
       }
     } else if (name === "inputC") {
@@ -147,10 +120,10 @@ const PlayCard = () => {
   };
 
   useEffect(() => {
-    if (inputA && inputB && inputC && inputD) {
+    if ( inputB && inputC && inputD) {
       setResultado("3PLAY-Netflix");
       console.log("3PLAY-Netflix");
-    } else if (inputA && inputC && inputD) {
+    } else if ( inputC && inputD) {
       setResultado("2PLAY-Netflix");
       console.log("2PLAY-Netflix");
     } else if (inputB && inputC && inputD) {
@@ -175,7 +148,7 @@ const PlayCard = () => {
       setResultado("");
       console.log("Nada que mostrar");
     }
-  }, [inputA, inputB, inputC, inputD]);
+  }, [, inputB, inputC, inputD]);
 
   const handleSelectChange = (event) => {
     const { name, value } = event.target;
@@ -186,7 +159,8 @@ const PlayCard = () => {
       }
     } else if (name === "selectC") {
       setSelectC(value);
-      setSelectCValue(event.target[event.target.value].innerText);
+      setSelectCValue(value);
+      console.log(value)
     } else if (name === "selectB2") {
       setSelectB2(value);
       if (!value) {
@@ -195,107 +169,147 @@ const PlayCard = () => {
     }
   };
 
-  const preciosInternet = {
-    1: 70,
-    2: 80,
-    3: 95,
-    4: 110,
-    5: 125,
-    6: 200,
-    7: 240,
-    8: 440,
+  const preciosInternetRegular = {
+    "50MB": 70,
+    "100MB": 80,
+    "150MB": 95,
+    "200MB": 110,
+    "300MB": 200,
+    "500MB": 240,
+    "1000MB": 440,
   };
-  // const preciosTv = {
-  //   Avanzado: 75,
-  //   Superior: 125,
-  // }
+
+  const preciosInternetAtaque = {
+    "50MB": 59,
+    "100MB": 79,
+    "200MB": 99,
+    "300MB": 149,
+    "500MB": 169,
+  };
+
+  const preciosInternetNetflix = {
+    "100MB": 80,
+    "180MB": 100,
+    "280MB": 140,
+  };
+
+  const preciosNetflix = {
+    "2Play": 20,
+    "3Play": 40,
+  }
+
+   const preciosTv = {
+     Avanzado: 75,
+     Superior: 125,
+   }
 
   const preciosTelefono = {
-    DPlay: 10,
-    TPlayMD: {
-      1: 10,
-      2: 10,
-      3: 10,
-      4: 5,
-      5: 5,
-      6: 5,
-      7: 5,
-      8: 5,
-    },
+    price: 10
   };
+
+  const [eleccionPreciario, setEleccionPreciario] = useState("ATAQUE");
+
+  const handlerSelector=(e)=>{
+    setEleccionPreciario(e.target.nextElementSibling.innerText)
+    console.log(eleccionPreciario)
+  }
+  
+
+  const selectorListaPrecios = (
+    <div  className="radio-inputs">
+      <label className="radio">
+        <input onClick={handlerSelector} type="radio" name="radio" defaultChecked />
+        <span className="name">ATAQUE</span>
+      </label>
+      <label className="radio">
+        <input onClick={handlerSelector} type="radio" name="radio"  />
+        <span className="name">REGULAR</span>
+      </label>
+      <label className="radio">
+        <input onClick={handlerSelector} type="radio" name="radio" />
+        <span className="name"><img
+                    
+                    style={{ width: "20px", marginRight: "6px" }}
+                    src={netflix}
+                    alt="Netflix"
+                  /> NETFLIX </span>
+      </label>
+    </div>
+  );
+
+  const coberturaZonasJunin = (
+    <div className="imgPlays-container">
+      <table className="table table-striped mytable">
+        <thead>
+          <tr className="theadContainer">
+            <th scope="col" className="selectContainer">
+              Elige la Cobertura:
+            </th>
+            <th scope="col" className="selectContainer"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>
+              <label>
+                <select onChange={elegirCobertura} className="form-select">
+                  {coberturas
+                    ? arrayCoberturas.map((cob) => <option>{cob}</option>)
+                    : null}
+                </select>
+              </label>
+            </th>
+            <th>
+              <input
+                onClick={buscarCobertura}
+                className="btn btn-success"
+                type="button"
+                value="Buscar"
+              />
+            </th>
+          </tr>
+        </tbody>
+        <tfoot>
+          <p className="medium font-weight-700 text-center">
+            <a
+              href="https://selectra.com.pe/empresas/claro/claro-tv/canales#que-canales-tiene-claro-tv"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Lista de todos los canales aqui
+            </a>
+          </p>
+        </tfoot>
+      </table>
+    </div>
+  );
+
   return (
     <>
       <div style={{ display: "flex", flexDirection: "column" }}>
-        {/* <div className="imgContainer">
-        <img src={imgVelocidad} alt="velocidad"></img>
-      </div> */}
+        {/* Aqui van los Selectores y la imagenes */}
         <div className="tableContainer">
+          {selectorListaPrecios}
           <table className="table table-striped mytable">
             <thead>
               <tr className="theadContainer">
                 <th scope="col" className="selectContainer">
-                  <img
-                    className="thead-img"
-                    style={{ width: "100px" }}
-                    src={netflix}
-                    alt="Netflix"
-                  />
-                </th>
-                <th scope="col" className="selectContainer">
                   <i className="thead-img bi bi-tv"></i>
+                  <p>TV</p>
                 </th>
                 <th scope="col" className="selectContainer">
                   <i className="thead-img bi bi-router"></i>
+                  <p>Internet</p>
                 </th>
                 <th scope="col" className="selectContainer">
                   <i className="thead-img bi bi-telephone-plus"></i>
+                  <p>Telefono</p>
                 </th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <th>
-                  {/* Input Netflix del tipo Select con Efecto*/}
-                  <div id="macario" className="checkbox-wrapper-12">
-                    <div className="cbx">
-                      <input
-                        type="checkbox"
-                        name="inputA"
-                        checked={inputA}
-                        onChange={handleInputChange}
-                      />
-                      <label htmlFor="cbx-12"></label>
-                      <svg
-                        width="15"
-                        height="14"
-                        viewBox="0 0 15 14"
-                        fill="none"
-                      >
-                        <path d="M2 8.36364L6.23077 12L13 2"></path>
-                      </svg>
-                    </div>
-
-                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-                      <defs>
-                        <filter id="goo-12">
-                          <feGaussianBlur
-                            in="SourceGraphic"
-                            stdDeviation="4"
-                            result="blur"
-                          ></feGaussianBlur>
-                          <feColorMatrix
-                            in="blur"
-                            mode="matrix"
-                            values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7"
-                            result="goo-12"
-                          ></feColorMatrix>
-                          <feBlend in="SourceGraphic" in2="goo-12"></feBlend>
-                        </filter>
-                      </defs>
-                    </svg>
-                  </div>
-                  {/* Fin del Input Netflix del tipo Select */}
-                </th>
+                
                 <th>
                   {/* Input TV del tipo Select con Efecto*/}
 
@@ -350,7 +364,7 @@ const PlayCard = () => {
                         name="inputC"
                         checked={inputC}
                         onChange={handleInputChange}
-                        disabled={inputA}
+                        
                       />
                       <label htmlFor="cbx-12"></label>
                       <svg
@@ -395,7 +409,7 @@ const PlayCard = () => {
                         name="inputD"
                         checked={inputD}
                         onChange={handleInputChange}
-                        disabled={inputA || (!inputA && !inputB && !inputC)}
+                        // disabled={ || (! && !inputB && !inputC)}
                       />
                       <label htmlFor="cbx-12"></label>
                       <svg
@@ -431,7 +445,7 @@ const PlayCard = () => {
                 </th>
               </tr>
               <tr className={inputB || inputC ? null : "hidden"}>
-                <th></th>
+                
                 <th>
                   <select
                     className={inputB ? "form-select" : "hidden"}
@@ -442,19 +456,19 @@ const PlayCard = () => {
                   >
                     <option
                       value="0"
-                      className={!inputA && inputB ? null : "hidden"}
+                      className={ inputB ? null : "hidden"}
                     >
                       --Elija--
                     </option>
                     <option
                       value="1"
-                      className={!inputA && inputB ? null : "hidden"}
+                      className={inputB ? null : "hidden"}
                     >
                       Avanzado
                     </option>
                     <option
                       value="2"
-                      className={!inputA && inputB ? null : "hidden"}
+                      className={ inputB ? null : "hidden"}
                     >
                       Superior
                     </option>
@@ -469,63 +483,21 @@ const PlayCard = () => {
                     onChange={handleSelectChange}
                     disabled={!inputC}
                   >
-                    <option value="0" className={!inputA ? null : "hidden"}>
+                    <option value="0" >
                       --Elija--
                     </option>
-                    <option
-                      value="1"
-                      className={
-                        !inputA
-                          ? !inputB && !inputD
-                            ? "hidden"
-                            : null
-                          : "hidden"
-                      }
-                    >
-                      50MB
-                    </option>
-                    <option value="2" className={!inputA ? null : "hidden"}>
-                      100MB
-                    </option>
-                    <option value="3" className={!inputA ? null : "hidden"}>
-                      150MB
-                    </option>
-                    <option value="4" className={!inputA ? null : "hidden"}>
-                      200MB
-                    </option>
-                    <option value="5" className={!inputA ? null : "hidden"}>
-                      250MB
-                    </option>
-                    <option value="6" className={!inputA ? null : "hidden"}>
-                      300MB
-                    </option>
-                    <option value="7" className={!inputA ? null : "hidden"}>
-                      500MB
-                    </option>
-                    <option value="8" className={!inputA ? null : "hidden"}>
-                      1000MB
-                    </option>
-                    <option
-                      value="9"
-                      className={inputA && !inputB ? null : "hidden"}
-                    >
-                      100MB
-                    </option>
-                    <option value="10" className={inputA ? null : "hidden"}>
-                      180MB
-                    </option>
-                    <option
-                      value="11"
-                      className={inputA && inputB ? null : "hidden"}
-                    >
-                      280MB
-                    </option>
+                    {eleccionPreciario === "ATAQUE" 
+                    ? Object.keys(preciosInternetAtaque).map(el => (<option value={el}>{el}</option>))
+                    : eleccionPreciario === "REGULAR" 
+                      ? Object.keys(preciosInternetRegular).map(el => (<option  value={el}>{el}</option>))
+                      : Object.keys(preciosInternetNetflix).map(el => (<option  value={el}>{el}</option>))
+                  }
                   </select>
                 </th>
                 <th></th>
               </tr>
               <tr className={inputB ? null : "hidden"}>
-                <th></th>
+                
                 <th>
                   {" "}
                   <select
@@ -546,8 +518,10 @@ const PlayCard = () => {
             </tbody>
           </table>
         </div>
+
+        {/* Aqui van los Precios y las imagenes */}
         <div
-          className={inputA || inputB || inputC ? "resultContainer" : "hidden"}
+          className={ inputB || inputC ? "resultContainer" : "hidden"}
         >
           <div className="promocionPlays">
             <div id="box">
@@ -572,7 +546,7 @@ const PlayCard = () => {
               <span className={!inputD ? "hidden" : "text"}>
                 {`${
                   inputD
-                    ? inputA && !inputB
+                    ?  !inputB
                       ? "Con 80 minutos MultiDestino"
                       : "Con 100 minutos MultiDestino"
                     : ""
@@ -626,31 +600,31 @@ const PlayCard = () => {
                       ? selectB2 === "2"
                         ? "S/" +
                           (85 +
-                            preciosInternet[selectC] +
+                            preciosInternetAtaque[selectC] +
                             preciosTelefono.TPlayMD[selectC])
                         : "S/" +
                           (75 +
-                            preciosInternet[selectC] +
+                            preciosInternetAtaque[selectC] +
                             preciosTelefono.TPlayMD[selectC])
                       : selectB2 === "2"
                       ? "S/" +
                         (135 +
-                          preciosInternet[selectC] +
+                          preciosInternetAtaque[selectC] +
                           preciosTelefono.TPlayMD[selectC])
                       : "S/" +
                         (125 +
-                          preciosInternet[selectC] +
+                          preciosInternetAtaque[selectC] +
                           preciosTelefono.TPlayMD[selectC])
                     : "..."
                   : resultado === "2PLAY-TV-INT"
                   ? selectB !== "0" && selectC !== "0"
                     ? selectB === "1"
                       ? selectB2 === "2"
-                        ? "S/" + (85 + preciosInternet[selectC])
-                        : "S/" + (75 + preciosInternet[selectC])
+                        ? "S/" + (85 + preciosInternetAtaque[selectC])
+                        : "S/" + (75 + preciosInternetAtaque[selectC])
                       : selectB2 === "2"
-                      ? "S/" + (135 + preciosInternet[selectC])
-                      : "S/" + (125 + preciosInternet[selectC])
+                      ? "S/" + (135 + preciosInternetAtaque[selectC])
+                      : "S/" + (125 + preciosInternetAtaque[selectC])
                     : "..."
                   : resultado === "2PLAY-TV-TLF"
                   ? selectB !== "0"
@@ -664,7 +638,7 @@ const PlayCard = () => {
                     : "..."
                   : resultado === "2PLAY-INT-TLF"
                   ? selectC !== "0"
-                    ? "S/" + (preciosInternet[selectC] + preciosTelefono.DPlay)
+                    ? "S/" + (preciosInternetAtaque[selectC] + preciosTelefono.DPlay)
                     : "..."
                   : resultado === "1PLAY-TV"
                   ? selectB !== "0"
@@ -678,7 +652,7 @@ const PlayCard = () => {
                     : "..."
                   : resultado === "1PLAY-INT"
                   ? selectC !== "0"
-                    ? "S/" + preciosInternet[selectC]
+                    ? "S/" + preciosInternetAtaque[selectC]
                     : "..."
                   : "Algo no funciona bien, Llamen a la NASA"
               }`}
@@ -688,62 +662,18 @@ const PlayCard = () => {
           <div className="imgPlays-container">
             <img
               className="imgPlays"
-              src={`https://raw.githubusercontent.com/NoeCanoNunez/TC-Page/master/src/img/Plays/${resultado}.webp`}
+              src={resultado?`https://raw.githubusercontent.com/NoeCanoNunez/TC-Page/master/src/img/Plays/${resultado}.webp`:null}
               alt=""
             />
           </div>
         </div>
-        <div className="imgPlays-container">
-          <table className="table table-striped mytable">
-            <thead>
-              <tr className="theadContainer">
-                <th scope="col" className="selectContainer">
-                  Elige la Cobertura:
-                </th>
-                <th scope="col" className="selectContainer"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th>
-                  <label>
-                    <select onChange={elegirCobertura} className="form-select">
-                      {coberturas
-                        ? arrayCoberturas.map((cob) => <option>{cob}</option>)
-                        : null}
-                    </select>
-                  </label>
-                </th>
-                <th>
-                  <input
-                    onClick={buscarCobertura}
-                    className="btn btn-success"
-                    type="button"
-                    value="Buscar"
-                  />
-                </th>
-              </tr>
-            </tbody>
-            <tfoot>
-              <p className="medium font-weight-700 text-center">
-                <a
-                  href="https://selectra.com.pe/empresas/claro/claro-tv/canales#que-canales-tiene-claro-tv"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Lista de todos los canales aqui
-                </a>
-              </p>
-            </tfoot>
-          </table>
-        </div>
-        <div className="imgPlays-container" style={{marginBottom:"50px"}}>
-        <CoorUbi />
-        </div>
-      </div>
 
-      
-      
+        <div className="imgPlays-container" style={{ marginBottom: "50px" }}>
+          <CoorUbi />
+        </div>
+
+        {coberturaZonasJunin}
+      </div>
     </>
   );
 };

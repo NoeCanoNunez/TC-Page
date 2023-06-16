@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import logo from "../../logo.svg";
 import BotonExpandible from "./BotonExpandible.js";
 
 import "./Navbar.css";
+
+//Importando todo acerca del JSON de equipos desde el DataContext
+import { DataContext } from "../../DataContext";
 
 function Navbar({
   nameUser,
@@ -13,12 +16,15 @@ function Navbar({
   selectorNavBar,
   preciosNavBar,
 }) {
+
+  const { setValorBuscador } = useContext(DataContext);
+
   const liStyle = { color: "white" };
 
   const submitBuscar = (e) => {
     e.preventDefault();
-    buscador(e);
-    selectorNavBar("TodosLosEquipos");
+    setValorBuscador(e.target[0].value);
+    //selectorNavBar("TodosLosEquipos");
   };
 
   const submitSelectorNavbar = (e) => {
