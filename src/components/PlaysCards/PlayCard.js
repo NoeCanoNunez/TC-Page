@@ -210,7 +210,7 @@ const PlayCard = () => {
       }
     }
      
-  }, [ eleccionPreciario, inputB, inputC, inputD, selectB, selectB2, selectC]);
+  }, [eleccionPreciario, inputB, inputC, inputD, selectB, selectB2, selectC]);
 
   const handleSelectChange = (event) => {
     const { name, value } = event.target;
