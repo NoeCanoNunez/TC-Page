@@ -27,35 +27,35 @@ const PlayCard = () => {
       } else if (!checked) {
         setSelectB("0");
         setSelectB2("0");
-      } 
-      if (eleccionPreciario === "NETFLIX"){
+      }
+      if (eleccionPreciario === "NETFLIX") {
         if (name === "inputB") {
           setInputB(checked);
           setInputC(checked);
           setInputD(checked)
         }
-          
-          if (checked) {
-            setSelectB("1");
-            setSelectB2("1")
-          } else if (!checked) {
-            setSelectB("0");
-            setSelectB2("0");
-          } 
+
+        if (checked) {
+          setSelectB("1");
+          setSelectB2("1")
+        } else if (!checked) {
+          setSelectB("0");
+          setSelectB2("0");
+        }
       }
-      if (eleccionPreciario === "ATAQUE"||eleccionPreciario === "REGULAR"){
+      if (eleccionPreciario === "ATAQUE" || eleccionPreciario === "REGULAR") {
         if (name === "inputB") {
           setInputB(checked);
           setInputC(checked);
         }
-          
-          if (checked) {
-            setSelectB("1");
-            setSelectB2("1")
-          } else if (!checked) {
-            setSelectB("0");
-            setSelectB2("0");
-          } 
+
+        if (checked) {
+          setSelectB("1");
+          setSelectB2("1")
+        } else if (!checked) {
+          setSelectB("0");
+          setSelectB2("0");
+        }
       }
 
     } else if (name === "inputC") {
@@ -65,7 +65,7 @@ const PlayCard = () => {
         setSelectC("100MB");
       }
 
-      if (eleccionPreciario === "NETFLIX"){
+      if (eleccionPreciario === "NETFLIX") {
         if (name === "inputC") {
           setInputC(checked);
           setInputD(checked)
@@ -74,7 +74,7 @@ const PlayCard = () => {
           setInputD(false);
           setSelectC("100MB");
         }
-          
+
       }
 
 
@@ -86,7 +86,7 @@ const PlayCard = () => {
       } else if (!checked) {
         setInputD(false);
       }
-      if (eleccionPreciario === "NETFLIX"){
+      if (eleccionPreciario === "NETFLIX") {
         if (name === "inputD") {
           setInputD(false)
         }
@@ -164,25 +164,25 @@ const PlayCard = () => {
 
   useEffect(() => {
     if (eleccionPreciario === "NETFLIX") {
-      if ( inputB && inputC && inputD) {
-        setMonto(preciosInternetNetflix[selectC]+preciosNetflix["3Play"]+preciosTv["1"]+preciosTelefono+(selectB2==="2"?10:0));
+      if (inputB && inputC && inputD) {
+        setMonto(preciosInternetNetflix[selectC] + preciosNetflix["3Play"] + preciosTv["1"] + preciosTelefono + (selectB2 === "2" ? 10 : 0));
         setResultado("3PLAY-Netflix");
       } else if (inputC && inputD) {
-        setMonto(preciosInternetNetflix[selectC]+preciosNetflix["2Play"]+preciosTelefono);
+        setMonto(preciosInternetNetflix[selectC] + preciosNetflix["2Play"] + preciosTelefono);
         setResultado("2PLAY-Netflix");
       } else {
         setResultado("")
         setMonto("¡Añade Telefono!")
       }
-    } else if (eleccionPreciario === "REGULAR"){
+    } else if (eleccionPreciario === "REGULAR") {
       if (inputB && inputC && inputD) {
-        setMonto((preciosInternetRegular[selectC]>= 99 ? preciosInternetRegular[selectC]-5 : preciosInternetRegular[selectC]) +preciosTv[selectB]+preciosTelefono+(selectB2==="2"?10:0));
+        setMonto((preciosInternetRegular[selectC] >= 99 ? preciosInternetRegular[selectC] - 5 : preciosInternetRegular[selectC]) + preciosTv[selectB] + preciosTelefono + (selectB2 === "2" ? 10 : 0));
         setResultado("3PLAY");
       } else if (inputB && inputC) {
-        setMonto(preciosInternetRegular[selectC]+preciosTv[selectB]+(selectB2==="2"?10:0))
+        setMonto(preciosInternetRegular[selectC] + preciosTv[selectB] + (selectB2 === "2" ? 10 : 0))
         setResultado("2PLAY-TV-INT");
       } else if (inputC && inputD) {
-        setMonto(preciosInternetRegular[selectC]+preciosTelefono)
+        setMonto(preciosInternetRegular[selectC] + preciosTelefono)
         setResultado("2PLAY-INT-TLF");
       } else if (inputC) {
         setMonto(preciosInternetRegular[selectC])
@@ -191,15 +191,15 @@ const PlayCard = () => {
         setResultado("");
         setMonto("No Existe!")
       }
-    } else if (eleccionPreciario === "ATAQUE"){
+    } else if (eleccionPreciario === "ATAQUE") {
       if (inputB && inputC && inputD) {
-        setMonto((preciosInternetAtaque[selectC]>= 99 ? preciosInternetAtaque[selectC]-5 : preciosInternetAtaque[selectC]) +preciosTv[selectB]+preciosTelefono+(selectB2==="2"?10:0));
+        setMonto((preciosInternetAtaque[selectC] >= 99 ? preciosInternetAtaque[selectC] - 5 : preciosInternetAtaque[selectC]) + preciosTv[selectB] + preciosTelefono + (selectB2 === "2" ? 10 : 0));
         setResultado("3PLAY");
       } else if (inputB && inputC) {
-        setMonto(preciosInternetAtaque[selectC]+preciosTv[selectB]+(selectB2==="2"?10:0))
+        setMonto(preciosInternetAtaque[selectC] + preciosTv[selectB] + (selectB2 === "2" ? 10 : 0))
         setResultado("2PLAY-TV-INT");
       } else if (inputC && inputD) {
-        setMonto(preciosInternetAtaque[selectC]+preciosTelefono)
+        setMonto(preciosInternetAtaque[selectC] + preciosTelefono)
         setResultado("2PLAY-INT-TLF");
       } else if (inputC) {
         setMonto(preciosInternetAtaque[selectC])
@@ -209,7 +209,7 @@ const PlayCard = () => {
         setMonto("No Existe!")
       }
     }
-     
+
   }, [eleccionPreciario, inputB, inputC, inputD, selectB, selectB2, selectC]);
 
   const handleSelectChange = (event) => {
@@ -229,6 +229,60 @@ const PlayCard = () => {
     }
     console.log(value)
   };
+
+
+const newRegularPrices = {
+    "1PlayInternet": {
+      "50": {"Promo": "x2-6m", "PrecioPromo": 59, "PrecioNormal": 59, "TiempoPromo": 0},
+      "100": {"Promo": "x2-6m", "PrecioPromo": 69, "PrecioNormal": 79, "TiempoPromo": 6 },
+      "200": {"Promo": "x2-6m", "PrecioPromo": 79, "PrecioNormal": 89, "TiempoPromo": 6 },
+      "300": {"Promo": "x2-6m", "PrecioPromo": 99, "PrecioNormal": 129, "TiempoPromo": 6 },
+      "500": {"Promo": "x2-6m", "PrecioPromo": 199, "PrecioNormal": 199, "TiempoPromo": 0 },
+      "1000": {"Promo": "0", "PrecioPromo": 399, "PrecioNormal": 399, "TiempoPromo": 0 }
+    },
+    "2PlayInternetTelefonia": {
+      "50": {"Promo": "x2-6m", "PrecioPromo": 69, "PrecioNormal": 69, "TiempoPromo": 0 },
+      "100": {"Promo": "x2-6m", "PrecioPromo": 89, "PrecioNormal": 89, "TiempoPromo": 0 },
+      "200": {"Promo": "x2-6m", "PrecioPromo": 99, "PrecioNormal": 99, "TiempoPromo": 0 },
+      "300": {"Promo": "x2-6m", "PrecioPromo": 139, "PrecioNormal": 139, "TiempoPromo": 0 },
+      "500": {"Promo": "x2-6m", "PrecioPromo": 209, "PrecioNormal": 209, "TiempoPromo": 0 },
+      "1000": {"Promo": "0", "PrecioPromo": 409, "PrecioNormal": 409, "TiempoPromo": 0 }
+    },
+    "2PlayInternetTvAvanzado": {
+      "50": { "Promo": "x2-6m", "PrecioPromo": 139, "PrecioNormal": 139, "TiempoPromo": 0 },
+      "100": {"Promo": "x2-6m", "PrecioPromo": 139, "PrecioNormal": 159, "TiempoPromo": 6 },
+      "200": {"Promo": "x2-6m", "PrecioPromo": 149, "PrecioNormal": 169, "TiempoPromo": 6 },
+      "300": {"Promo": "x2-6m", "PrecioPromo": 179, "PrecioNormal": 209, "TiempoPromo": 6 },
+      "500": {"Promo": "x2-6m", "PrecioPromo": 249, "PrecioNormal": 279, "TiempoPromo": 6 },
+      "1000": {"Promo": "0", "PrecioPromo": 449, "PrecioNormal": 479, "TiempoPromo": 6 }
+    },
+    "2PlayInternetTvSuperior": {
+      "50": {"Promo": "x2-6m", "PrecioPromo": 189, "PrecioNormal": 189, "TiempoPromo": 0 },
+      "100": {"Promo": "x2-6m", "PrecioPromo": 189, "PrecioNormal": 209, "TiempoPromo": 6 },
+      "200": {"Promo": "x2-6m", "PrecioPromo": 199, "PrecioNormal": 219, "TiempoPromo": 6 },
+      "300": {"Promo": "x2-6m", "PrecioPromo": 229, "PrecioNormal": 259, "TiempoPromo": 6 },
+      "500": {"Promo": "x2-6m", "PrecioPromo": 299, "PrecioNormal": 329, "TiempoPromo": 6 },
+      "1000": {"Promo": "0", "PrecioPromo": 499, "PrecioNormal": 529, "TiempoPromo": 6 }
+    },
+    "3PlayAvanzado": {
+      "50": {"Promo": "x2-6m", "PrecioPromo": 149, "PrecioNormal": 149, "TiempoPromo": 0 },
+      "100": {"Promo": "x2-6m", "PrecioPromo": 149, "PrecioNormal": 169, "TiempoPromo": 6 },
+      "200": {"Promo": "x2-6m", "PrecioPromo": 154, "PrecioNormal": 174, "TiempoPromo": 6 },
+      "300": {"Promo": "x2-6m", "PrecioPromo": 184, "PrecioNormal": 214, "TiempoPromo": 6 },
+      "500": {"Promo": "x2-6m", "PrecioPromo": 254, "PrecioNormal": 284, "TiempoPromo": 6 },
+      "1000": {"Promo": "0", "PrecioPromo": 454, "PrecioNormal": 484, "TiempoPromo": 6 }
+    },
+    "3PlaySuperior": {
+      "50": {"Promo": "x2-6m", "PrecioPromo": 199, "PrecioNormal": 199, "TiempoPromo": 0 },
+      "100": {"Promo": "x2-6m", "PrecioPromo": 199, "PrecioNormal": 219, "TiempoPromo": 6 },
+      "200": {"Promo": "x2-6m", "PrecioPromo": 204, "PrecioNormal": 224, "TiempoPromo": 6 },
+      "300": {"Promo": "x2-6m", "PrecioPromo": 234, "PrecioNormal": 264, "TiempoPromo": 6 },
+      "500": {"Promo": "x2-6m", "PrecioPromo": 304, "PrecioNormal": 334, "TiempoPromo": 6 },
+      "1000": {"Promo": "0", "PrecioPromo": 504, "PrecioNormal": 534, "TiempoPromo": 6 }
+    }
+  }
+
+
 
   const preciosInternetRegular = {
     "50MB": 70,
@@ -474,7 +528,7 @@ const PlayCard = () => {
                         name="inputD"
                         checked={inputD}
                         onChange={handleInputChange}
-                        // disabled={ || (! && !inputB && !inputC)}
+                      // disabled={ || (! && !inputB && !inputC)}
                       />
                       <label htmlFor="cbx-12"></label>
                       <svg
@@ -523,8 +577,8 @@ const PlayCard = () => {
                     </option>
                     {
                       eleccionPreciario === "NETFLIX" ? null : <option value="2" className={inputB ? null : "hidden"}>
-                      Superior
-                    </option>
+                        Superior
+                      </option>
                     }
                   </select>
                 </th>
@@ -539,23 +593,23 @@ const PlayCard = () => {
                   >
                     {eleccionPreciario === "ATAQUE"
                       ? Object.keys(preciosInternetAtaque).map((el) => (
-                          <option value={el}>{el}</option>
-                        ))
+                        <option value={el}>{el}</option>
+                      ))
                       : eleccionPreciario === "REGULAR"
-                      ? Object.keys(preciosInternetRegular).map((el) => (
+                        ? Object.keys(preciosInternetRegular).map((el) => (
                           <option value={el}>{el}</option>
                         ))
-                      : inputB ? (
-                      <>
-                      <option value="180MB">180MB</option>
-                      <option value="280MB">280MB</option>
-                      </>)
-                        : (
+                        : inputB ? (
                           <>
-                          <option value="100MB">100MB</option>
-                          <option value="180MB">180MB</option>
+                            <option value="180MB">180MB</option>
+                            <option value="280MB">280MB</option>
                           </>)
-                        }
+                          : (
+                            <>
+                              <option value="100MB">100MB</option>
+                              <option value="180MB">180MB</option>
+                            </>)
+                    }
                   </select>
                 </th>
                 <th></th>
@@ -588,74 +642,69 @@ const PlayCard = () => {
             <div id="box">
               <p id="flashlight">
                 <span id="light">
-                  {`${
-                    inputB && inputC && inputD
+                  {`${inputB && inputC && inputD
                       ? "3 "
                       : (inputB && inputC) ||
                         (inputB && inputD) ||
                         (inputC && inputD)
-                      ? "2 "
-                      : inputB || inputC
-                      ? "1 "
-                      : ""
-                  }`}
+                        ? "2 "
+                        : inputB || inputC
+                          ? "1 "
+                          : ""
+                    }`}
                 </span>
                 <span id="flash"> PLAY </span>
               </p>
             </div>
             <p>
               <span className={!inputD ? "hidden" : "text"}>
-                {`${
-                  inputD
+                {`${inputD
                     ? !inputB
                       ? "Con 80 minutos MultiDestino"
                       : "Con 100 minutos MultiDestino"
                     : ""
-                }`}
+                  }`}
               </span>
             </p>
             {/* Aqui van la promocion */}
-            {eleccionPreciario === "REGULAR" 
-            ? (<p
-              className={`${
-                resultado === "3PLAY" ||
-                resultado === "2PLAY-TV-INT" ||
-                resultado === "2PLAY-INT-TLF" ||
-                resultado === "1PLAY-INT"
-                  ? ""
-                  : "hidden"
-              }`}
-            >
-              <span id="lightDscto2">50</span>
-              <span id="lightDscto3">% DSCTO X : </span>
-              <span id="lightDscto2">{`${
-                resultado === "3PLAY" || resultado === "2PLAY-TV-INT"
-                  ? " 3"
-                  : resultado === "2PLAY-INT-TLF" || resultado === "1PLAY-INT"
-                  ? " 1"
-                  : ""
-              }`}</span>
-              <span id="lightDscto3">{`${
-                resultado === "3PLAY" || resultado === "2PLAY-TV-INT"
-                  ? " MESES"
-                  : resultado === "2PLAY-INT-TLF" || resultado === "1PLAY-INT"
-                  ? " MES"
-                  : ""
-              }`}</span>
-            </p>)
-            : eleccionPreciario === "ATAQUE" 
-            ? (<p><span id="lightDscto2">DOBLE </span><span id="lightDscto3"> DE VELOCIDAD :</span><span id="lightDscto2"> X 6 MESES</span></p>)
-            : null}
+            {eleccionPreciario === "REGULAR"
+              ? (<p
+                className={`${resultado === "3PLAY" ||
+                    resultado === "2PLAY-TV-INT" ||
+                    resultado === "2PLAY-INT-TLF" ||
+                    resultado === "1PLAY-INT"
+                    ? ""
+                    : "hidden"
+                  }`}
+              >
+                <span id="lightDscto2">50</span>
+                <span id="lightDscto3">% DSCTO X : </span>
+                <span id="lightDscto2">{`${resultado === "3PLAY" || resultado === "2PLAY-TV-INT"
+                    ? " 3"
+                    : resultado === "2PLAY-INT-TLF" || resultado === "1PLAY-INT"
+                      ? " 1"
+                      : ""
+                  }`}</span>
+                <span id="lightDscto3">{`${resultado === "3PLAY" || resultado === "2PLAY-TV-INT"
+                    ? " MESES"
+                    : resultado === "2PLAY-INT-TLF" || resultado === "1PLAY-INT"
+                      ? " MES"
+                      : ""
+                  }`}</span>
+              </p>)
+              : eleccionPreciario === "ATAQUE"
+                ? (<p><span id="lightDscto2">DOBLE </span><span id="lightDscto3"> DE VELOCIDAD :</span><span id="lightDscto2"> X 6 MESES</span></p>)
+                : null}
             <p className="coraje">
               {/* Aqui van los calculos de los precios x plan */}
               {eleccionPreciario === "ATAQUE"
                 ? <span>S/ {monto}</span>
                 : eleccionPreciario === "REGULAR"
-                ? <span>S/ {monto}</span>
-                : eleccionPreciario === "NETFLIX"
-                ? <span>S/ {monto}</span>
-                : null}
-              
+                  ? <span>S/ {monto}</span>
+                  : eleccionPreciario === "NETFLIX"
+                    ? <span>S/ {monto}</span>
+                    : null}
+
             </p>
           </div>
 
