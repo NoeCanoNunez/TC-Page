@@ -230,6 +230,16 @@ const PlayCard = () => {
     console.log(value)
   };
 
+  const newNetflixPrices = {
+    "2PlayInternetTelefonia": {
+      "100": {"Promo": "Dscto: S/34.90 x 3meses", "PrecioPromo": 75.10, "PrecioNormal": 110, "TiempoPromo": 3 },
+      "180": {"Promo": "Dscto: S/34.90 x 3meses", "PrecioPromo": 95.10, "PrecioNormal": 130, "TiempoPromo": 3 }
+    },
+    "3PlayAvanzado": {
+      "180": {"Promo": "Dscto: S/34.90 x 3meses", "PrecioPromo": 180.10, "PrecioNormal": 215, "TiempoPromo": 3 },
+      "280": {"Promo": "Dscto: S/34.90 x 3meses", "PrecioPromo": 220.10, "PrecioNormal": 255, "TiempoPromo": 3 },
+    }
+  };
 
 const newRegularPrices = {
     "1PlayInternet": {
