@@ -1,0 +1,16 @@
+.tableOC {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tableOC .thOC,
+.tableOC .tdOC {
+padding: 5px 2px;
+text-align: center;
+border: 1px solid rgb(15, 105, 3);
+}
+
+.tableOC tr:nth-child(even) {
+  border: 1px solid rgb(3, 47, 105);
+  color: rgb(185, 90, 0) !important;
+}

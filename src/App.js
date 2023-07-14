@@ -182,7 +182,7 @@ export default function App() {
       /iPhone|iPad|iPod|Android|webOS|BlackBerry|Windows Phone/i.test(
         navigator.userAgent
       );
-    if (ventanaAMostrar === "TodosLosEquipos") {
+    if (ventanaAMostrar === "TodosLosEquipos" || ventanaAMostrar === "CompararEquipos") {
       if (isMobile) {
         document.body.style.zoom = "80%"; // Ajusta el valor según el nivel de zoom deseado
       }
@@ -198,7 +198,7 @@ export default function App() {
       {userAuth === true ? (
         <div>
           <Navbar
-            nameUser={nameUser}
+            nameUser={correoUser}
             filtrandoDesdeNav={filtrandoDesdeNav}
             queTablaMostrar={queTablaMostrar}
             mostrarCero={mostrarEquiposConInvetarioCero}
@@ -229,7 +229,7 @@ export default function App() {
                 enPromocion={enPromocion}
               />
             ) : ventanaAMostrar === "HFC/FTTH" ? (
-              <div style={{ marginTop: "500px" }}>
+              <div style={{ marginTop: "50px", marginBottom: "50px" }}>
                 <PlayCard />
               </div>
             ) : null}

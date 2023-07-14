@@ -314,7 +314,7 @@ function CoorUbi() {
             )}
         </div>
         <label className="marginTop10 h6" htmlFor="number">
-          Ingrese el N°#, si no tiene ponga "0"
+          Ingrese el N°#, si no tiene ingrese "101"
         </label>
         <input
           id="number"

@@ -40,6 +40,13 @@
   font-size: 4vw;
 }
 
+.loader-gif {
+  display: block;
+  margin: 16px auto;
+  max-width: 100%;
+}
+
+
 @media (max-width: 560px) {
   .Bienvenido {
     font-size: 9vw;
