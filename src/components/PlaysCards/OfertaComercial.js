@@ -67,29 +67,29 @@ const OfertaComercial = () => {
       50: { Promo: "x2-6m", PrecioPromo: 69, PrecioNormal: 69, TiempoPromo: 0 },
       100: {
         Promo: "x2-6m",
-        PrecioPromo: 89,
+        PrecioPromo: 79,
         PrecioNormal: 89,
-        TiempoPromo: 0,
+        TiempoPromo: 6,
       },
       200: {
         Promo: "x2-6m",
-        PrecioPromo: 99,
+        PrecioPromo: 89,
         PrecioNormal: 99,
-        TiempoPromo: 0,
+        TiempoPromo: 6,
       },
       300: {
         Promo: "x2-6m",
-        PrecioPromo: 139,
+        PrecioPromo: 129,
         PrecioNormal: 139,
-        TiempoPromo: 0,
+        TiempoPromo: 6,
       },
       500: {
         Promo: "x2-6m",
-        PrecioPromo: 209,
+        PrecioPromo: 199,
         PrecioNormal: 209,
-        TiempoPromo: 0,
+        TiempoPromo: 6,
       },
-      1000: { Promo: "0", PrecioPromo: 409, PrecioNormal: 409, TiempoPromo: 0 },
+      1000: { Promo: "0", PrecioPromo: 399, PrecioNormal: 409, TiempoPromo: 6 },
     },
     "2PlayInternetTvAvanzado": {
       50: {
@@ -243,7 +243,6 @@ const OfertaComercial = () => {
             <th className="thOC">Velocidad</th>
             <th className="thOC">Precio Promo</th>
             <th className="thOC">Precio Normal</th>
-            <th className="thOC">Descuento</th>
           </tr>
         </thead>
         <tbody style={{color: "black"}}>
@@ -252,10 +251,11 @@ const OfertaComercial = () => {
               <tr key={`${packages}-${speed}`}>
 
                 <td className="tdOC">{packages}</td>
-                <td className="tdOC" style={{fontWeight:"bold"}}>{`${speed}MB (${speed*2}MBx 6m)`}</td>
-                <td className="tdOC" style={{fontWeight:"bold", color:"rebeccapurple"}}>{speedData.PrecioPromo < 100 ? `S/ ${speedData.PrecioPromo}.00`: `S/${speedData.PrecioPromo}.00` }</td>
+                <td className="tdOC" style={{fontWeight:"bold"}}>{speed === "1000" ? `${speed}MB` : `${speed}MB (${speed*2}MBx 6m)`}</td>
+                <td className="tdOC" style={{fontWeight:"bold", color:"rebeccapurple"}}>
+                  {speedData.TiempoPromo === 0 ? "-" :  speedData.PrecioPromo < 100 ? `S/ ${speedData.PrecioPromo}.00 x6m`: `S/${speedData.PrecioPromo}.00 x6m`}
+                  </td>
                 <td className="tdOC">{speedData.PrecioNormal < 100 ? `S/ ${speedData.PrecioNormal}.00`: `S/${speedData.PrecioNormal}.00`}</td>
-                <td className="tdOC">{`${speedData.TiempoPromo !== 0 ? `${speedData.TiempoPromo} meses` : "-"}`}</td>
               </tr>
             ))
           )}
