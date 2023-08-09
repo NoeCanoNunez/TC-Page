@@ -251,9 +251,9 @@ const OfertaComercial = () => {
               <tr key={`${packages}-${speed}`}>
 
                 <td className="tdOC">{packages}</td>
-                <td className="tdOC" style={{fontWeight:"bold"}}>{speed === "1000" ? `${speed}MB` : `${speed}MB (${speed*2}MBx 6m)`}</td>
+                <td className="tdOC" style={{fontWeight:"bold"}}>{speed === "1000" || speedData.TiempoPromo=== 3 ? `${speed}MB` : `${speed}MB (${speed*2}MBx 6m)`}</td>
                 <td className="tdOC" style={{fontWeight:"bold", color:"rebeccapurple"}}>
-                  {speedData.TiempoPromo === 0 ? "-" :  speedData.PrecioPromo < 100 ? `S/ ${speedData.PrecioPromo}.00 x6m`: `S/${speedData.PrecioPromo}.00 x6m`}
+                  {speedData.TiempoPromo === 0 ? "-" :  speedData.PrecioPromo < 100 ? `S/ ${speedData.PrecioPromo}.00 x${speedData.TiempoPromo}m`: `S/${speedData.PrecioPromo}.00 x${speedData.TiempoPromo}m`}
                   </td>
                 <td className="tdOC">{speedData.PrecioNormal < 100 ? `S/ ${speedData.PrecioNormal}.00`: `S/${speedData.PrecioNormal}.00`}</td>
               </tr>

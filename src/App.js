@@ -198,7 +198,7 @@ export default function App() {
       {userAuth === true ? (
         <div>
           <Navbar
-            nameUser={correoUser}
+            nameUser={nameUser}
             filtrandoDesdeNav={filtrandoDesdeNav}
             queTablaMostrar={queTablaMostrar}
             mostrarCero={mostrarEquiposConInvetarioCero}

@@ -48,8 +48,14 @@ function Navbar({
     setMostrarNavbar(!mostrarNavbar)
   }
 
+  function obtenerNombresCompletos(nombreCompleto) {
+    const nombres = nombreCompleto.split(' ');
+    return `${nombres[0]}`;
+  }
+
+
   const bienvenido = (<div className="nameContainer">
-  <p className="text-center">Hola: <br /> {nameUser}</p>
+  <p className="text-center">Hola: <br /> {obtenerNombresCompletos(nameUser)}</p>
 </div>)
 
   return (
