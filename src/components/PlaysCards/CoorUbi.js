@@ -118,8 +118,8 @@ function CoorUbi() {
     e.preventDefault();
     function chooseConstant() {
       const GMaps = `https://www.google.com/maps/search/?api=1&query=${coordUnida}&z=15`;
-      const MyMaps = `https://www.google.com/maps/d/u/0/viewer?mid=130fNfdmfbarzuQbGbDqkFjC47ysx4Mdh&ll=${latLon.lat}%2C${latLon.lon}&z=15`;
-
+      // const MyMaps = `https://www.google.com/maps/d/u/0/viewer?mid=145vrKrVO-aBWxohD-zOqWoXZc1e9Ctk&ehbc&ll=${latLon.lat}%2C${latLon.lon}&z=15`;
+      const MyMaps = `https://www.google.com/maps/d/u/0/viewer?mid=145vrKrVO-aBWxohD-zOqWoXZc1e9Ctk&ehbc&ll=${latLon.lat}%2C${latLon.lon}&z=15`;
       const isMobile = /iPhone|iPad|iPod|Android|webOS|BlackBerry|Windows Phone/i.test(
         navigator.userAgent
       );

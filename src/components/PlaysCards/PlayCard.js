@@ -123,7 +123,11 @@ const PlayCard = () => {
           <CoorUbi />
         </div>
 
-        {coberturaZonasJunin}
+        <div className="imgPlays-container" style={{ marginBottom: "50px" }}>
+          <iframe src="https://www.google.com/maps/d/u/0/embed?mid=145vrKrVO-aBWxohD-zOqWoXZc1e9Ctk&ehbc=2E312F" style={{width: "80vw", height: "480px"}} title="Mapa de ubicación"></iframe>
+        </div>
+
+        {/* {coberturaZonasJunin} */}
         
         <div className="imgPlays-container" style={{ marginBottom: "50px" }}>
           <OfertaComercial />
