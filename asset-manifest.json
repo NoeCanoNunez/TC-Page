@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/TC-Page/static/css/main.98c97026.css",
-    "main.js": "/TC-Page/static/js/main.597f561a.js",
-    "static/media/loading.gif": "/TC-Page/static/media/loading.91ce0601db2490106ce1.gif",
+    "main.css": "/TC-Page/static/css/main.89563271.css",
+    "main.js": "/TC-Page/static/js/main.3fee0696.js",
+    "static/media/loading.gif": "/TC-Page/static/media/loading.5efe09b512fec3975c4a.gif",
     "static/media/newFondo.webp": "/TC-Page/static/media/newFondo.201b23b46b96324a9996.webp",
     "static/media/promo.png": "/TC-Page/static/media/promo.2b83e5468754bd6efb9b.png",
     "static/media/google-logo.svg": "/TC-Page/static/media/google-logo.dcbc94051c15aba5972efc068e2cec23.svg",
@@ -22,11 +22,11 @@
     "static/media/file-plus.svg": "/TC-Page/static/media/file-plus.d69f74b5fc67a0579ef0474558e02ac2.svg",
     "static/media/bateria.svg": "/TC-Page/static/media/bateria.257841ddd532689e5cdd935895c8e85b.svg",
     "static/media/peso.svg": "/TC-Page/static/media/peso.dfbe9e0f72f7f2c0e0e470696e831107.svg",
-    "main.98c97026.css.map": "/TC-Page/static/css/main.98c97026.css.map",
-    "main.597f561a.js.map": "/TC-Page/static/js/main.597f561a.js.map"
+    "main.89563271.css.map": "/TC-Page/static/css/main.89563271.css.map",
+    "main.3fee0696.js.map": "/TC-Page/static/js/main.3fee0696.js.map"
   },
   "entrypoints": [
-    "static/css/main.98c97026.css",
-    "static/js/main.597f561a.js"
+    "static/css/main.89563271.css",
+    "static/js/main.3fee0696.js"
   ]
 }
