@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/TC-Page/static/css/main.421c46d4.css",
-    "main.js": "/TC-Page/static/js/main.1dde5217.js",
+    "main.css": "/TC-Page/static/css/main.98c97026.css",
+    "main.js": "/TC-Page/static/js/main.597f561a.js",
     "static/media/loading.gif": "/TC-Page/static/media/loading.91ce0601db2490106ce1.gif",
-    "static/media/promo.png": "/TC-Page/static/media/promo.f79497a1ce035e078197.png",
+    "static/media/newFondo.webp": "/TC-Page/static/media/newFondo.201b23b46b96324a9996.webp",
+    "static/media/promo.png": "/TC-Page/static/media/promo.2b83e5468754bd6efb9b.png",
     "static/media/google-logo.svg": "/TC-Page/static/media/google-logo.dcbc94051c15aba5972efc068e2cec23.svg",
-    "static/media/newFondo.webp": "/TC-Page/static/media/newFondo.814295810707d6cfdc95.webp",
     "static/media/netflix.svg": "/TC-Page/static/media/netflix.761423e16dd39b29c816916ff0417b67.svg",
-    "static/media/logo.svg": "/TC-Page/static/media/logo.6074ffbaa74e8bad189bc02a5e3483aa.svg",
+    "static/media/logo.svg": "/TC-Page/static/media/logo.98b19f46f187f4a6d9f6ddcba92aa734.svg",
     "static/media/android.svg": "/TC-Page/static/media/android.0cfd7fe2594587d29723d6aa0cae8dc9.svg",
     "index.html": "/TC-Page/index.html",
     "static/media/cellphone.svg": "/TC-Page/static/media/cellphone.7f72ca966b856f9dea40d427cc0ba122.svg",
@@ -22,11 +22,11 @@
     "static/media/file-plus.svg": "/TC-Page/static/media/file-plus.d69f74b5fc67a0579ef0474558e02ac2.svg",
     "static/media/bateria.svg": "/TC-Page/static/media/bateria.257841ddd532689e5cdd935895c8e85b.svg",
     "static/media/peso.svg": "/TC-Page/static/media/peso.dfbe9e0f72f7f2c0e0e470696e831107.svg",
-    "main.421c46d4.css.map": "/TC-Page/static/css/main.421c46d4.css.map",
-    "main.1dde5217.js.map": "/TC-Page/static/js/main.1dde5217.js.map"
+    "main.98c97026.css.map": "/TC-Page/static/css/main.98c97026.css.map",
+    "main.597f561a.js.map": "/TC-Page/static/js/main.597f561a.js.map"
   },
   "entrypoints": [
-    "static/css/main.421c46d4.css",
-    "static/js/main.1dde5217.js"
+    "static/css/main.98c97026.css",
+    "static/js/main.597f561a.js"
   ]
 }
