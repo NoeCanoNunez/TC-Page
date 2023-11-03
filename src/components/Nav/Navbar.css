@@ -22,10 +22,10 @@
 .navbar {
   background: linear-gradient(
     90deg,
-    rgba(35, 97, 254, 1) 10%,
-    rgba(236, 4, 31, 0.796) 30%,
-    rgba(236, 4, 31, 0.705) 50%,
-    rgb(236, 89, 4) 100%
+    rgba(177, 0, 0, 0.925) 10%,
+    rgba(182, 0, 0, 0.842) 30%,
+    rgba(255, 40, 40, 0.89) 50%,
+    rgb(250, 210, 210) 100%
   );
   /* border: 2px solid rgba(255, 255, 255, 0.8); */
   box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.523);
@@ -65,13 +65,13 @@ li:hover {
   margin-left: 5px;
   border-radius: 20px;
 
-  background: #e6d6da80;
-  box-shadow: 2px 2px 3px #0069d9b0, -2px -2px 3px #ff3204b0;
+  background: #ff00009a;
+  box-shadow: 2px 2px 3px #fff0f0b0, -2px -2px 3px #ffffffb0;
 }
 .nameContainer p {
   margin: 5px auto;
   font-size: 16px;
-  text-shadow: 1px 1px 2px #0069d9b0, -1px -1px 2px #ff3204b0;
+  text-shadow: 1px 1px 2px #868686b0, -1px -1px 2px #ff3204b0;
   color: azure;
 }
 

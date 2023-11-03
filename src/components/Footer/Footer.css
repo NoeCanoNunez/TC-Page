@@ -50,6 +50,7 @@
 }
 
 .left {
+  display: flex;
   white-space: nowrap;
   width: 100vw;
   font-size: 15px;

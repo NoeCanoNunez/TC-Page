@@ -3,6 +3,8 @@ import React, { useContext } from "react";
 import "./Footer.css";
 import { auth } from "../../authentication/firebase"
 import { DataContext } from "../../DataContext"
+
+import loadingGif from "../../img/loading.gif";
 function Footer() {
 
   const handleSignOut = () => {
@@ -20,8 +22,7 @@ function Footer() {
       <div><button onClick={handleSignOut} className="btn btn-danger LogOut">
         <p>Cerrar sesión</p>
     </button></div>
-      
-      <div className="left">Actualizado a la version {newData.version}</div>
+      <div className="left"><img style={{width:"70px", height:"65px"}} src={loadingGif} alt="Cargando" className="loader-gif" />Actualizado a la version {newData.version}</div>
       <div className="right">
         <a href="https://wa.me/+51968700858" target="_blank" rel="noopener noreferrer">
           <img

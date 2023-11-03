@@ -291,7 +291,7 @@ function Navbar({
               />
               <button
                 id="tori"
-                className="btn btn-warning botonBuscar"
+                className="btn btn-success botonBuscar"
                 type="submit"
               >
                 Buscar
