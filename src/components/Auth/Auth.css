@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: space-around;
   margin-top: 100px;
-  background-color: rgba(129, 155, 159, 0.737);
+  background-color: rgba(161, 107, 161, 0.507);
   height: 80vh;
   min-width: 300px;
 }
@@ -44,6 +44,7 @@
   display: block;
   margin: 16px auto;
   max-width: 100%;
+  height: 20vw;
 }
 
 

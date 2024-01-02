@@ -22,10 +22,10 @@
 .navbar {
   background: linear-gradient(
     90deg,
-    rgba(177, 0, 0, 0.925) 10%,
-    rgba(182, 0, 0, 0.842) 30%,
-    rgba(255, 40, 40, 0.89) 50%,
-    rgb(250, 210, 210) 100%
+    rgba(177, 0, 0, 0.568) 10%,
+    rgba(182, 0, 0, 0.596) 30%,
+    rgba(255, 40, 40, 0.651) 50%,
+    rgba(250, 210, 210, 0.774) 100%
   );
   /* border: 2px solid rgba(255, 255, 255, 0.8); */
   box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.523);
@@ -65,7 +65,7 @@ li:hover {
   margin-left: 5px;
   border-radius: 20px;
 
-  background: #ff00009a;
+  background: #ff00229f;
   box-shadow: 2px 2px 3px #fff0f0b0, -2px -2px 3px #ffffffb0;
 }
 .nameContainer p {

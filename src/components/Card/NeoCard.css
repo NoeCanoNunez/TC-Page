@@ -182,9 +182,9 @@ button:active {
   font-size: 15px;
   background: linear-gradient(
     90deg,
-    rgb(252, 0, 21) 10%,
-    rgb(250, 118, 118) 80%,
-    rgb(216, 240, 237) 100%
+    rgb(252, 0, 42) 10%,
+    rgb(250, 118, 158) 80%,
+    rgb(245, 147, 188) 100%
   );
   margin-top: 15px;
   width: 175px;
@@ -194,9 +194,9 @@ button:active {
   font-size: 15px;
   background: linear-gradient(
     90deg,
-    rgba(69, 187, 0, 0.822) 10%,
-    rgb(0, 163, 22) 50%,
-    rgb(216, 240, 237) 100%
+    rgba(238, 160, 17, 0.822) 10%,
+    rgb(218, 204, 10) 50%,
+    rgb(13, 236, 24) 100%
   );
   border-bottom-left-radius: 15px;
   width: 175px;
@@ -207,9 +207,9 @@ button:active {
   font-size: 15px;
   background: linear-gradient(
     90deg,
-    rgb(216, 240, 237) 0%,
-    rgb(0, 163, 22) 80%,
-    rgb(39, 107, 0) 100%
+    rgb(213, 103, 235) 0%,
+    rgb(184, 7, 184) 80%,
+    rgb(75, 3, 69) 100%
   );
   border-top-right-radius: 15px;
   margin-top: 15px;
@@ -220,9 +220,9 @@ button:active {
   font-size: 15px;
   background: linear-gradient(
     90deg,
-    rgb(216, 240, 237) 0%,
-    rgb(250, 118, 118) 50%,
-    rgb(252, 0, 21) 100%
+    rgb(6, 243, 105) 0%,
+    rgb(31, 161, 236) 50%,
+    rgb(255, 1, 179) 100%
   );
   border-bottom-right-radius: 15px;
   width: 175px;
@@ -258,7 +258,7 @@ h2 {
 .triangle1 {
   width: 250px;
   height: 250px;
-  background: linear-gradient(to left, #1eff00, #004e17);
+  background: linear-gradient(to left, #c97800, #df075a);
   right: 100px;
   top: 100px;
   animation: t1 20s ease infinite;
@@ -267,7 +267,7 @@ h2 {
 .triangle2 {
   width: 200px;
   height: 200px;
-  background: linear-gradient(to left, #00f048, rgb(255, 255, 255));
+  background: linear-gradient(to left, #ff48a3, rgb(255, 34, 34));
   top: 350px;
   animation: t2 30s ease infinite;
 }
@@ -275,7 +275,7 @@ h2 {
 .triangle3 {
   width: 300px;
   height: 300px;
-  background: linear-gradient(to left, #044627, #03eea8);
+  background: linear-gradient(to left, #43018f, #ff0000);
   left: 200px;
   animation: t3 40s ease infinite;
 }
