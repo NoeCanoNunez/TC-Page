@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/TC-Page/static/css/main.89563271.css",
-    "main.js": "/TC-Page/static/js/main.3ec4d26e.js",
-    "static/media/loading.gif": "/TC-Page/static/media/loading.21ec2ae4e50c8690d3f5.gif",
-    "static/media/newFondo.webp": "/TC-Page/static/media/newFondo.201b23b46b96324a9996.webp",
-    "static/media/promo.png": "/TC-Page/static/media/promo.2b83e5468754bd6efb9b.png",
+    "main.css": "/TC-Page/static/css/main.d0d7348b.css",
+    "main.js": "/TC-Page/static/js/main.bcbc3196.js",
+    "static/media/loading.gif": "/TC-Page/static/media/loading.585c52a4f217700ba34a.gif",
+    "static/media/promo.png": "/TC-Page/static/media/promo.5e36a81bbd19e7c37e6d.png",
+    "static/media/newFondo.webp": "/TC-Page/static/media/newFondo.5e59fe1d306ea8a3e67e.webp",
     "static/media/google-logo.svg": "/TC-Page/static/media/google-logo.dcbc94051c15aba5972efc068e2cec23.svg",
     "static/media/netflix.svg": "/TC-Page/static/media/netflix.761423e16dd39b29c816916ff0417b67.svg",
-    "static/media/logo.svg": "/TC-Page/static/media/logo.98b19f46f187f4a6d9f6ddcba92aa734.svg",
+    "static/media/logo.svg": "/TC-Page/static/media/logo.a71eeb0923c2c03cfc33d92ea0863d9b.svg",
     "static/media/android.svg": "/TC-Page/static/media/android.0cfd7fe2594587d29723d6aa0cae8dc9.svg",
     "index.html": "/TC-Page/index.html",
     "static/media/cellphone.svg": "/TC-Page/static/media/cellphone.7f72ca966b856f9dea40d427cc0ba122.svg",
@@ -22,11 +22,11 @@
     "static/media/file-plus.svg": "/TC-Page/static/media/file-plus.d69f74b5fc67a0579ef0474558e02ac2.svg",
     "static/media/bateria.svg": "/TC-Page/static/media/bateria.257841ddd532689e5cdd935895c8e85b.svg",
     "static/media/peso.svg": "/TC-Page/static/media/peso.dfbe9e0f72f7f2c0e0e470696e831107.svg",
-    "main.89563271.css.map": "/TC-Page/static/css/main.89563271.css.map",
-    "main.3ec4d26e.js.map": "/TC-Page/static/js/main.3ec4d26e.js.map"
+    "main.d0d7348b.css.map": "/TC-Page/static/css/main.d0d7348b.css.map",
+    "main.bcbc3196.js.map": "/TC-Page/static/js/main.bcbc3196.js.map"
   },
   "entrypoints": [
-    "static/css/main.89563271.css",
-    "static/js/main.3ec4d26e.js"
+    "static/css/main.d0d7348b.css",
+    "static/js/main.bcbc3196.js"
   ]
 }
